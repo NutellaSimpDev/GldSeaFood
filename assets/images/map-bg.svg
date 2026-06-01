@@ -9,8 +9,8 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    viewBox="0 0 2752.766 1537.631"
    version="1.0"
-   height="386.638"
-   width="383.62"
+   height="100%"
+   width="100%"
    id="svg1926"
    sodipodi:version="0.32"
    inkscape:version="0.45.1"
@@ -73,18 +73,6 @@ class="ocean"
   <style
      type="text/css"
      id="style_css_sheet">
-/*
- * Below are Cascading Style Sheet (CSS) definitions in use in this file,
- * which allow easily changing how countries are displayed.
- *
- */
-
-/*
- * Circles around small countries
- *
- * Change opacity to 1 to display all circles.
- *
- */
 .circle
 {
    opacity:0;
@@ -97,90 +85,58 @@ class="ocean"
    stroke-opacity:1;
 }
 
-/*
- * Land
- */
 .land
 {
-   fill: #b9b9b9;
-   fill-opacity: 1;
-   stroke: #ffffff;
-   stroke-opacity: 1;
-   stroke-width: 0.99986997;
-   stroke-miterlimit: 3.97446823;
-   stroke-dasharray: none;
+   fill: #002D4E !important;
+   fill-opacity: 0.65 !important;
+   stroke: rgba(212, 175, 55, 0.25) !important;
+   stroke-opacity: 1 !important;
+   stroke-width: 0.99986997 !important;
+   stroke-miterlimit: 3.97446823 !important;
+   stroke-dasharray: none !important;
 }
 
-/*
- * Additional style rules
- *
- * The following are examples of colouring countries.  You can substitute these with your own styles to colour the countries on the map.
- *
- * Color a few countries:
- *
- * .gb, .au, .nc
- * {
- *    fill:       #ff0000;
- * }
- *
- * Color a few small country circles (and the countries):
- *
- * .ms, .ky
- * {
- *    opacity:    1;
- *    fill:       #ff0000;
- * }
- *
- */
-
-/*
- * Antarctica
- */
+#mx, #cr, #co, #pe, .mx, .cr, .co, .pe {
+   fill: rgba(212, 175, 55, 0.45) !important;
+   fill-opacity: 0.45 !important;
+   stroke: #D4AF37 !important;
+   stroke-width: 1.5px !important;
+}
 
 .aq
 {
-   fill:#e6e6e6;
+   fill:#001C30 !important;
 }
-
-/*
- * Sea
- */
 
 .ocean
 {
-   opacity: 1;
-   color: #000000;
-   fill:white;
-   fill-opacity:1;
-   fill-rule:nonzero;
-   stroke:#000000;
-   stroke-width:0.5;
-   stroke-linecap:butt;
-   stroke-linejoin:miter;
-   marker:none;
-   marker-start:none;
-   marker-mid:none;
-   marker-end:none;
-   stroke-miterlimit:1;
-   stroke-dasharray:none;
-   stroke-dashoffset:0;
-   stroke-opacity:1;
-   visibility:visible;
-   display:inline;
-   overflow:visible;
+   opacity: 1 !important;
+   color: #000000 !important;
+   fill: none !important;
+   fill-opacity: 0 !important;
+   fill-rule: nonzero !important;
+   stroke: none !important;
+   stroke-width: 0 !important;
+   stroke-opacity: 0 !important;
+   visibility: visible !important;
+   display: inline !important;
+   overflow: visible !important;
 }
 
 .lake
 {
-   fill:#ffffff;
-   fill-opacity:1;
-   stroke:#ffffff;
-   stroke-opacity:1;
-   stroke-width:0.99986997;
-   stroke-miterlimit:3.97446823;
-   stroke-dasharray:none;
+   fill: none !important;
+   fill-opacity: 0 !important;
+   stroke: rgba(212, 175, 55, 0.25) !important;
+   stroke-opacity: 1 !important;
+   stroke-width: 0.99986997 !important;
+   stroke-miterlimit: 3.97446823 !important;
+   stroke-dasharray: none !important;
 }
 </style>
+<script type="text/javascript">
+  // Dummy to close style tag cleanly if regex was broad
+</script>
   
 <g
   id="two_planets"
