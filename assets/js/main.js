@@ -150,6 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const pins = document.querySelectorAll('.map-pin');
   const sideDisplayTitle = document.getElementById('map-info-title');
   const sideDisplayDesc = document.getElementById('map-info-desc');
+  const infoCard = document.getElementById('map-info-card-display');
 
   const mapData = {
     mexico: t.mexico,
@@ -158,30 +159,80 @@ document.addEventListener('DOMContentLoaded', () => {
     peru: t.peru
   };
 
-  if (pins.length > 0 && sideDisplayTitle && sideDisplayDesc) {
-    pins.forEach(pin => {
-      // Mouseover/Click action
-      const triggerAction = () => {
-        pins.forEach(p => p.classList.remove('active'));
-        pin.classList.add('active');
-        
-        const countryKey = pin.dataset.country;
-        const data = mapData[countryKey];
-        if (data) {
-          sideDisplayTitle.textContent = data.title;
-          sideDisplayDesc.textContent = data.desc;
-          
-          // Animate text reveal
-          sideDisplayTitle.style.animation = 'none';
-          sideDisplayDesc.style.animation = 'none';
-          // Trigger reflow
-          void sideDisplayTitle.offsetWidth;
-          sideDisplayTitle.style.animation = 'fadeInUp 0.3s ease forwards';
-          sideDisplayDesc.style.animation = 'fadeInUp 0.4s ease forwards';
-        }
-      };
+  const baseTitle = lang === 'es' ? 'Suministro Multiorigen Garantizado' 
+                  : (lang === 'zh' ? '多产地保障 稳定供应' : 'Guaranteed Multi-Origin Supply');
+  const baseDesc = lang === 'es' ? 'Haga clic sobre cualquiera de los pines interactivos del mapa para revelar información detallada de importación, distribución regional y origen directo.'
+                 : (lang === 'zh' ? '点击地图上的任何互动定位销，即可显示有关进口、区域分销和直接原产地的详细信息。'
+                 : 'Click on any of the interactive map pins to reveal detailed import, regional distribution, and direct origin information.');
 
-      pin.addEventListener('click', triggerAction);
+  if (pins.length > 0 && sideDisplayTitle && sideDisplayDesc) {
+    if (infoCard) {
+      infoCard.style.position = 'relative';
+    }
+
+    const resetMap = () => {
+      pins.forEach(p => p.classList.remove('active'));
+      sideDisplayTitle.textContent = baseTitle;
+      sideDisplayDesc.textContent = baseDesc;
+      
+      const closeBtn = document.getElementById('map-info-close');
+      if (closeBtn) closeBtn.style.display = 'none';
+    };
+
+    pins.forEach(pin => {
+      pin.addEventListener('click', (e) => {
+        e.stopPropagation();
+        
+        const isAlreadyActive = pin.classList.contains('active');
+        
+        if (isAlreadyActive) {
+          resetMap();
+        } else {
+          pins.forEach(p => p.classList.remove('active'));
+          pin.classList.add('active');
+          
+          const countryKey = pin.dataset.country;
+          const data = mapData[countryKey];
+          if (data) {
+            sideDisplayTitle.textContent = data.title;
+            sideDisplayDesc.textContent = data.desc;
+            
+            // Handle close button
+            let closeBtn = document.getElementById('map-info-close');
+            if (!closeBtn && infoCard) {
+              closeBtn = document.createElement('button');
+              closeBtn.id = 'map-info-close';
+              closeBtn.type = 'button';
+              closeBtn.className = 'map-info-close-btn';
+              closeBtn.innerHTML = '&times;';
+              closeBtn.setAttribute('aria-label', lang === 'es' ? 'Cerrar detalles' : (lang === 'zh' ? '关闭详情' : 'Close details'));
+              infoCard.appendChild(closeBtn);
+              
+              closeBtn.addEventListener('click', (ev) => {
+                ev.stopPropagation();
+                resetMap();
+              });
+            }
+            if (closeBtn) closeBtn.style.display = 'block';
+            
+            // Animate text reveal
+            sideDisplayTitle.style.animation = 'none';
+            sideDisplayDesc.style.animation = 'none';
+            void sideDisplayTitle.offsetWidth; // Trigger reflow
+            sideDisplayTitle.style.animation = 'fadeInUp 0.3s ease forwards';
+            sideDisplayDesc.style.animation = 'fadeInUp 0.4s ease forwards';
+          }
+        }
+      });
+    });
+
+    // Reset map when clicking anywhere else
+    document.addEventListener('click', (e) => {
+      const isClickInside = Array.from(pins).some(pin => pin.contains(e.target)) || 
+                            (infoCard && infoCard.contains(e.target));
+      if (!isClickInside) {
+        resetMap();
+      }
     });
   }
 
