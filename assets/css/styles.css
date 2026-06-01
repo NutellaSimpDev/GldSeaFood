@@ -983,6 +983,14 @@ button.map-pin:focus-visible {
   overflow: hidden;
 }
 
+.calculator-section h2 {
+  color: var(--white) !important;
+}
+
+.calculator-section .section-subtitle {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
 .calculator-section::after {
   content: '';
   position: absolute;
