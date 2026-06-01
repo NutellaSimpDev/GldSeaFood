@@ -597,7 +597,7 @@ section {
 .map-wrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 2 / 1;
+  aspect-ratio: 2752 / 1537;
   background: url('../images/map-bg.svg') no-repeat center center;
   background-size: cover;
   border-radius: 4px;
@@ -664,30 +664,14 @@ button.map-pin:focus-visible {
 }
 
 /* Country Pin Coordinates */
-.pin-mexico { top: 34%; left: 23%; }
-.pin-costarica { top: 52%; left: 24.5%; }
-.pin-colombia { top: 58%; left: 27.5%; }
-.pin-peru { top: 76%; left: 28%; }
+.pin-mexico { top: 27.6%; left: 37.8%; }
+.pin-costarica { top: 46.6%; left: 52.1%; }
+.pin-colombia { top: 57.6%; left: 56.4%; }
+.pin-peru { top: 65.2%; left: 54.9%; }
 
 /* Map Tooltip */
 .map-tooltip {
-  position: absolute;
-  bottom: 120%;
-  left: 50%;
-  transform: translateX(-50%) translateY(10px);
-  background: var(--navy-primary);
-  color: var(--white);
-  border: 1px solid var(--gold-primary);
-  padding: 0.8rem 1.2rem;
-  border-radius: 4px;
-  font-size: 0.85rem;
-  min-width: 220px;
-  pointer-events: none;
-  opacity: 0;
-  visibility: hidden;
-  box-shadow: var(--shadow-lg);
-  z-index: 10;
-  transition: var(--transition-smooth);
+  display: none !important;
 }
 
 .map-tooltip::after {
@@ -760,9 +744,10 @@ button.map-pin:focus-visible {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 4px;
-  padding: 1.2rem;
+  padding: 1.2rem 2.5rem 1.2rem 1.2rem;
   margin-top: 1rem;
   min-height: 90px;
+  position: relative;
 }
 
 .map-info-card h4 {
@@ -775,6 +760,25 @@ button.map-pin:focus-visible {
 .map-info-card p {
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.8);
+}
+
+.map-info-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 1.6rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: var(--transition-fast);
+}
+
+.map-info-close-btn:hover {
+  color: var(--gold-light);
+  transform: scale(1.2);
 }
 
 /* ==========================================================================
