@@ -1695,18 +1695,26 @@ button.map-pin:focus-visible {
     display: block;
   }
   
+  .nav-container, .header-nav.scrolled .nav-container {
+    height: 70px;
+  }
+  
+  .logo-link, .header-nav.scrolled .logo-link {
+    height: 50px;
+  }
+  
   .nav-links {
     position: fixed;
-    top: 80px;
+    top: 70px;
     left: -100%;
     visibility: hidden; /* Evita fugas de navegación de foco mediante tabulador en móvil */
     width: 100%;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 70px);
     background: var(--navy-deep);
     border-top: 1px solid var(--gold-border);
     flex-direction: column;
     padding: 3rem 2rem;
-    gap: 2rem;
+    gap: 1.5rem;
     align-items: center;
     transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s;
     overflow-y: auto;
@@ -1716,10 +1724,124 @@ button.map-pin:focus-visible {
     left: 0;
     visibility: visible;
   }
+
+  .nav-links .nav-item {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-links .nav-item a {
+    color: var(--white) !important;
+    font-size: 1.15rem;
+    padding: 0.6rem 0;
+    display: block;
+    width: 100%;
+    transition: var(--transition-fast);
+  }
+
+  .nav-links .nav-item a:hover {
+    color: var(--gold-light) !important;
+  }
+
+  .nav-links .nav-cta {
+    background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-dark) 100%) !important;
+    color: var(--navy-deep) !important;
+    padding: 0.8rem 2rem;
+    border-radius: 4px;
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+    margin-top: 0.5rem;
+  }
+
+  .nav-links .nav-cta:hover {
+    background: var(--gold-light) !important;
+    color: var(--navy-deep) !important;
+    transform: translateY(-2px);
+  }
   
-  .lang-selector {
+  .nav-links .lang-selector {
     margin-left: 0;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-links .lang-btn {
+    color: var(--white) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: auto;
+    justify-content: center;
+    transition: var(--transition-fast);
+  }
+
+  .nav-links .lang-btn:hover {
+    border-color: var(--gold-primary) !important;
+    background: rgba(212, 175, 55, 0.15) !important;
+    color: var(--gold-light) !important;
+  }
+
+  .nav-links .lang-dropdown {
+    position: absolute;
+    left: 50%;
+    bottom: 120%;
+    top: auto !important;
+    transform: translateX(-50%);
+    background: rgba(0, 11, 20, 0.96) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(212, 175, 55, 0.35) !important;
+    border-radius: 8px;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+    min-width: 180px;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1010;
+  }
+
+  .nav-links .lang-dropdown.show {
+    display: flex;
+  }
+
+  .nav-links .lang-option {
+    color: var(--white) !important;
+    padding: 0.8rem 1.2rem;
+    font-size: 0.9rem;
+    text-align: center;
+    background: none;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    width: 100%;
+  }
+
+  .nav-links .lang-option:last-child {
+    border-bottom: none;
+  }
+
+  .nav-links .lang-option:hover {
+    background: rgba(212, 175, 55, 0.15) !important;
+    color: var(--gold-light) !important;
+  }
+
+  .nav-links .lang-option.active {
+    font-weight: 700;
+    color: var(--gold-light) !important;
+    background: rgba(212, 175, 55, 0.2) !important;
   }
 }
 
@@ -1849,3 +1971,138 @@ button.map-pin:focus-visible {
 .reveal-delay-1 { transition-delay: 0.15s; }
 .reveal-delay-2 { transition-delay: 0.3s; }
 .reveal-delay-3 { transition-delay: 0.45s; }
+
+/* ==========================================================================
+   MICRO-ANIMACIONES MILIMÉTRICAS Y EFECTOS DISRUPTIVOS PREMIUM
+   ========================================================================== */
+
+/* 1. Barra de Desplazamiento Premium Coherente */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--navy-deep);
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--gold-dark) 0%, var(--gold-primary) 50%, var(--gold-light) 100%);
+  border-radius: 5px;
+  border: 2px solid var(--navy-deep);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-light);
+}
+
+/* 2. Destello Brillante (Metallic Shine Sweep) en Botones Primarios y CTA */
+.btn-primary, .nav-cta, .nav-links .nav-cta {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.btn-primary::before, .nav-cta::before, .nav-links .nav-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 80px;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  pointer-events: none;
+  z-index: 5;
+  animation: button-shine-glow 5s infinite ease-in-out;
+}
+
+@keyframes button-shine-glow {
+  0% {
+    left: -150%;
+  }
+  15% {
+    left: 150%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+/* 3. Elevación Suave 3D y Aura Dorada en Tarjetas de Productos */
+.product-card {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.product-card:hover {
+  transform: translateY(-8px) scale(1.015) !important;
+  box-shadow: 0 20px 40px rgba(0, 11, 20, 0.15), 0 0 30px rgba(212, 175, 55, 0.25) !important;
+  border-color: var(--gold-primary) !important;
+}
+
+/* Ajuste de animación y micro-movimiento en las etiquetas de los productos al hacer hover */
+.product-card:hover .tag-specs {
+  background: rgba(212, 175, 55, 0.15) !important;
+  color: var(--gold-dark) !important;
+  transform: scale(1.05);
+}
+
+.product-card .tag-specs {
+  transition: var(--transition-fast);
+}
+
+/* 4. Pulsaciones Concéntricas Avanzadas en Pines de Operaciones */
+.map-pin {
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.map-pin::after {
+  content: '';
+  position: absolute;
+  left: -16px;
+  top: -16px;
+  right: -16px;
+  bottom: -16px;
+  border-radius: 50%;
+  border: 2px solid var(--gold-primary);
+  opacity: 0;
+  animation: pulse-ring-premium 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes pulse-ring-premium {
+  0% {
+    transform: scale(0.4);
+    opacity: 0.9;
+  }
+  60% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* 5. Efectos de Enfoque Táctil e Interactivo en Campos de Entrada */
+.b2b-contact-form input,
+.b2b-contact-form select,
+.b2b-contact-form textarea,
+.calc-input {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease !important;
+}
+
+.b2b-contact-form input:focus,
+.b2b-contact-form select:focus,
+.b2b-contact-form textarea:focus,
+.calc-input:focus {
+  border-color: var(--gold-primary) !important;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3) !important;
+  transform: translateY(-2px);
+}
+
