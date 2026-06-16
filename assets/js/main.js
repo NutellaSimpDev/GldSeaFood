@@ -235,6 +235,22 @@ document.addEventListener('DOMContentLoaded', () => {
         resetMap();
       }
     });
+
+    // Reset map on scroll to improve UX on mobile
+    window.addEventListener('scroll', () => {
+      if (globalTooltip && globalTooltip.classList.contains('active')) {
+        resetMap();
+      }
+    }, { passive: true });
+
+    const mapScrollContainer = document.querySelector('.map-scroll-container');
+    if (mapScrollContainer) {
+      mapScrollContainer.addEventListener('scroll', () => {
+        if (globalTooltip && globalTooltip.classList.contains('active')) {
+          resetMap();
+        }
+      }, { passive: true });
+    }
   }
 
   // --- Widescreen Map: SVG Injection & Smart Micro-animations ---
