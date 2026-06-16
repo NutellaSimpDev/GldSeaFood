@@ -220,13 +220,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Widescreen Map Micro-animations ---
+  // --- Widescreen Map: SVG Injection & Smart Micro-animations ---
   const mapWrapper = document.querySelector('.map-wrapper');
   if (mapWrapper) {
+    // Inject SVG dynamically
+    const mapLangPath = lang === 'en' ? '../assets/images/world-map-final.svg' : (lang === 'zh' ? '../assets/images/world-map-final.svg' : 'assets/images/world-map-final.svg');
+    fetch(mapLangPath)
+      .then(response => response.text())
+      .then(svgText => {
+        // Create a container for the SVG so it doesn't overwrite pins
+        const svgContainer = document.createElement('div');
+        svgContainer.innerHTML = svgText;
+        const svgElement = svgContainer.querySelector('svg');
+        if (svgElement) {
+          mapWrapper.insertBefore(svgElement, mapWrapper.firstChild);
+        }
+      })
+      .catch(err => console.error('Error loading map SVG:', err));
+
     let lastTime = 0;
     mapWrapper.addEventListener('mousemove', (e) => {
+      // Collision detection: Check if we are hovering over a land path
+      if (e.target.tagName.toLowerCase() === 'path') {
+        // Optionally check class name or just assume all paths are land/countries
+        return; 
+      }
+
       const now = Date.now();
-      if (now - lastTime < 80) return; // Throttle ripple creation
+      if (now - lastTime < 120) return; // Throttle ripple creation
       lastTime = now;
       
       const ripple = document.createElement('div');
@@ -245,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(ripple.parentNode === mapWrapper) {
           mapWrapper.removeChild(ripple);
         }
-      }, 1000);
+      }, 1200);
     });
   }
 

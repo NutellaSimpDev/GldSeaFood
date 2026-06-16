@@ -612,18 +612,33 @@ section {
   text-align: justify;
 }
 
-/* Map Display Container */
+/* Cinematic Fullscreen Map Section */
+.cinematic-map-section {
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: #00060d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
 .operations-map {
   background: radial-gradient(circle at center, rgba(0, 45, 78, 0.6) 0%, #00060d 100%);
   border-radius: 0;
   padding: 4rem 2rem;
   border: none;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+  box-shadow: none;
   color: var(--white);
   position: relative;
-  overflow: hidden;
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .operations-map h3 {
@@ -638,12 +653,20 @@ section {
   position: relative;
   width: 100%;
   aspect-ratio: 2754 / 1398;
-  background: url('../images/world-map-final.svg') no-repeat center center;
-  background-size: contain;
+  background: transparent;
   border-radius: 4px;
   margin-bottom: 2rem;
   border: none;
   box-shadow: inset 0 0 100px rgba(0,0,0,0.9);
+}
+
+.map-wrapper svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 /* Interactive Map Pins styling */
@@ -2172,22 +2195,24 @@ button.map-pin:focus-visible {
   transform: translateY(0);
 }
 
-/* Mouse Trails / Ripple Effect */
+/* Mouse Trails / Ripple Effect (Realistic Water Ring) */
 .mouse-ripple {
   position: absolute;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.8) 0%, transparent 70%);
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 10px rgba(0, 200, 255, 0.4), inset 0 0 10px rgba(0, 200, 255, 0.4);
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%) scale(0);
-  animation: ripple-anim 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: ripple-anim 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   z-index: 50;
 }
 
 @keyframes ripple-anim {
-  0% { transform: translate(-50%, -50%) scale(0); opacity: 0.8; }
-  100% { transform: translate(-50%, -50%) scale(4); opacity: 0; }
+  0% { transform: translate(-50%, -50%) scale(0.2); opacity: 1; border-width: 2px; }
+  100% { transform: translate(-50%, -50%) scale(4); opacity: 0; border-width: 0px; }
 }
 
 
