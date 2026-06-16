@@ -740,12 +740,12 @@ button.map-pin:focus-visible {
 }
 
 /* Country Pin Coordinates */
-.pin-mexico { top: 29.8%; left: 16.4%; }
-.pin-costarica { top: 43.6%; left: 23.5%; }
-.pin-colombia { top: 49.0%; left: 25.3%; }
-.pin-peru { top: 52.7%; left: 24.7%; }
-.pin-china { top: 32.0%; left: 74.0%; }
-.pin-vietnam { top: 36.1%; left: 75.0%; }
+.pin-mexico { top: 41.0%; left: 20.0%; }
+.pin-costarica { top: 48.5%; left: 22.5%; }
+.pin-colombia { top: 53.0%; left: 25.0%; }
+.pin-peru { top: 60.0%; left: 24.5%; }
+.pin-china { top: 34.0%; left: 75.5%; }
+.pin-vietnam { top: 44.0%; left: 77.0%; }
 
 /* Map Tooltip */
 .map-tooltip {
