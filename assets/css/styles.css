@@ -694,12 +694,12 @@ button.map-pin:focus-visible {
 }
 
 /* Country Pin Coordinates */
-.pin-mexico { top: 27.6%; left: 37.8%; }
-.pin-costarica { top: 46.6%; left: 52.1%; }
-.pin-colombia { top: 57.6%; left: 56.4%; }
-.pin-peru { top: 65.2%; left: 54.9%; }
-.pin-china { top: 24.0%; left: 55.3%; }
-.pin-vietnam { top: 39.6%; left: 59.7%; }
+.pin-mexico { top: 29.8%; left: 16.4%; }
+.pin-costarica { top: 43.6%; left: 23.5%; }
+.pin-colombia { top: 49.0%; left: 25.3%; }
+.pin-peru { top: 52.7%; left: 24.7%; }
+.pin-china { top: 32.0%; left: 74.0%; }
+.pin-vietnam { top: 36.1%; left: 75.0%; }
 
 /* Map Tooltip */
 .map-tooltip {
