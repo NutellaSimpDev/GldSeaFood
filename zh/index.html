@@ -90,7 +90,7 @@
             我们为大型水产分销商与大宗鱼贩提供稳定、持续的高品质海鲜水产货源。从捕捞源头到您的冷链仓库，提供全程无缝、获官方认证的超低温冷链运输保障。
           </p>
           <div class="cta-group">
-            <a href="#zh-contact" class="btn btn-primary">索取大宗采购报价单</a>
+            <a href="#zh-contact" class="btn btn-primary">申请您的报价</a>
             <a href="#zh-products" class="btn btn-secondary">查看包装与规格参数</a>
           </div>
         </div>
@@ -120,7 +120,7 @@
             <ul class="country-list">
               <li>
                 <span class="flag">🇲🇽</span>
-                <strong>墨西哥:</strong> 北美大型进口与分销配送中枢，拥有大型冷链储运设施。
+                <strong>墨西哥:</strong> 大型进口与分销配送中枢，拥有大型冷链储运设施。
               </li>
               <li>
                 <span class="flag">🇨🇷</span>
@@ -132,7 +132,15 @@
               </li>
               <li>
                 <span class="flag">🇵🇪</span>
-                <strong>秘鲁:</strong> 美洲大赤鱿（巨鱿）及太平洋寒流冷水性鱼类最核心的直采基地。
+                <strong>秘鲁:</strong> 美洲大赤鱿（巨鱿）及太平洋寒流冷水性鱼类直采基地。在派塔、利马和钦博特设有加工厂。
+              </li>
+              <li>
+                <span class="flag">🇨🇳</span>
+                <strong>中国:</strong> 整条罗非鱼及罗非鱼片的核心原产地。
+              </li>
+              <li>
+                <span class="flag">🇻🇳</span>
+                <strong>越南:</strong> 优质巴沙鱼片的主要进口来源。
               </li>
             </ul>
           </div>
@@ -172,6 +180,20 @@
               <span class="map-tooltip">
                 <span class="tooltip-title">🇵🇪 秘鲁</span>
                 <span class="tooltip-desc">美洲巨鱿及冷水鱼直采基地。</span>
+              </span>
+            </button>
+
+            <button class="map-pin pin-china" data-country="china" type="button" aria-label="中国: 查看罗非鱼直采网络">
+              <span class="map-tooltip">
+                <span class="tooltip-title">🇨🇳 中国</span>
+                <span class="tooltip-desc">整条罗非鱼及罗非鱼片产地。</span>
+              </span>
+            </button>
+            
+            <button class="map-pin pin-vietnam" data-country="vietnam" type="button" aria-label="越南: 查看巴沙鱼直采网络">
+              <span class="map-tooltip">
+                <span class="tooltip-title">🇻🇳 越南</span>
+                <span class="tooltip-desc">湄公河三角洲巴沙鱼进口产地。</span>
               </span>
             </button>
           </div>
@@ -274,6 +296,25 @@
             </ul>
           </div>
         </div>
+
+        <!-- 产品 5: 整条罗非鱼 -->
+        <div class="product-card reveal-on-scroll reveal-delay-2">
+          <div class="product-header">
+            <span class="tag-specs">GGS / 去鳃、去内脏、去鳞</span>
+            <h3>整条罗非鱼</h3>
+          </div>
+          <p class="product-desc">
+            原产地加工的整条罗非鱼，严格执行GGS标准（去鳃、去内脏、去鳞）。采用单冻技术 (IQF)，完美锁定鲜度与紧实肉质。
+          </p>
+          <div class="packaging-specs">
+            <h4>包装规格:</h4>
+            <ul>
+              <li><span>包装形式:</span> <strong>40 磅标准箱 (40 lb)</strong></li>
+              <li><span>加工工艺:</span> <strong>去鳃、去内脏、去鳞 (GGS)</strong></li>
+              <li><span>储存条件:</span> <strong>IQF 单体速冻</strong></li>
+            </ul>
+          </div>
+        </div>
       </div>
 
       <!-- 大宗水产 Consolidated 综合供应 -->
@@ -327,6 +368,7 @@
             <label for="calc-product">3. B2B 进口水产类别</label>
             <select id="calc-product" class="calc-input calc-select">
               <option value="tilapia">高品质罗非鱼片 (10磅纸箱)</option>
+              <option value="tilapia_whole">整条罗非鱼 (40磅纸箱)</option>
               <option value="squid">美洲大赤鱿 Dosidicus gigas (编织袋)</option>
               <option value="shrimp">冷冻熟虾 (10公斤箱装)</option>
               <option value="basa">精选巴沙鱼片 (15公斤箱装)</option>
@@ -380,7 +422,7 @@
             <span class="metric-value" id="result-lbs-val">0 lbs</span>
           </div>
 
-          <a href="#zh-contact" class="btn btn-primary" style="margin-top: 1.5rem; text-align: center;">获取大宗采购正式报价</a>
+          <a href="#zh-contact" class="btn btn-primary" style="margin-top: 1.5rem; text-align: center;">申请您的报价</a>
         </div>
       </div>
     </div>
@@ -485,6 +527,7 @@
               <select id="zh-product_interest" name="zh-product_interest" required>
                 <option value="" disabled selected>选择产品类别...</option>
                 <option value="Tilapia">罗非鱼片 (10磅纸箱)</option>
+                <option value="Tilapia_Whole">整条罗非鱼 (40磅纸箱)</option>
                 <option value="Squid">美洲大赤鱿 Dosidicus gigas (袋装)</option>
                 <option value="Shrimp">优质熟虾 (10公斤箱装)</option>
                 <option value="Basa">巴沙鱼片</option>
@@ -502,7 +545,7 @@
               <textarea id="zh-details" name="zh-details" rows="4" placeholder="请在此描述您对包装、特殊包冰比率、或目的港清关文件的特殊要求。"></textarea>
             </div>
 
-            <button type="submit" class="btn btn-submit">提交大宗询价单</button>
+            <button type="submit" class="btn btn-submit">提交您的商业询价</button>
           </form>
         </div>
       </div>

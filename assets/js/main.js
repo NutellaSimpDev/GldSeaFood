@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     es: {
       mexico: {
         title: "🇲🇽 México (Hub Central)",
-        desc: "Hub de importación y distribución a gran escala para América del Norte. Equipado con almacenes frigoríficos de última generación en Monterrey y Ciudad de México."
+        desc: "Hub de importación y distribución a gran escala. Equipado con almacenes frigoríficos de última generación en Monterrey y Ciudad de México."
       },
       costarica: {
         title: "🇨🇷 Costa Rica (Centroamérica)",
@@ -19,12 +19,20 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       peru: {
         title: "🇵🇪 Perú (Origen Directo)",
-        desc: "Origen clave de extracción del Calamar Gigante (Dosidicus gigas) y especies de agua fría. Plantas certificadas por HACCP directamente en Paita."
+        desc: "Origen clave de extracción del Calamar Gigante (Dosidicus gigas) y especies de agua fría. Plantas certificadas por HACCP en Paita, Lima y Chimbote."
+      },
+      china: {
+        title: "🇨🇳 China (Origen de Suministro)",
+        desc: "Origen principal de abastecimiento de tilapia entera y en filetes. Plantas procesadoras con certificación internacional en Hainan y Guangdong."
+      },
+      vietnam: {
+        title: "🇻🇳 Vietnam (Origen de Suministro)",
+        desc: "Origen principal de importación de filete de basa. Directamente desde plantas asociadas en el Delta del Mekong, garantizando calidad e inocuidad."
       },
       calcAlert: "⚠️ Capacidad de contenedor máxima es de 24 Toneladas (24,000 kg).",
       toastSuccess: "✓ Solicitud de cotización enviada correctamente.",
       modalTitle: "¡Solicitud Recibida!",
-      modalDesc: "Muchas gracias por contactar a Golden Seafood. Un ejecutivo especializado en logística de importación y suministro B2B evaluará su requerimiento y se comunicará con usted en un plazo máximo de 24 horas hábiles.",
+      modalDesc: "Muchas gracias por contactar a Golden Seafood. Un ejecutivo especializado en logística de importación marina evaluará su requerimiento y se comunicará con usted en un plazo máximo de 24 horas hábiles.",
       modalClose: "Cerrar Ventana",
       partialContainer: "contenedor completo y {partial}% de carga parcial",
       fullContainer: "contenedor completo",
@@ -33,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     en: {
       mexico: {
         title: "🇲🇽 Mexico (Central Hub)",
-        desc: "Large-scale import and distribution hub servicing North American demands. State-of-the-art cold storage facilities in Monterrey and Mexico City."
+        desc: "Large-scale import and distribution hub. State-of-the-art cold storage facilities in Monterrey and Mexico City."
       },
       costarica: {
         title: "🇨🇷 Costa Rica (Central America)",
@@ -44,8 +52,16 @@ document.addEventListener('DOMContentLoaded', () => {
         desc: "Agile logistics infrastructure with direct access to both the Pacific (Buenaventura) and Caribbean (Cartagena) for rapid capillary delivery."
       },
       peru: {
-        title: "🇵🇪 Peru (Direct Extraction Origin)",
-        desc: "Primary sourcing origin for premium Giant Squid (Dosidicus gigas) and cold-water Pacific species. Sourced directly from HACCP-certified plants in Paita."
+        title: "🇵🇪 Peru (Direct Sourcing Origin)",
+        desc: "Primary sourcing origin for premium Giant Squid (Dosidicus gigas) and cold-water Pacific species. Sourced from HACCP-certified plants in Paita, Lima, and Chimbote."
+      },
+      china: {
+        title: "🇨🇳 China (Sourcing Origin)",
+        desc: "Primary sourcing origin for whole and filleted Tilapia. Sourced from internationally certified processing plants in Hainan and Guangdong."
+      },
+      vietnam: {
+        title: "🇻🇳 Vietnam (Sourcing Origin)",
+        desc: "Main sourcing origin for premium Basa fillets. Sourced directly from partner plants in the Mekong Delta, ensuring safety and quality."
       },
       calcAlert: "⚠️ Maximum container payload capacity is 24 Tons (24,000 kg).",
       toastSuccess: "✓ Inquiry submitted successfully.",
@@ -59,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     zh: {
       mexico: {
         title: "🇲🇽 墨西哥 (核心枢纽)",
-        desc: "北美大宗进口与冷链分销配送中心。在蒙特雷和墨西哥城设有先进的超低温冷库设施。"
+        desc: "大型进口与分销配送中枢。在蒙特雷和墨西哥城设有先进的超低温冷库设施。"
       },
       costarica: {
         title: "🇨🇷 哥斯达黎加 (中美洲枢纽)",
@@ -71,7 +87,15 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       peru: {
         title: "🇵🇪 秘鲁 (深海直采原产地)",
-        desc: "美洲大赤鱿（Dosidicus gigas）及太平洋冷水性鱼类直采基地。位于派塔（Paita）的现代化工厂均获HACCP认证。"
+        desc: "美洲大赤鱿（Dosidicus gigas）及太平洋冷水性鱼类直采基地。在派塔 (Paita)、利马 (Lima) 和钦博特 (Chimbote) 设有HACCP认证的加工厂。"
+      },
+      china: {
+        title: "🇨🇳 中国 (罗非鱼直采)",
+        desc: "整条罗非鱼及罗非鱼片的核心原产地。在海南和广东设有获得国际认证的加工厂。"
+      },
+      vietnam: {
+        title: "🇻🇳 越南 (巴沙鱼直采)",
+        desc: "优质巴沙鱼片的主要进口来源。对湄公河三角洲合作工厂进行直接品质监管，确保符合国际卫生标准。"
       },
       calcAlert: "⚠️ 单个集装箱最大载重上限为 24 吨 (24,000 公斤)。",
       toastSuccess: "✓ 您的询价单已成功提交。",
@@ -156,7 +180,9 @@ document.addEventListener('DOMContentLoaded', () => {
     mexico: t.mexico,
     costarica: t.costarica,
     colombia: t.colombia,
-    peru: t.peru
+    peru: t.peru,
+    china: t.china,
+    vietnam: t.vietnam
   };
 
   const baseTitle = lang === 'es' ? 'Suministro Multiorigen Garantizado' 
@@ -304,6 +330,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // 1 caja = 4.536 kg exactos (Evita discrepancias financieras acumulativas por redondeo en fletes masivos)
         totalUnits = Math.round(weightKg / 4.536);
         unitsLabel = lang === 'es' ? 'Cajas de 10 lb' : (lang === 'zh' ? '10磅标准箱' : '10 lb Boxes');
+      } else if (product === 'tilapia_whole') {
+        // 1 caja = 40 lb = 18.1437 kg
+        totalUnits = Math.round(weightKg / 18.1437);
+        unitsLabel = lang === 'es' ? 'Cajas de 40 lb' : (lang === 'zh' ? '40磅标准箱' : '40 lb Boxes');
       } else if (product === 'squid') {
         // Sack size: 20 kg or 22.5 kg
         const sackSize = parseFloat(calcSackSize.value) || 20;

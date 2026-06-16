@@ -698,6 +698,8 @@ button.map-pin:focus-visible {
 .pin-costarica { top: 46.6%; left: 52.1%; }
 .pin-colombia { top: 57.6%; left: 56.4%; }
 .pin-peru { top: 65.2%; left: 54.9%; }
+.pin-china { top: 24.0%; left: 55.3%; }
+.pin-vietnam { top: 39.6%; left: 59.7%; }
 
 /* Map Tooltip */
 .map-tooltip {
@@ -2105,4 +2107,15 @@ button.map-pin:focus-visible {
   box-shadow: 0 0 15px rgba(212, 175, 55, 0.3) !important;
   transform: translateY(-2px);
 }
+
+/* 6. Centrado de la quinta tarjeta de producto (impar) en escritorio */
+@media (min-width: 1025px) {
+  .products-grid .product-card:last-child:nth-child(odd) {
+    grid-column: span 2;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
 

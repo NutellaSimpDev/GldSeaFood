@@ -90,7 +90,7 @@
             We guarantee consistent, high-volume seafood supply for distributors and large-scale fishmongers. Flawless, certified cold chain logistics, directly from source to your warehouses.
           </p>
           <div class="cta-group">
-            <a href="#contact" class="btn btn-primary">Request High-Volume B2B Quote</a>
+            <a href="#contact" class="btn btn-primary">Request your quote</a>
             <a href="#products" class="btn btn-secondary">View Packaging Specifications</a>
           </div>
         </div>
@@ -120,7 +120,7 @@
             <ul class="country-list">
               <li>
                 <span class="flag">🇲🇽</span>
-                <strong>Mexico:</strong> High-volume import and distribution hub servicing North American demands.
+                <strong>Mexico:</strong> Large-scale import and distribution hub.
               </li>
               <li>
                 <span class="flag">🇨🇷</span>
@@ -132,7 +132,15 @@
               </li>
               <li>
                 <span class="flag">🇵🇪</span>
-                <strong>Peru:</strong> Primary sourcing origin for premium giant squid and cold-water Pacific species.
+                <strong>Peru:</strong> Primary sourcing origin for premium giant squid. HACCP plants in Paita, Lima, and Chimbote.
+              </li>
+              <li>
+                <span class="flag">🇨🇳</span>
+                <strong>China:</strong> Primary sourcing origin for whole and filleted Tilapia.
+              </li>
+              <li>
+                <span class="flag">🇻🇳</span>
+                <strong>Vietnam:</strong> Sourcing origin for premium Basa fillets.
               </li>
             </ul>
           </div>
@@ -172,6 +180,20 @@
               <span class="map-tooltip">
                 <span class="tooltip-title">🇵🇪 Peru</span>
                 <span class="tooltip-desc">Direct extraction of Giant Squid and seafood.</span>
+              </span>
+            </button>
+
+            <button class="map-pin pin-china" data-country="china" type="button" aria-label="China: View tilapia sourcing origin">
+              <span class="map-tooltip">
+                <span class="tooltip-title">🇨🇳 China</span>
+                <span class="tooltip-desc">Premium whole & fillet Tilapia source.</span>
+              </span>
+            </button>
+            
+            <button class="map-pin pin-vietnam" data-country="vietnam" type="button" aria-label="Vietnam: View Basa fillet sourcing origin">
+              <span class="map-tooltip">
+                <span class="tooltip-title">🇻🇳 Vietnam</span>
+                <span class="tooltip-desc">Direct Mekong Delta Basa import source.</span>
               </span>
             </button>
           </div>
@@ -274,6 +296,25 @@
             </ul>
           </div>
         </div>
+
+        <!-- Product 5: Whole Tilapia -->
+        <div class="product-card reveal-on-scroll reveal-delay-2">
+          <div class="product-header">
+            <span class="tag-specs">GGS / Gilled, Gutted, Scaled</span>
+            <h3>Whole Tilapia</h3>
+          </div>
+          <p class="product-desc">
+            Whole tilapia processed at origin under GGS standards (Gilled, Gutted, Scaled). Individual Quick Freezing (IQF) seals in peak freshness and natural flavor.
+          </p>
+          <div class="packaging-specs">
+            <h4>Packaging Specifications:</h4>
+            <ul>
+              <li><span>Box Format:</span> <strong>40 lb Box (40 Pounds)</strong></li>
+              <li><span>Processing:</span> <strong>GGS (Gilled, Gutted, and Scaled)</strong></li>
+              <li><span>Preservation:</span> <strong>IQF (Individual Quick Frozen)</strong></li>
+            </ul>
+          </div>
+        </div>
       </div>
 
       <!-- General Seafood Sourcing -->
@@ -327,6 +368,7 @@
             <label for="calc-product">3. B2B Seafood Species</label>
             <select id="calc-product" class="calc-input calc-select">
               <option value="tilapia">Tilapia Fillet (10 lb Boxes)</option>
+              <option value="tilapia_whole">Whole Tilapia (40 lb Boxes)</option>
               <option value="squid">Giant Squid Dosidicus gigas (Sacks)</option>
               <option value="shrimp">Cooked Shrimp (10 kg Boxes)</option>
               <option value="basa">Basa Fillet (15 kg Boxes)</option>
@@ -427,15 +469,15 @@
   </section>
 
   <!-- ==========================================
-       SECTION 6: CONTACT & HIGH-VOLUME QUOTE
-       ========================================== -->
+        SECTION 6: CONTACT & CORPORATE QUOTE
+        ========================================== -->
   <section class="contact-section" id="contact">
     <div class="container">
       <div class="grid-2 reveal-on-scroll">
         <div class="contact-info">
           <h2>Start Your Commercial Inquiry</h2>
           <p class="lead">
-            Serving authorized seafood distributors, supermarket chains, and high-volume wholesale fishmongers globally.
+            Serving authorized seafood distributors, supermarket chains, and wholesale fishmongers globally.
           </p>
           <p class="body-text">
             Fill out our commercial inquiry form. One of our import logistics specialists will contact you within 24 business hours to provide tailored container-load or consolidated pallet pricing.
@@ -485,6 +527,7 @@
               <select id="product_interest" name="product_interest" required>
                 <option value="" disabled selected>Select primary product...</option>
                 <option value="Tilapia">Tilapia Fillets (10 lb Boxes)</option>
+                <option value="Tilapia_Whole">Whole Tilapia (40 lb Boxes)</option>
                 <option value="Squid">Dosidicus Gigas Giant Squid (Sacks)</option>
                 <option value="Shrimp">Premium Cooked Shrimp</option>
                 <option value="Basa">Basa Fillet</option>
