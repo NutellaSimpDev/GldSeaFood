@@ -872,9 +872,10 @@ button.map-pin:focus-visible {
 /* Global Tooltip for Mobile */
 .global-map-tooltip {
   position: fixed;
-  bottom: -100%;
+  bottom: 2rem;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, 120%);
+  opacity: 0;
   width: 90vw;
   max-width: 320px; /* Smaller as requested */
   background: rgba(0, 11, 20, 0.95);
@@ -884,13 +885,14 @@ button.map-pin:focus-visible {
   z-index: 9999;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.2);
   backdrop-filter: blur(10px);
-  transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
   text-align: center;
   pointer-events: none;
 }
 
 .global-map-tooltip.active {
-  bottom: 2rem;
+  transform: translate(-50%, 0);
+  opacity: 1;
   pointer-events: auto;
 }
 
