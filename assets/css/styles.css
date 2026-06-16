@@ -382,7 +382,7 @@ section {
   height: 100%;
   top: 0;
   left: 0;
-  background: url('../images/map-bg.svg') no-repeat center center;
+  background: url('../images/map-bg.svg?v=2') no-repeat center center;
   background-size: cover;
   opacity: 0.05;
   z-index: 3;
@@ -627,8 +627,8 @@ section {
 .map-wrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 2752 / 1537;
-  background: url('../images/map-bg.svg') no-repeat center center;
+  aspect-ratio: 2754 / 1398;
+  background: url('../images/map-bg.svg?v=2') no-repeat center center;
   background-size: contain;
   border-radius: 4px;
   margin-bottom: 2rem;
