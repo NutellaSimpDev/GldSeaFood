@@ -721,6 +721,10 @@ button.map-pin:focus-visible {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
+  background: rgba(0, 15, 30, 0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid var(--gold-primary);
 }
 
 .tooltip-title {
@@ -773,7 +777,9 @@ button.map-pin:focus-visible {
 
 /* Side Info Display for clicked pins on map */
 .map-info-card {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(0, 15, 30, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 4px;
   padding: 1.2rem 2.5rem 1.2rem 1.2rem;
@@ -2121,5 +2127,17 @@ button.map-pin:focus-visible {
     width: 100%;
   }
 }
+
+/* --- Ponytail Enhancements --- */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fade-in-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 
