@@ -172,9 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
      4. INTERACTIVE OPERATIONS MAP
      ========================================================================== */
   const pins = document.querySelectorAll('.map-pin');
-  const sideDisplayTitle = document.getElementById('map-info-title');
-  const sideDisplayDesc = document.getElementById('map-info-desc');
-  const infoCard = document.getElementById('map-info-card-display');
 
   const mapData = {
     mexico: t.mexico,
@@ -185,24 +182,9 @@ document.addEventListener('DOMContentLoaded', () => {
     vietnam: t.vietnam
   };
 
-  const baseTitle = lang === 'es' ? 'Suministro Multiorigen Garantizado' 
-                  : (lang === 'zh' ? '多产地保障 稳定供应' : 'Guaranteed Multi-Origin Supply');
-  const baseDesc = lang === 'es' ? 'Haga clic sobre cualquiera de los pines interactivos del mapa para revelar información detallada de importación, distribución regional y origen directo.'
-                 : (lang === 'zh' ? '点击地图上的任何互动定位销，即可显示有关进口、区域分销和直接原产地的详细信息。'
-                 : 'Click on any of the interactive map pins to reveal detailed import, regional distribution, and direct origin information.');
-
-  if (pins.length > 0 && sideDisplayTitle && sideDisplayDesc) {
-    if (infoCard) {
-      infoCard.style.position = 'relative';
-    }
-
+  if (pins.length > 0) {
     const resetMap = () => {
       pins.forEach(p => p.classList.remove('active'));
-      sideDisplayTitle.textContent = baseTitle;
-      sideDisplayDesc.textContent = baseDesc;
-      
-      const closeBtn = document.getElementById('map-info-close');
-      if (closeBtn) closeBtn.style.display = 'none';
     };
 
     pins.forEach(pin => {
@@ -220,33 +202,10 @@ document.addEventListener('DOMContentLoaded', () => {
           const countryKey = pin.dataset.country;
           const data = mapData[countryKey];
           if (data) {
-            sideDisplayTitle.textContent = data.title;
-            sideDisplayDesc.textContent = data.desc;
-            
-            // Handle close button
-            let closeBtn = document.getElementById('map-info-close');
-            if (!closeBtn && infoCard) {
-              closeBtn = document.createElement('button');
-              closeBtn.id = 'map-info-close';
-              closeBtn.type = 'button';
-              closeBtn.className = 'map-info-close-btn';
-              closeBtn.innerHTML = '&times;';
-              closeBtn.setAttribute('aria-label', lang === 'es' ? 'Cerrar detalles' : (lang === 'zh' ? '关闭详情' : 'Close details'));
-              infoCard.appendChild(closeBtn);
-              
-              closeBtn.addEventListener('click', (ev) => {
-                ev.stopPropagation();
-                resetMap();
-              });
-            }
-            if (closeBtn) closeBtn.style.display = 'block';
-            
-            // Animate text reveal
-            sideDisplayTitle.style.animation = 'none';
-            sideDisplayDesc.style.animation = 'none';
-            void sideDisplayTitle.offsetWidth; // Trigger reflow
-            sideDisplayTitle.style.animation = 'fadeInUp 0.3s ease forwards';
-            sideDisplayDesc.style.animation = 'fadeInUp 0.4s ease forwards';
+            const tooltipDesc = pin.querySelector('.tooltip-desc');
+            const tooltipTitle = pin.querySelector('.tooltip-title');
+            if (tooltipDesc) tooltipDesc.textContent = data.desc;
+            if (tooltipTitle) tooltipTitle.textContent = data.title;
           }
         }
       });
@@ -254,11 +213,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Reset map when clicking anywhere else
     document.addEventListener('click', (e) => {
-      const isClickInside = Array.from(pins).some(pin => pin.contains(e.target)) || 
-                            (infoCard && infoCard.contains(e.target));
+      const isClickInside = Array.from(pins).some(pin => pin.contains(e.target));
       if (!isClickInside) {
         resetMap();
       }
+    });
+  }
+
+  // --- Widescreen Map Micro-animations ---
+  const mapWrapper = document.querySelector('.map-wrapper');
+  if (mapWrapper) {
+    let lastTime = 0;
+    mapWrapper.addEventListener('mousemove', (e) => {
+      const now = Date.now();
+      if (now - lastTime < 80) return; // Throttle ripple creation
+      lastTime = now;
+      
+      const ripple = document.createElement('div');
+      ripple.classList.add('mouse-ripple');
+      
+      const rect = mapWrapper.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      ripple.style.left = x + 'px';
+      ripple.style.top = y + 'px';
+      
+      mapWrapper.appendChild(ripple);
+      
+      setTimeout(() => {
+        if(ripple.parentNode === mapWrapper) {
+          mapWrapper.removeChild(ripple);
+        }
+      }, 1000);
     });
   }
 

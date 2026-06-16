@@ -615,13 +615,15 @@ section {
 /* Map Display Container */
 .operations-map {
   background: radial-gradient(circle at center, rgba(0, 45, 78, 0.6) 0%, #00060d 100%);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 4rem 2rem;
   border: none;
   box-shadow: 0 10px 40px rgba(0,0,0,0.8);
   color: var(--white);
   position: relative;
   overflow: hidden;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
 }
 
 .operations-map h3 {
@@ -712,7 +714,27 @@ button.map-pin:focus-visible {
 
 /* Map Tooltip */
 .map-tooltip {
-  display: none !important;
+  position: absolute;
+  bottom: calc(100% + 25px);
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(0, 15, 30, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  padding: 1.5rem;
+  border-radius: 8px;
+  width: max-content;
+  max-width: 350px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  font-size: 0.9rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 100;
+  pointer-events: none;
+  text-align: left;
 }
 
 .map-tooltip::after {
@@ -721,19 +743,21 @@ button.map-pin:focus-visible {
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  border-width: 6px;
+  border-width: 8px;
   border-style: solid;
-  border-color: var(--gold-primary) transparent transparent transparent;
+  border-color: rgba(0, 15, 30, 0.65) transparent transparent transparent;
+}
+
+.map-pin:hover .map-tooltip {
+  /* No auto-open on hover, only on click/active */
 }
 
 .map-pin.active .map-tooltip {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
-  background: rgba(0, 15, 30, 0.85);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
   border: 1px solid var(--gold-primary);
+  pointer-events: auto;
 }
 
 .tooltip-title {
@@ -2146,6 +2170,24 @@ button.map-pin:focus-visible {
 .fade-in-up.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Mouse Trails / Ripple Effect */
+.mouse-ripple {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.8) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0);
+  animation: ripple-anim 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  z-index: 50;
+}
+
+@keyframes ripple-anim {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(4); opacity: 0; }
 }
 
 
