@@ -681,13 +681,12 @@ section {
 
 .map-wrapper {
   position: relative;
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
+  width: 100%;
   aspect-ratio: 2754 / 1398;
-  background: transparent;
-  border-radius: 0;
-  margin-bottom: 2rem;
   border: none;
+  border-radius: 0;
+  overflow: hidden;
+  background: transparent;
   box-shadow: none;
 }
 

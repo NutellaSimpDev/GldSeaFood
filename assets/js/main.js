@@ -183,8 +183,16 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   if (pins.length > 0) {
+    let globalTooltip = document.querySelector('.global-map-tooltip');
+    if (!globalTooltip) {
+      globalTooltip = document.createElement('div');
+      globalTooltip.className = 'global-map-tooltip';
+      document.body.appendChild(globalTooltip);
+    }
+
     const resetMap = () => {
       pins.forEach(p => p.classList.remove('active'));
+      if (globalTooltip) globalTooltip.classList.remove('active');
     };
 
     pins.forEach(pin => {
@@ -206,6 +214,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const tooltipTitle = pin.querySelector('.tooltip-title');
             if (tooltipDesc) tooltipDesc.textContent = data.desc;
             if (tooltipTitle) tooltipTitle.textContent = data.title;
+            
+            if (window.innerWidth <= 768) {
+              globalTooltip.innerHTML = `
+                <span class="tooltip-title">${data.title}</span>
+                <span class="tooltip-desc">${data.desc}</span>
+              `;
+              globalTooltip.classList.add('active');
+            }
           }
         }
       });
@@ -214,7 +230,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Reset map when clicking anywhere else
     document.addEventListener('click', (e) => {
       const isClickInside = Array.from(pins).some(pin => pin.contains(e.target));
-      if (!isClickInside) {
+      const isClickOnGlobalTooltip = globalTooltip && globalTooltip.contains(e.target);
+      if (!isClickInside && !isClickOnGlobalTooltip) {
         resetMap();
       }
     });
