@@ -233,6 +233,12 @@ document.addEventListener('DOMContentLoaded', () => {
         svgContainer.innerHTML = svgText;
         const svgElement = svgContainer.querySelector('svg');
         if (svgElement) {
+          // Remove native tooltips
+          svgElement.querySelectorAll('title').forEach(t => t.remove());
+          
+          // Hide Antarctica as requested
+          svgElement.querySelectorAll('[id*="Antarctica"]').forEach(el => el.style.display = 'none');
+
           mapWrapper.insertBefore(svgElement, mapWrapper.firstChild);
         }
       })
