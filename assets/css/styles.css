@@ -833,20 +833,21 @@ button.map-pin:focus-visible {
 }
 
 @media (max-width: 768px) {
-  /* Make map huge and horizontally scrollable on mobile */
-  .operations-map {
-    width: 100vw;
+  /* Scrollable map container on mobile */
+  .map-scroll-container {
+    width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
     scrollbar-width: none; /* Firefox */
   }
-  .operations-map::-webkit-scrollbar {
+  .map-scroll-container::-webkit-scrollbar {
     display: none; /* Safari/Chrome */
   }
+  
   .map-wrapper {
-    width: 200vw; /* Make it twice as wide as the screen */
+    width: 250vw; /* Make it 2.5x the width of the screen */
     min-width: 800px; /* Minimum size */
     margin: 0;
   }
