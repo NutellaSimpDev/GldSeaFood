@@ -832,6 +832,83 @@ button.map-pin:focus-visible {
   color: rgba(255, 255, 255, 0.85);
 }
 
+@media (max-width: 768px) {
+  /* Make map huge and horizontally scrollable on mobile */
+  .operations-map {
+    width: 100vw;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+  }
+  .operations-map::-webkit-scrollbar {
+    display: none; /* Safari/Chrome */
+  }
+  .map-wrapper {
+    width: 200vw; /* Make it twice as wide as the screen */
+    min-width: 800px; /* Minimum size */
+    margin: 0;
+  }
+  
+  /* Hide the old inline tooltips on mobile */
+  .map-tooltip {
+    display: none !important;
+  }
+  
+  .mobile-swipe-hint {
+    display: inline !important;
+    color: var(--gold-primary);
+    font-weight: 600;
+    margin-top: 0.5rem;
+  }
+}
+
+.mobile-swipe-hint {
+  display: none;
+}
+
+/* Global Tooltip for Mobile */
+.global-map-tooltip {
+  position: fixed;
+  bottom: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  max-width: 320px; /* Smaller as requested */
+  background: rgba(0, 11, 20, 0.95);
+  border: 1px solid var(--gold-primary);
+  border-radius: 12px;
+  padding: 1.2rem;
+  z-index: 9999;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.2);
+  backdrop-filter: blur(10px);
+  transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-align: center;
+  pointer-events: none;
+}
+
+.global-map-tooltip.active {
+  bottom: 2rem;
+  pointer-events: auto;
+}
+
+.global-map-tooltip .tooltip-title {
+  display: block;
+  font-family: var(--font-heading);
+  color: var(--gold-primary);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.global-map-tooltip .tooltip-desc {
+  display: block;
+  color: var(--white);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
 /* Country List style fallbacks for mobile/accessibility */
 .country-list {
   list-style: none;
