@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Technical Specification Sheet - Frozen Tilapia Fillets</title>
+    <style>
+        :root {
+            --primary-color: #002B5C; /* Deep Navy Blue */
+            --secondary-color: #D4AF37; /* Gold */
+            --border-color: #e0e0e0;
+            --bg-light: #f8f9fa;
+        }
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fff;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        .header h1 {
+            color: var(--primary-color);
+            margin: 0 0 10px 0;
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .header h2 {
+            color: #555;
+            margin: 0;
+            font-size: 20px;
+            font-weight: 500;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: var(--bg-light);
+            color: var(--primary-color);
+            font-weight: 700;
+            width: 28%;
+        }
+        .section-title {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            padding: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .inner-table {
+            width: 100%;
+            margin: 0;
+            border: none;
+        }
+        .inner-table th, .inner-table td {
+            border: 1px solid var(--border-color);
+        }
+        .inner-table th {
+            background-color: #f1f3f5;
+            color: #333;
+            width: auto;
+            text-transform: none;
+        }
+        .inner-table tr:first-child th {
+            border-top: none;
+        }
+        .inner-table tr th:first-child, .inner-table tr td:first-child {
+            border-left: none;
+        }
+        .inner-table tr th:last-child, .inner-table tr td:last-child {
+            border-right: none;
+        }
+        .inner-table tr:last-child th, .inner-table tr:last-child td {
+            border-bottom: none;
+        }
+        .specs-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .specs-list li {
+            margin-bottom: 6px;
+            display: flex;
+        }
+        .specs-list li:last-child {
+            margin-bottom: 0;
+        }
+        .specs-list strong {
+            display: inline-block;
+            width: 220px;
+            color: #444;
+        }
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        @media print {
+            body { 
+                padding: 0; 
+                max-width: 100%;
+            }
+            .section-title { 
+                background-color: var(--primary-color) !important; 
+                color: white !important; 
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact;
+            }
+            th { 
+                background-color: var(--bg-light) !important; 
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .header {
+                border-bottom: 3px solid var(--primary-color) !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>GOLDEN SEAFOOD PTE. LTD.</h1>
+        <h2>Product Technical Specification Sheet</h2>
+    </div>
+
+    <table>
+        <tr>
+            <th>Product Name</th>
+            <td><strong>Frozen Tilapia Fillets</strong></td>
+        </tr>
+        <tr>
+            <th>Raw Material Name</th>
+            <td>Farmed Tilapia (Latin: <em>Tilapia nilotica</em>)</td>
+        </tr>
+        <tr>
+            <th>Product Description</th>
+            <td>Quick-frozen Product</td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td colspan="2" class="section-title">Nutritional Composition</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding: 0;">
+                <table class="inner-table">
+                    <tr>
+                        <th style="width: 35%;">Item</th>
+                        <th style="width: 35%;">Per 100 grams (g)</th>
+                        <th style="width: 30%;">Nutrient Reference Value (%)</th>
+                    </tr>
+                    <tr>
+                        <td>Energy</td>
+                        <td>296 kilojoules (kJ)</td>
+                        <td>4%</td>
+                    </tr>
+                    <tr>
+                        <td>Protein</td>
+                        <td>13.9 grams (g)</td>
+                        <td>23%</td>
+                    </tr>
+                    <tr>
+                        <td>Fat</td>
+                        <td>1.6 grams (g)</td>
+                        <td>3%</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 30px;">— Saturated Fat</td>
+                        <td>0.4 grams (g)</td>
+                        <td>2%</td>
+                    </tr>
+                    <tr>
+                        <td>Carbohydrates</td>
+                        <td>0 grams (g)</td>
+                        <td>0%</td>
+                    </tr>
+                    <tr>
+                        <td>Sodium</td>
+                        <td>382 milligrams (mg)</td>
+                        <td>19%</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td colspan="2" class="section-title">Sensory Characteristics</td>
+        </tr>
+        <tr>
+            <th>Appearance</th>
+            <td>No obvious signs of drying or softening, no foreign impurities; vacuum packaging is intact without damage, air leakage, or swelling.</td>
+        </tr>
+        <tr>
+            <th>Texture</th>
+            <td>Muscle tissue is firm and elastic.</td>
+        </tr>
+        <tr>
+            <th>Color</th>
+            <td>Exhibits the natural color of tilapia flesh, with no discoloration.</td>
+        </tr>
+        <tr>
+            <th>Odor</th>
+            <td>Normal odor, free from off-odors.</td>
+        </tr>
+        <tr>
+            <th>Flavor</th>
+            <td>After cooking, the flesh is firm and tender, with no fibrous or coarse texture upon consumption.</td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td colspan="2" class="section-title">Physicochemical Properties and Drug Residues</td>
+        </tr>
+        <tr>
+            <th>Heavy Metals</th>
+            <td>
+                <ul class="specs-list">
+                    <li><strong>Lead (Pb):</strong> ≤ 0.5 mg/kg</li>
+                    <li><strong>Cadmium (Cd):</strong> ≤ 0.1 mg/kg</li>
+                    <li><strong>Chromium (Cr):</strong> ≤ 2.0 mg/kg</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <th>N-Nitrosodimethylamine</th>
+            <td>≤ 4.0 µg/kg</td>
+        </tr>
+        <tr>
+            <th>Drug Residues</th>
+            <td>
+                <ul class="specs-list">
+                    <li><strong>Chloramphenicol:</strong> Not Detected</li>
+                    <li><strong>Nitrofuran Compounds:</strong> Not Detected</li>
+                    <li><strong>Total Sulfonamides:</strong> ≤ 5.0 µg/kg</li>
+                    <li><strong>Total Quinolones:</strong> ≤ 1.0 µg/kg</li>
+                    <li><strong>Malachite Green & Crystal Violet:</strong> Not Detected (both visible and latent)</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td colspan="2" class="section-title">Finished Product Inspection Standards (Microbiological)</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding: 0;">
+                <table class="inner-table">
+                    <tr>
+                        <th style="width: 50%;">Microbiological Parameters</th>
+                        <th style="width: 50%;">Maximum Permissible Limit</th>
+                    </tr>
+                    <tr>
+                        <td>Total Bacterial Count</td>
+                        <td>&lt; 5.0 × 10⁵ cfu/g</td>
+                    </tr>
+                    <tr>
+                        <td>Escherichia coli</td>
+                        <td>&lt; 3 MPN/g</td>
+                    </tr>
+                    <tr>
+                        <td>Staphylococcus aureus</td>
+                        <td>&lt; 10 cfu/g</td>
+                    </tr>
+                    <tr>
+                        <td>Salmonella</td>
+                        <td>Not Detected in 25g</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <div class="footer">
+        <p>Document generated for internal and B2B quality control purposes. Strictly confidential.</p>
+        <p>&copy; Golden Seafood PTE. LTD.</p>
+    </div>
+</body>
+</html>
