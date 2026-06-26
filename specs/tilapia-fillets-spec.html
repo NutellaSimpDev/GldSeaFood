@@ -7,66 +7,72 @@
     <style>
         :root {
             --primary-color: #002B5C; /* Deep Navy Blue */
-            --secondary-color: #D4AF37; /* Gold */
-            --border-color: #e0e0e0;
+            --border-color: #333; /* Darker borders for print */
             --bg-light: #f8f9fa;
+        }
+        @page {
+            size: A4;
+            margin: 12mm; /* Smaller margin for single page */
         }
         body {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            line-height: 1.5;
-            color: #333;
-            max-width: 850px;
+            line-height: 1.3;
+            color: #111;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 0;
             background-color: #fff;
+            position: relative; /* For stamp positioning */
+            height: 100%;
         }
         .header {
             text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 3px solid var(--primary-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
         }
         .header h1 {
             color: var(--primary-color);
-            margin: 0 0 10px 0;
-            font-size: 28px;
+            margin: 0 0 5px 0;
+            font-size: 22px;
             font-weight: 800;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
         .header h2 {
-            color: #555;
+            color: #333;
             margin: 0;
-            font-size: 20px;
-            font-weight: 500;
+            font-size: 16px;
+            font-weight: bold;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 30px;
-            font-size: 14px;
+            margin-bottom: 12px;
+            font-size: 12px; /* Smaller font */
         }
         th, td {
             border: 1px solid var(--border-color);
-            padding: 12px 15px;
+            padding: 6px 10px;
             text-align: left;
-            vertical-align: top;
+            vertical-align: middle;
         }
         th {
             background-color: var(--bg-light);
-            color: var(--primary-color);
-            font-weight: 700;
-            width: 28%;
+            color: #000;
+            font-weight: bold;
+            width: 25%;
         }
         .section-title {
-            background-color: var(--primary-color);
-            color: white;
-            font-size: 16px;
+            background-color: var(--primary-color) !important;
+            color: white !important;
+            font-size: 13px;
             font-weight: bold;
             text-align: center;
-            padding: 12px;
+            padding: 6px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
         .inner-table {
             width: 100%;
@@ -75,68 +81,69 @@
         }
         .inner-table th, .inner-table td {
             border: 1px solid var(--border-color);
+            padding: 4px 10px;
         }
         .inner-table th {
-            background-color: #f1f3f5;
-            color: #333;
+            background-color: var(--bg-light);
+            color: #000;
             width: auto;
             text-transform: none;
         }
-        .inner-table tr:first-child th {
-            border-top: none;
-        }
-        .inner-table tr th:first-child, .inner-table tr td:first-child {
-            border-left: none;
-        }
-        .inner-table tr th:last-child, .inner-table tr td:last-child {
-            border-right: none;
-        }
-        .inner-table tr:last-child th, .inner-table tr:last-child td {
-            border-bottom: none;
-        }
+        .inner-table tr:first-child th { border-top: none; }
+        .inner-table tr th:first-child, .inner-table tr td:first-child { border-left: none; }
+        .inner-table tr th:last-child, .inner-table tr td:last-child { border-right: none; }
+        .inner-table tr:last-child th, .inner-table tr:last-child td { border-bottom: none; }
         .specs-list {
             list-style: none;
             padding: 0;
             margin: 0;
         }
         .specs-list li {
-            margin-bottom: 6px;
+            margin-bottom: 2px;
             display: flex;
         }
-        .specs-list li:last-child {
-            margin-bottom: 0;
-        }
+        .specs-list li:last-child { margin-bottom: 0; }
         .specs-list strong {
             display: inline-block;
-            width: 220px;
-            color: #444;
+            width: 200px;
+            color: #000;
         }
+        
+        /* Stamp Styling */
+        .stamp-container {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            width: 140px;
+            height: 140px;
+            z-index: 10;
+            pointer-events: none; /* So it doesn't block text selection */
+        }
+        .stamp {
+            width: 100%;
+            height: auto;
+            opacity: 0.85;
+            /* Convert black PNG to a realistic red stamp color */
+            filter: invert(19%) sepia(96%) saturate(4529%) hue-rotate(349deg) brightness(94%) contrast(105%);
+            transform: rotate(-12deg);
+        }
+
         .footer {
-            margin-top: 50px;
+            margin-top: 15px;
             text-align: center;
-            font-size: 12px;
-            color: #777;
-            border-top: 1px solid #eee;
-            padding-top: 20px;
+            font-size: 10px;
+            color: #555;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
         }
+        
         @media print {
             body { 
                 padding: 0; 
                 max-width: 100%;
             }
-            .section-title { 
-                background-color: var(--primary-color) !important; 
-                color: white !important; 
-                -webkit-print-color-adjust: exact; 
-                print-color-adjust: exact;
-            }
-            th { 
-                background-color: var(--bg-light) !important; 
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
             .header {
-                border-bottom: 3px solid var(--primary-color) !important;
+                border-bottom: 2px solid var(--primary-color) !important;
             }
         }
     </style>
@@ -190,7 +197,7 @@
                         <td>3%</td>
                     </tr>
                     <tr>
-                        <td style="padding-left: 30px;">— Saturated Fat</td>
+                        <td style="padding-left: 20px;">— Saturated Fat</td>
                         <td>0.4 grams (g)</td>
                         <td>2%</td>
                     </tr>
@@ -298,6 +305,11 @@
             </td>
         </tr>
     </table>
+
+    <div class="stamp-container">
+        <!-- El usuario debe guardar su imagen png en la carpeta specs con el nombre stamp.png -->
+        <img src="stamp.png" class="stamp" alt="Company Stamp" onerror="this.style.display='none'">
+    </div>
 
     <div class="footer">
         <p>Document generated for internal and B2B quality control purposes. Strictly confidential.</p>
