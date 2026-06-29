@@ -88,7 +88,7 @@ body {
 /* Typography elements */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-title);
-  color: var(--navy-primary);
+  color: var(--white);
   font-weight: 700;
   line-height: 1.25;
 }
@@ -205,7 +205,7 @@ section {
 }
 
 .nav-item a {
-  color: var(--navy-primary);
+  color: var(--white);
   font-weight: 600;
   font-size: 0.95rem;
   letter-spacing: 1px;
@@ -605,7 +605,7 @@ section {
    OPERATIONS SECTION & WORLD MAP SHOWCASE
    ========================================================================== */
 .about-section {
-  background: linear-gradient(180deg, var(--grey-mist) 0%, var(--white) 100%);
+  background: var(--navy-deep);
 }
 .about-section .container {
   max-width: 1500px;
@@ -1055,8 +1055,8 @@ button.map-pin:focus-visible {
 }
 
 .packaging-specs {
-  background: var(--white);
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  background: transparent;
+  border: 1px solid rgba(212, 175, 55, 0.15);
   border-radius: 6px;
   padding: 1.2rem;
 }
@@ -2219,4 +2219,38 @@ button.map-pin:focus-visible {
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
   color: var(--navy-deep);
+}
+
+/* Premium H2 Gradient */
+section h2 {
+  font-family: var(--font-title);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, var(--white), var(--gold-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+}
+
+.tag-specs {
+  color: var(--gold-primary) !important;
+  background: rgba(212, 175, 55, 0.1) !important;
+}
+
+/* Premium H2 Gradient */
+section h2 {
+  font-family: var(--font-title);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, var(--white), var(--gold-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+}
+
+.tag-specs {
+  color: var(--gold-primary) !important;
+  background: rgba(212, 175, 55, 0.1) !important;
 }
