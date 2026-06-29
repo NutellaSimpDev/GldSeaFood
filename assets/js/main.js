@@ -184,9 +184,8 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const customTooltip = document.createElement('div');
-    customTooltip.style.cssText = "position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0, 11, 20, 0.95); border: 1px solid #D4AF37; border-radius: 8px; padding: 15px; color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.5); font-family: 'Outfit', sans-serif; max-width: 300px; width: 90%; display: none; z-index: 100; text-align: left;";
-    globeContainer.style.position = 'relative';
-    globeContainer.appendChild(customTooltip);
+    customTooltip.style.cssText = "position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%); background: rgba(0, 11, 20, 0.95); border: 1px solid #D4AF37; border-radius: 8px; padding: 15px; color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.5); font-family: 'Outfit', sans-serif; max-width: 300px; width: 90%; display: none; z-index: 9999; text-align: left;";
+
 
     const world = Globe()
       (globeContainer)
@@ -195,12 +194,13 @@ document.addEventListener('DOMContentLoaded', () => {
       .pointsData(mapDataArr)
       .pointAltitude('size')
       .pointColor('color')
-      .pointLabel(d => `<div style="background: rgba(0, 11, 20, 0.95); border: 1px solid #D4AF37; border-radius: 8px; padding: 12px; color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.5); font-family: 'Outfit', sans-serif; max-width: 250px;">
-          <strong style="display: block; font-size: 1.1rem; margin-bottom: 5px; color: #D4AF37;">📍 ${d.label}</strong>
-          <span style="font-size: 0.9rem; line-height: 1.4; display: block;">${d.desc}</span>
-        </div>`)
       .pointRadius(0.8)
       .onPointClick(d => {
+        
+        if (!customTooltip.parentNode) {
+          globeContainer.parentElement.appendChild(customTooltip);
+          globeContainer.parentElement.style.position = 'relative';
+        }
         world.controls().autoRotate = false; // Stop rotating when user clicks
         customTooltip.style.display = 'block';
         customTooltip.innerHTML = `
