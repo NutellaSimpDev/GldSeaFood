@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { iso: 'CRI', lat: 9.7489, lng: -83.7534, size: 0.05, color: '#D4AF37', label: t.costarica.title, desc: t.costarica.desc },
       { iso: 'COL', lat: 4.5709, lng: -74.2973, size: 0.05, color: '#D4AF37', label: t.colombia.title, desc: t.colombia.desc },
       { iso: 'PER', lat: -9.1899, lng: -75.0151, size: 0.05, color: '#D4AF37', label: t.peru.title, desc: t.peru.desc },
-      { iso: 'CHN', lat: 35.8616, lng: 104.1953, size: 0.05, color: '#D4AF37', label: t.china.title, desc: t.china.desc },
+      { iso: 'CHN', lat: 36.0671, lng: 120.3826, size: 0.05, color: '#D4AF37', label: t.china.title, desc: t.china.desc },
       { iso: 'VNM', lat: 14.0583, lng: 108.2771, size: 0.05, color: '#D4AF37', label: t.vietnam.title, desc: t.vietnam.desc }
     ];
 
