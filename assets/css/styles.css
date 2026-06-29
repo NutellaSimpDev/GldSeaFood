@@ -605,7 +605,8 @@ section {
    OPERATIONS SECTION & WORLD MAP SHOWCASE
    ========================================================================== */
 .about-section {
-  background: var(--navy-deep);
+  background: rgba(0, 11, 20, 0.4);
+  backdrop-filter: blur(10px);
 }
 .about-section .container {
   max-width: 1500px;
@@ -991,8 +992,9 @@ button.map-pin:focus-visible {
    ========================================================================== */
 .products-section {
   padding: 8rem 0;
-  background: var(--navy-deep);
+  background: rgba(0, 11, 20, 0.4);
   position: relative;
+  backdrop-filter: blur(10px);
 }
 
 .products-grid {
@@ -1147,8 +1149,9 @@ button.map-pin:focus-visible {
    ========================================================================== */
 .advantages-section {
   padding: 8rem 0;
-  background: var(--navy-primary);
+  background: rgba(0, 11, 20, 0.4);
   position: relative;
+  backdrop-filter: blur(10px);
 }
 
 
@@ -2253,4 +2256,57 @@ section h2 {
 .tag-specs {
   color: var(--gold-primary) !important;
   background: rgba(212, 175, 55, 0.1) !important;
+}
+
+/* Ambient Background Mesh Gradient */
+.ambient-background {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1;
+  background: var(--navy-deep);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.color-blob {
+  position: absolute;
+  filter: blur(150px);
+  -webkit-filter: blur(150px);
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: floatBlobs 20s infinite ease-in-out alternate;
+  mix-blend-mode: screen;
+}
+
+.blob-1 {
+  background: var(--navy-light);
+  width: 70vw; height: 70vh;
+  top: -20%; left: -10%;
+  animation-delay: 0s;
+}
+
+.blob-2 {
+  background: var(--gold-dark);
+  width: 60vw; height: 60vh;
+  bottom: -20%; right: -10%;
+  animation-delay: -5s;
+}
+
+.blob-3 {
+  background: #004d80;
+  width: 50vw; height: 50vh;
+  top: 30%; left: 30%;
+  animation-delay: -10s;
+}
+
+@keyframes floatBlobs {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(15vw, 15vh) scale(1.2); }
+  66% { transform: translate(-10vw, 15vh) scale(0.9); }
+  100% { transform: translate(10vw, -15vh) scale(1.3); }
+}
+
+main {
+  position: relative;
+  z-index: 1;
 }
