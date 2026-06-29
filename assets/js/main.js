@@ -200,7 +200,6 @@ document.addEventListener('DOMContentLoaded', () => {
           <span style="font-size: 0.9rem; line-height: 1.4; display: block;">${d.desc}</span>
         </div>`)
       .pointRadius(0.8)
-      .pointsMerge(true)
       .onPointClick(d => {
         customTooltip.style.display = 'block';
         customTooltip.innerHTML = `
@@ -220,9 +219,10 @@ document.addEventListener('DOMContentLoaded', () => {
       world.height(globeContainer.clientHeight);
     });
     
-    // Auto-rotate
+    // Auto-rotate and disable scroll zoom
     world.controls().autoRotate = true;
     world.controls().autoRotateSpeed = 0.8;
+    world.controls().enableZoom = false;
   }
   
   /* ==========================================================================
