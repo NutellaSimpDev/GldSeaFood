@@ -129,7 +129,7 @@
           Rotate the sphere and tap a point to learn more about our reach.
         </p>
         <div style="text-align: center; margin-top: 1.5rem; margin-bottom: 2rem;">
-          <a href="#products" class="btn btn-primary" style="border-radius: 50px; padding: 0.6rem 1.5rem; font-size: 0.85rem;">Continue to catalog ↓</a>
+          <a href="#productos" class="btn btn-primary" style="border-radius: 50px; padding: 0.6rem 1.5rem; font-size: 0.85rem;">Continue to catalog ↓</a>
         </div>
       </div>
     </div>
@@ -260,7 +260,99 @@
   <!-- ==========================================
        SECTION 4: B2B LOGISTICS CALCULATOR
        ========================================== -->
-  
+  <section class="calculator-section" id="calculator">
+    <div class="container">
+      <div class="text-center">
+        <h2>B2B Logistics Calculator</h2>
+        <p class="section-subtitle" style="color: rgba(255,255,255,0.7)">
+          Instantly calculate custom packing volumes and reefer container requirements needed to secure your shipments.
+        </p>
+      </div>
+
+      <div class="calculator-grid reveal-on-scroll">
+        <!-- Inputs Card -->
+        <div class="calc-card-input">
+          <div class="calc-form-group">
+            <label>1. Select Input Weight Unit</label>
+            <div class="unit-toggle-group">
+              <input type="radio" id="unit-tons" name="calc-unit" value="tons" checked>
+              <label for="unit-tons" class="unit-radio-label">Metric Tons (Ton)</label>
+              
+              <input type="radio" id="unit-kg" name="calc-unit" value="kg">
+              <label for="unit-kg" class="unit-radio-label">Kilograms (kg)</label>
+            </div>
+          </div>
+
+          <div class="calc-form-group">
+            <label for="calc-amount">2. Target Volume Quantity</label>
+            <div class="calc-input-wrapper">
+              <input type="number" id="calc-amount" class="calc-input" value="24" min="1" step="any">
+            </div>
+          </div>
+
+          <div class="calc-form-group">
+            <label for="calc-product">3. B2B Seafood Species</label>
+            <select id="calc-product" class="calc-input calc-select">
+              <option value="tilapia">Tilapia Fillet (10 lb Boxes)</option>
+              <option value="tilapia_whole">Whole Tilapia (40 lb Boxes)</option>
+              <option value="squid">Giant Squid Dosidicus gigas (Sacks)</option>
+              <option value="shrimp">Cooked Shrimp (10 kg Boxes)</option>
+              <option value="basa">Basa Fillet (15 kg Boxes)</option>
+            </select>
+          </div>
+
+          <!-- Sack format for squid (appears dynamically via JS) -->
+          <div class="calc-form-group" id="calc-sack-size-group" style="display:none;">
+            <label for="calc-sack-size">4. Squid Sack Format Size</label>
+            <select id="calc-sack-size" class="calc-input calc-select">
+              <option value="20" selected>20 KG Sacks</option>
+              <option value="22.5">22.5 KG Sacks</option>
+            </select>
+          </div>
+
+          <div class="calc-note-box">
+            <span class="calc-note-icon">ℹ</span>
+            <p>Refrigerated Reefers (40ft FCL) are loaded up to the safety limit of 24 Metric Tons for regional highway weight compliance and cold maintenance.</p>
+          </div>
+        </div>
+
+        <!-- Output Results Card -->
+        <div class="calc-card-result">
+          <div class="calc-result-header">
+            <h4>Estimated Freight Requirements:</h4>
+          </div>
+
+          <div class="calc-result-metric">
+            <span class="metric-label">
+              Total Boxes / Sacks Count
+              <span class="metric-sub" id="result-units-label">10 lb Boxes</span>
+            </span>
+            <span class="metric-value highlighted" id="result-units-val">0</span>
+          </div>
+
+          <div class="calc-result-metric">
+            <span class="metric-label">
+              40ft Reefer Containers
+              <span class="metric-sub" id="result-containers-label">0.00 containers needed</span>
+            </span>
+            <span class="metric-value" id="result-containers-val">0.00</span>
+          </div>
+
+          <div class="calc-result-metric">
+            <span class="metric-label">Total Equivalent Weight in Kilograms</span>
+            <span class="metric-value" id="result-kg-val">0 kg</span>
+          </div>
+
+          <div class="calc-result-metric">
+            <span class="metric-label">Total Equivalent Weight in Pounds</span>
+            <span class="metric-value" id="result-lbs-val">0 lbs</span>
+          </div>
+
+          <a href="#contact" class="btn btn-primary" style="margin-top: 1.5rem; text-align: center;">Request Formal B2B Pricing</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ==========================================
        SECTION 5: B2B BENEFITS & LOGISTICS

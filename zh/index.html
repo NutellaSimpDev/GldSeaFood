@@ -129,7 +129,7 @@
           旋转球体并点击位置以了解更多关于我们的服务范围。
         </p>
         <div style="text-align: center; margin-top: 1.5rem; margin-bottom: 2rem;">
-          <a href="#zh-products" class="btn btn-primary" style="border-radius: 50px; padding: 0.6rem 1.5rem; font-size: 0.85rem;">继续查看目录 ↓</a>
+          <a href="#productos" class="btn btn-primary" style="border-radius: 50px; padding: 0.6rem 1.5rem; font-size: 0.85rem;">继续查看目录 ↓</a>
         </div>
       </div>
     </div>
@@ -260,7 +260,99 @@
   <!-- ==========================================
        第四部分: 物流与箱量计算器 (B2B CALCULATOR)
        ========================================== -->
-  
+  <section class="calculator-section" id="calculator">
+    <div class="container">
+      <div class="text-center">
+        <h2>B2B 货运计算器</h2>
+        <p class="section-subtitle" style="color: rgba(255,255,255,0.7)">
+          即时输入您所需的采购重量，系统将自动核算出所需的标准包装箱量、袋量以及所需的 40尺冷冻集装箱数量。
+        </p>
+      </div>
+
+      <div class="calculator-grid reveal-on-scroll">
+        <!-- Inputs Card -->
+        <div class="calc-card-input">
+          <div class="calc-form-group">
+            <label>1. 选择输入重量单位</label>
+            <div class="unit-toggle-group">
+              <input type="radio" id="unit-tons" name="calc-unit" value="tons" checked>
+              <label for="unit-tons" class="unit-radio-label">公吨 (Metric Ton)</label>
+              
+              <input type="radio" id="unit-kg" name="calc-unit" value="kg">
+              <label for="unit-kg" class="unit-radio-label">公斤 (kg)</label>
+            </div>
+          </div>
+
+          <div class="calc-form-group">
+            <label for="calc-amount">2. 目标采购重量</label>
+            <div class="calc-input-wrapper">
+              <input type="number" id="calc-amount" class="calc-input" value="24" min="1" step="any">
+            </div>
+          </div>
+
+          <div class="calc-form-group">
+            <label for="calc-product">3. B2B 进口水产类别</label>
+            <select id="calc-product" class="calc-input calc-select">
+              <option value="tilapia">高品质罗非鱼片 (10磅纸箱)</option>
+              <option value="tilapia_whole">整条罗非鱼 (40磅纸箱)</option>
+              <option value="squid">美洲大赤鱿 Dosidicus gigas (编织袋)</option>
+              <option value="shrimp">冷冻熟虾 (10公斤箱装)</option>
+              <option value="basa">精选巴沙鱼片 (15公斤箱装)</option>
+            </select>
+          </div>
+
+          <!-- Sack format for squid (appears dynamically via JS) -->
+          <div class="calc-form-group" id="calc-sack-size-group" style="display:none;">
+            <label for="calc-sack-size">4. 大赤鱿袋装规格大小</label>
+            <select id="calc-sack-size" class="calc-input calc-select">
+              <option value="20" selected>20公斤 (20 KG) 编织袋</option>
+              <option value="22.5">22.5公斤 (22.5 KG) 编织袋</option>
+            </select>
+          </div>
+
+          <div class="calc-note-box">
+            <span class="calc-note-icon">ℹ</span>
+            <p>为满足地区公路安全重载限制并保持恒定低温，冷冻集装箱（40尺 Reefer）的建议安全载箱量上限为 24 公吨 (24,000 公斤)。</p>
+          </div>
+        </div>
+
+        <!-- Output Results Card -->
+        <div class="calc-card-result">
+          <div class="calc-result-header">
+            <h4>货运所需规格估算结果：</h4>
+          </div>
+
+          <div class="calc-result-metric">
+            <span class="metric-label">
+              标准包装箱数 / 袋数
+              <span class="metric-sub" id="result-units-label">10磅外贸箱</span>
+            </span>
+            <span class="metric-value highlighted" id="result-units-val">0</span>
+          </div>
+
+          <div class="calc-result-metric">
+            <span class="metric-label">
+              40尺冷冻集装箱 (Reefer)
+              <span class="metric-sub" id="result-containers-label">0 个整箱</span>
+            </span>
+            <span class="metric-value" id="result-containers-val">0.00</span>
+          </div>
+
+          <div class="calc-result-metric">
+            <span class="metric-label">等效物理总净重 (公斤)</span>
+            <span class="metric-value" id="result-kg-val">0 kg</span>
+          </div>
+
+          <div class="calc-result-metric">
+            <span class="metric-label">等效物理总净重 (磅)</span>
+            <span class="metric-value" id="result-lbs-val">0 lbs</span>
+          </div>
+
+          <a href="#zh-contact" class="btn btn-primary" style="margin-top: 1.5rem; text-align: center;">申请您的报价</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ==========================================
        第五部分: B2B 服务优势与冷链物流 (B2B ADVANTAGES)

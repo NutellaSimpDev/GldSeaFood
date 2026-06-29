@@ -28,11 +28,15 @@ document.addEventListener('DOMContentLoaded', () => {
       vietnam: {
         title: "🇻🇳 Vietnam (Origen de Suministro)",
         desc: "Origen principal de importación de filete de basa. Directamente desde plantas asociadas en el Delta del Mekong, garantizando calidad e inocuidad."
-      },000 kg).",
+      },
+      calcAlert: "⚠️ Capacidad de contenedor máxima es de 24 Toneladas (24,000 kg).",
       toastSuccess: "✓ Solicitud de cotización enviada correctamente.",
       modalTitle: "¡Solicitud Recibida!",
       modalDesc: "Muchas gracias por contactar a Golden Seafood. Un ejecutivo especializado en logística de importación marina evaluará su requerimiento y se comunicará con usted en un plazo máximo de 24 horas hábiles.",
       modalClose: "Cerrar Ventana",
+      partialContainer: "contenedor completo y {partial}% de carga parcial",
+      fullContainer: "contenedor completo",
+      containers: "Contenedores Reefer de 40 pies"
     },
     en: {
       mexico: {
@@ -58,11 +62,15 @@ document.addEventListener('DOMContentLoaded', () => {
       vietnam: {
         title: "🇻🇳 Vietnam (Sourcing Origin)",
         desc: "Main sourcing origin for premium Basa fillets. Sourced directly from partner plants in the Mekong Delta, ensuring safety and quality."
-      },000 kg).",
+      },
+      calcAlert: "⚠️ Maximum container payload capacity is 24 Tons (24,000 kg).",
       toastSuccess: "✓ Inquiry submitted successfully.",
       modalTitle: "Inquiry Received!",
       modalDesc: "Thank you for contacting Golden Seafood. A specialized B2B import logistics executive will evaluate your requirements and contact you within 24 business hours.",
       modalClose: "Close Window",
+      partialContainer: "full container and {partial}% partial load",
+      fullContainer: "full container",
+      containers: "40ft Reefer Containers"
     },
     zh: {
       mexico: {
@@ -88,11 +96,15 @@ document.addEventListener('DOMContentLoaded', () => {
       vietnam: {
         title: "🇻🇳 越南 (巴沙鱼直采)",
         desc: "优质巴沙鱼片的主要进口来源。对湄公河三角洲合作工厂进行直接品质监管，确保符合国际卫生标准。"
-      },000 公斤)。",
+      },
+      calcAlert: "⚠️ 单个集装箱最大载重上限为 24 吨 (24,000 公斤)。",
       toastSuccess: "✓ 您的询价单已成功提交。",
       modalTitle: "询价单已收到！",
       modalDesc: "非常感谢您联系 Golden Seafood。我们的跨国大宗物流及供应链专员将评估您的采购需求，并在 24 小时（工作日）内为您提供专业答复。",
       modalClose: "关闭窗口",
+      partialContainer: "个整箱及 {partial}% 的拼箱载重",
+      fullContainer: "个整箱",
+      containers: "40尺冷冻集装箱 (Reefer)"
     }
   };
 
@@ -386,6 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
         form.reset();
         
         // Trigger calculator recalculation to base state if exists
+        calculateLogistics();
       }
     });
   });
