@@ -1182,7 +1182,9 @@ button.map-pin:focus-visible {
    CONTACT & B2B QUOTATION FORM
    ========================================================================== */
 .contact-section {
-  background-color: transparent;
+  background: rgba(0, 11, 20, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   position: relative;
 }
 
