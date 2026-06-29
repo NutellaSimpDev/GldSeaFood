@@ -441,13 +441,11 @@ section {
 }
 
 .display-title {
-  font-size: 3.5rem;
-  font-weight: 800;
-  letter-spacing: -1px;
+  font-size: 3.8rem;
+  font-weight: 300;
+  letter-spacing: -1.5px;
   margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, var(--white) 30%, var(--gold-light) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--white);
   max-width: 900px;
 }
 

@@ -183,6 +183,11 @@ document.addEventListener('DOMContentLoaded', () => {
       { lat: 14.0583, lng: 108.2771, size: 0.05, color: '#D4AF37', label: t.vietnam.title, desc: t.vietnam.desc }
     ];
 
+    const customTooltip = document.createElement('div');
+    customTooltip.style.cssText = "position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0, 11, 20, 0.95); border: 1px solid #D4AF37; border-radius: 8px; padding: 15px; color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.5); font-family: 'Outfit', sans-serif; max-width: 300px; width: 90%; display: none; z-index: 100; text-align: left;";
+    globeContainer.style.position = 'relative';
+    globeContainer.appendChild(customTooltip);
+
     const world = Globe()
       (globeContainer)
       .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
@@ -195,7 +200,16 @@ document.addEventListener('DOMContentLoaded', () => {
           <span style="font-size: 0.9rem; line-height: 1.4; display: block;">${d.desc}</span>
         </div>`)
       .pointRadius(0.8)
-      .pointsMerge(true);
+      .pointsMerge(true)
+      .onPointClick(d => {
+        customTooltip.style.display = 'block';
+        customTooltip.innerHTML = `
+          <button style="position: absolute; top: 10px; right: 10px; background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; padding: 0;" onclick="this.parentElement.style.display='none'">×</button>
+          <strong style="display: block; font-size: 1.1rem; margin-bottom: 5px; color: #D4AF37; padding-right: 20px;">📍 ${d.label}</strong>
+          <span style="font-size: 0.9rem; line-height: 1.4; display: block;">${d.desc}</span>
+        `;
+        world.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.5 }, 1000);
+      });
 
     // Initial position
     world.pointOfView({ lat: 10, lng: -70, altitude: 2.2 });
