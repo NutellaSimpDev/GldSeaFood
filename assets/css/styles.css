@@ -607,6 +607,7 @@ section {
 .about-section {
   background: rgba(0, 11, 20, 0.4);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 .about-section .container {
   max-width: 1500px;
@@ -995,6 +996,7 @@ button.map-pin:focus-visible {
   background: rgba(0, 11, 20, 0.4);
   position: relative;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .products-grid {
@@ -1152,6 +1154,7 @@ button.map-pin:focus-visible {
   background: rgba(0, 11, 20, 0.4);
   position: relative;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 
@@ -1226,8 +1229,10 @@ button.map-pin:focus-visible {
 }
 
 .form-wrapper {
-  background: var(--grey-mist);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(0, 11, 20, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 8px;
   padding: 3rem;
   box-shadow: var(--shadow-md);
@@ -1254,7 +1259,7 @@ button.map-pin:focus-visible {
 .form-group label {
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--navy-primary);
+  color: var(--white);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -2272,8 +2277,8 @@ section h2 {
 
 .color-blob {
   position: absolute;
-  filter: blur(150px);
-  -webkit-filter: blur(150px);
+  filter: blur(80px);
+  -webkit-filter: blur(80px);
   border-radius: 50%;
   opacity: 0.5;
   animation: floatBlobs 20s infinite ease-in-out alternate;
