@@ -1398,17 +1398,6 @@ button.map-pin:focus-visible {
   position: relative;
 }
 
-.advantages-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 200px;
-  background: linear-gradient(to bottom, var(--navy-deep) 0%, transparent 100%);
-  pointer-events: none;
-  z-index: 0;
-}
 
 .advantage-item {
   background: var(--white);
