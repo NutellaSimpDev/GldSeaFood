@@ -175,46 +175,66 @@ document.addEventListener('DOMContentLoaded', () => {
   
   if (globeContainer && typeof Globe !== 'undefined') {
     const mapDataArr = [
-      { lat: 23.6345, lng: -102.5528, size: 0.05, color: '#D4AF37', label: t.mexico.title, desc: t.mexico.desc },
-      { lat: 9.7489, lng: -83.7534, size: 0.05, color: '#D4AF37', label: t.costarica.title, desc: t.costarica.desc },
-      { lat: 4.5709, lng: -74.2973, size: 0.05, color: '#D4AF37', label: t.colombia.title, desc: t.colombia.desc },
-      { lat: -9.1899, lng: -75.0151, size: 0.05, color: '#D4AF37', label: t.peru.title, desc: t.peru.desc },
-      { lat: 35.8616, lng: 104.1953, size: 0.05, color: '#D4AF37', label: t.china.title, desc: t.china.desc },
-      { lat: 14.0583, lng: 108.2771, size: 0.05, color: '#D4AF37', label: t.vietnam.title, desc: t.vietnam.desc }
+      { iso: 'MEX', lat: 23.6345, lng: -102.5528, size: 0.05, color: '#D4AF37', label: t.mexico.title, desc: t.mexico.desc },
+      { iso: 'CRI', lat: 9.7489, lng: -83.7534, size: 0.05, color: '#D4AF37', label: t.costarica.title, desc: t.costarica.desc },
+      { iso: 'COL', lat: 4.5709, lng: -74.2973, size: 0.05, color: '#D4AF37', label: t.colombia.title, desc: t.colombia.desc },
+      { iso: 'PER', lat: -9.1899, lng: -75.0151, size: 0.05, color: '#D4AF37', label: t.peru.title, desc: t.peru.desc },
+      { iso: 'CHN', lat: 35.8616, lng: 104.1953, size: 0.05, color: '#D4AF37', label: t.china.title, desc: t.china.desc },
+      { iso: 'VNM', lat: 14.0583, lng: 108.2771, size: 0.05, color: '#D4AF37', label: t.vietnam.title, desc: t.vietnam.desc }
     ];
 
     const customTooltip = document.createElement('div');
     customTooltip.style.cssText = "position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%); background: rgba(0, 11, 20, 0.95); border: 1px solid #D4AF37; border-radius: 8px; padding: 15px; color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.5); font-family: 'Outfit', sans-serif; max-width: 300px; width: 90%; display: none; z-index: 9999; text-align: left;";
 
+    const showTooltip = (d) => {
+      if (!customTooltip.parentNode) {
+        globeContainer.parentElement.appendChild(customTooltip);
+        globeContainer.parentElement.style.position = 'relative';
+      }
+      world.controls().autoRotate = false;
+      customTooltip.style.display = 'block';
+      customTooltip.innerHTML = `
+        <button id="close-globe-tooltip" style="position: absolute; top: 10px; right: 10px; background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; padding: 0;">×</button>
+        <strong style="display: block; font-size: 1.1rem; margin-bottom: 5px; color: #D4AF37; padding-right: 20px;">📍 ${d.label}</strong>
+        <span style="font-size: 0.9rem; line-height: 1.4; display: block;">${d.desc}</span>
+      `;
+      world.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.5 }, 1000);
+      
+      document.getElementById('close-globe-tooltip').addEventListener('click', () => {
+        customTooltip.style.display = 'none';
+        world.controls().autoRotate = true;
+      });
+    };
 
-    const world = Globe()
-      (globeContainer)
+    const world = Globe()(globeContainer)
       .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
-      .backgroundColor('rgba(0,0,0,0)')
-      .pointsData(mapDataArr)
+      .backgroundColor('rgba(0,0,0,0)');
+
+    const rootPath = (window.location.pathname.includes('/en') || window.location.pathname.includes('/zh')) ? '../' : './';
+    fetch(rootPath + 'assets/data/countries.geojson')
+      .then(res => res.json())
+      .then(countries => {
+        world.polygonsData(countries.features)
+          .polygonAltitude(d => 0.01)
+          .polygonCapColor(() => 'rgba(212, 175, 55, 0.4)')
+          .polygonSideColor(() => 'rgba(212, 175, 55, 0.1)')
+          .polygonStrokeColor(() => '#D4AF37')
+          .onPolygonHover(hoverD => {
+            world.polygonAltitude(d => d === hoverD ? 0.06 : 0.01)
+                 .polygonCapColor(d => d === hoverD ? 'rgba(212, 175, 55, 0.8)' : 'rgba(212, 175, 55, 0.4)');
+          })
+          .onPolygonClick(d => {
+            const iso = d.properties.ISO_A3;
+            const data = mapDataArr.find(item => item.iso === iso);
+            if (data) showTooltip(data);
+          });
+      });
+
+    world.pointsData(mapDataArr)
       .pointAltitude('size')
       .pointColor('color')
       .pointRadius(0.8)
-      .onPointClick(d => {
-        
-        if (!customTooltip.parentNode) {
-          globeContainer.parentElement.appendChild(customTooltip);
-          globeContainer.parentElement.style.position = 'relative';
-        }
-        world.controls().autoRotate = false; // Stop rotating when user clicks
-        customTooltip.style.display = 'block';
-        customTooltip.innerHTML = `
-          <button id="close-globe-tooltip" style="position: absolute; top: 10px; right: 10px; background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; padding: 0;">×</button>
-          <strong style="display: block; font-size: 1.1rem; margin-bottom: 5px; color: #D4AF37; padding-right: 20px;">📍 ${d.label}</strong>
-          <span style="font-size: 0.9rem; line-height: 1.4; display: block;">${d.desc}</span>
-        `;
-        world.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.5 }, 1000);
-        
-        document.getElementById('close-globe-tooltip').addEventListener('click', () => {
-          customTooltip.style.display = 'none';
-          world.controls().autoRotate = true; // Resume rotating when closed
-        });
-      });
+      .onPointClick(showTooltip);
 
     // Initial position
     world.pointOfView({ lat: 10, lng: -70, altitude: 2.2 });
