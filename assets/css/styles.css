@@ -10,10 +10,12 @@
   --navy-light: #002D4E;
   
   --gold-primary: #D4AF37;
-  --gold-light: #FCE082;
-  --gold-dark: #9A7B1C;
+  --gold-light: #F4E2A6;
+  --gold-dark: #AA8C2C;
   --gold-glow: rgba(212, 175, 55, 0.3);
   --gold-border: rgba(212, 175, 55, 0.15);
+  --navy-base: #0A192F;
+  --navy-dark: #020C1B;
   
   --grey-mist: #F8F9FA;
   --grey-light: #E9ECEF;
@@ -23,9 +25,9 @@
   --white: #FFFFFF;
   --black: #000000;
   
-  /* Typography */
-  --font-title: 'Cinzel', 'Playfair Display', 'Georgia', serif;
-  --font-body: 'Outfit', 'Inter', 'Segoe UI', sans-serif;
+  /* Fuentes (Modernas y Corporativas) */
+  --font-title: 'Outfit', 'Inter', system-ui, sans-serif;
+  --font-body: 'Outfit', 'Inter', system-ui, sans-serif;
   
   /* Animations & Transitions */
   --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -579,6 +581,20 @@ section {
   background: rgba(255, 255, 255, 0.15);
   border-color: var(--gold-primary);
   transform: translateY(-3px);
+}
+
+.btn-blue {
+  background: linear-gradient(135deg, var(--navy-light), var(--navy-base));
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 45, 78, 0.4);
+}
+
+.btn-blue:hover {
+  background: linear-gradient(135deg, var(--navy-base), var(--navy-light));
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 45, 78, 0.6);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .btn-light-outline {

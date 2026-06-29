@@ -169,272 +169,48 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     4. INTERACTIVE OPERATIONS MAP
+     4. INTERACTIVE 3D GLOBE MAP (Globe.gl)
      ========================================================================== */
-  const pins = document.querySelectorAll('.map-pin');
-
-  const mapData = {
-    mexico: t.mexico,
-    costarica: t.costarica,
-    colombia: t.colombia,
-    peru: t.peru,
-    china: t.china,
-    vietnam: t.vietnam
-  };
-
-  if (pins.length > 0) {
-    let globalTooltip = document.querySelector('.global-map-tooltip');
-    if (!globalTooltip) {
-      globalTooltip = document.createElement('div');
-      globalTooltip.className = 'global-map-tooltip';
-      document.body.appendChild(globalTooltip);
-    }
-
-    const resetMap = () => {
-      pins.forEach(p => p.classList.remove('active'));
-      if (globalTooltip) globalTooltip.classList.remove('active');
-    };
-
-    pins.forEach(pin => {
-      pin.addEventListener('click', (e) => {
-        e.stopPropagation();
-        
-        const isAlreadyActive = pin.classList.contains('active');
-        
-        if (isAlreadyActive) {
-          resetMap();
-        } else {
-          pins.forEach(p => p.classList.remove('active'));
-          pin.classList.add('active');
-          
-          const countryKey = pin.dataset.country;
-          const data = mapData[countryKey];
-          if (data) {
-            const tooltipDesc = pin.querySelector('.tooltip-desc');
-            const tooltipTitle = pin.querySelector('.tooltip-title');
-            if (tooltipDesc) tooltipDesc.textContent = data.desc;
-            if (tooltipTitle) tooltipTitle.textContent = data.title;
-            
-            if (window.innerWidth <= 768) {
-              globalTooltip.innerHTML = `
-                <span class="tooltip-title">${data.title}</span>
-                <span class="tooltip-desc">${data.desc}</span>
-              `;
-              globalTooltip.classList.add('active');
-            }
-          }
-        }
-      });
-    });
-
-    // Reset map when clicking anywhere else
-    document.addEventListener('click', (e) => {
-      const isClickInside = Array.from(pins).some(pin => pin.contains(e.target));
-      const isClickOnGlobalTooltip = globalTooltip && globalTooltip.contains(e.target);
-      if (!isClickInside && !isClickOnGlobalTooltip) {
-        resetMap();
-      }
-    });
-
-    // Reset map on scroll to improve UX on mobile
-    window.addEventListener('scroll', () => {
-      if (globalTooltip && globalTooltip.classList.contains('active')) {
-        resetMap();
-      }
-    }, { passive: true });
-
-    const mapScrollContainer = document.querySelector('.map-scroll-container');
-    if (mapScrollContainer) {
-      mapScrollContainer.addEventListener('scroll', () => {
-        if (globalTooltip && globalTooltip.classList.contains('active')) {
-          resetMap();
-        }
-      }, { passive: true });
-    }
-  }
-
-  // --- Widescreen Map: SVG Injection & Smart Micro-animations ---
-  const mapWrapper = document.querySelector('.map-wrapper');
-  if (mapWrapper) {
-    // Inject SVG dynamically
-    const mapLangPath = lang === 'en' ? '../assets/images/world-map-final.svg' : (lang === 'zh' ? '../assets/images/world-map-final.svg' : 'assets/images/world-map-final.svg');
-    fetch(mapLangPath)
-      .then(response => response.text())
-      .then(svgText => {
-        // Create a container for the SVG so it doesn't overwrite pins
-        const svgContainer = document.createElement('div');
-        svgContainer.innerHTML = svgText;
-        const svgElement = svgContainer.querySelector('svg');
-        if (svgElement) {
-          // Remove native tooltips
-          svgElement.querySelectorAll('title').forEach(t => t.remove());
-          
-          // Hide Antarctica as requested
-          svgElement.querySelectorAll('[id*="Antarctica"]').forEach(el => el.style.display = 'none');
-
-          mapWrapper.insertBefore(svgElement, mapWrapper.firstChild);
-        }
-      })
-      .catch(err => console.error('Error loading map SVG:', err));
-
-    let lastTime = 0;
-    mapWrapper.addEventListener('mousemove', (e) => {
-      // Collision detection: Check if we are hovering over a land path
-      if (e.target.tagName.toLowerCase() === 'path') {
-        // Optionally check class name or just assume all paths are land/countries
-        return; 
-      }
-
-      const now = Date.now();
-      if (now - lastTime < 120) return; // Throttle ripple creation
-      lastTime = now;
-      
-      const ripple = document.createElement('div');
-      ripple.classList.add('mouse-ripple');
-      
-      const rect = mapWrapper.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      
-      ripple.style.left = x + 'px';
-      ripple.style.top = y + 'px';
-      
-      mapWrapper.appendChild(ripple);
-      
-      setTimeout(() => {
-        if(ripple.parentNode === mapWrapper) {
-          mapWrapper.removeChild(ripple);
-        }
-      }, 1200);
-    });
-  }
-
-  /* ==========================================================================
-     5. B2B LOGISTICS CALCULATOR
-     ========================================================================== */
-  const calcProduct = document.getElementById('calc-product');
-  const calcSackSizeGroup = document.getElementById('calc-sack-size-group');
-  const calcSackSize = document.getElementById('calc-sack-size');
-  const calcAmount = document.getElementById('calc-amount');
+  const globeContainer = document.getElementById('globe-viz');
   
-  // Results Elements
-  const resultUnitsVal = document.getElementById('result-units-val');
-  const resultUnitsLabel = document.getElementById('result-units-label');
-  const resultKgVal = document.getElementById('result-kg-val');
-  const resultLbsVal = document.getElementById('result-lbs-val');
-  const resultContainersVal = document.getElementById('result-containers-val');
-  const resultContainersLabel = document.getElementById('result-containers-label');
+  if (globeContainer && typeof Globe !== 'undefined') {
+    const mapDataArr = [
+      { lat: 23.6345, lng: -102.5528, size: 0.05, color: '#D4AF37', label: t.mexico.title, desc: t.mexico.desc },
+      { lat: 9.7489, lng: -83.7534, size: 0.05, color: '#D4AF37', label: t.costarica.title, desc: t.costarica.desc },
+      { lat: 4.5709, lng: -74.2973, size: 0.05, color: '#D4AF37', label: t.colombia.title, desc: t.colombia.desc },
+      { lat: -9.1899, lng: -75.0151, size: 0.05, color: '#D4AF37', label: t.peru.title, desc: t.peru.desc },
+      { lat: 35.8616, lng: 104.1953, size: 0.05, color: '#D4AF37', label: t.china.title, desc: t.china.desc },
+      { lat: 14.0583, lng: 108.2771, size: 0.05, color: '#D4AF37', label: t.vietnam.title, desc: t.vietnam.desc }
+    ];
 
-  if (calcProduct && calcAmount) {
-    // Show/hide Squid sack specification options
-    calcProduct.addEventListener('change', () => {
-      if (calcProduct.value === 'squid') {
-        calcSackSizeGroup.style.display = 'block';
-      } else {
-        calcSackSizeGroup.style.display = 'none';
-      }
-      calculateLogistics();
+    const world = Globe()
+      (globeContainer)
+      .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
+      .backgroundColor('rgba(0,0,0,0)')
+      .pointsData(mapDataArr)
+      .pointAltitude('size')
+      .pointColor('color')
+      .pointLabel(d => `<div style="background: rgba(0, 11, 20, 0.95); border: 1px solid #D4AF37; border-radius: 8px; padding: 12px; color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.5); font-family: 'Outfit', sans-serif; max-width: 250px;">
+          <strong style="display: block; font-size: 1.1rem; margin-bottom: 5px; color: #D4AF37;">📍 ${d.label}</strong>
+          <span style="font-size: 0.9rem; line-height: 1.4; display: block;">${d.desc}</span>
+        </div>`)
+      .pointRadius(0.8)
+      .pointsMerge(true);
+
+    // Initial position
+    world.pointOfView({ lat: 10, lng: -70, altitude: 2.2 });
+
+    // Handle resize
+    window.addEventListener('resize', () => {
+      world.width(globeContainer.clientWidth);
+      world.height(globeContainer.clientHeight);
     });
-
-    if (calcSackSize) {
-      calcSackSize.addEventListener('change', calculateLogistics);
-    }
-
-    calcAmount.addEventListener('input', calculateLogistics);
     
-    // Support switching unit (tons vs kg)
-    const unitRadios = document.querySelectorAll('input[name="calc-unit"]');
-    unitRadios.forEach(radio => {
-      radio.addEventListener('change', calculateLogistics);
-    });
-
-    function calculateLogistics() {
-      // 1. Gather values
-      const product = calcProduct.value;
-      const amountValue = parseFloat(calcAmount.value) || 0;
-      
-      let selectedUnit = 'tons';
-      const checkedRadio = document.querySelector('input[name="calc-unit"]:checked');
-      if (checkedRadio) {
-        selectedUnit = checkedRadio.value;
-      }
-
-      // 2. Normalize input to Kilograms and Lbs
-      let weightKg = 0;
-      if (selectedUnit === 'tons') {
-        weightKg = amountValue * 1000;
-      } else {
-        weightKg = amountValue;
-      }
-      
-      const weightLbs = weightKg * 2.20462262;
-
-      // 3. Compute Product packaging quantities
-      let totalUnits = 0;
-      let unitsLabel = '';
-
-      if (product === 'tilapia') {
-        // 1 caja = 4.536 kg exactos (Evita discrepancias financieras acumulativas por redondeo en fletes masivos)
-        totalUnits = Math.round(weightKg / 4.536);
-        unitsLabel = lang === 'es' ? 'Cajas de 10 lb' : (lang === 'zh' ? '10磅标准箱' : '10 lb Boxes');
-      } else if (product === 'tilapia_whole') {
-        // 1 caja = 40 lb = 18.1437 kg
-        totalUnits = Math.round(weightKg / 18.1437);
-        unitsLabel = lang === 'es' ? 'Cajas de 40 lb' : (lang === 'zh' ? '40磅标准箱' : '40 lb Boxes');
-      } else if (product === 'squid') {
-        // Sack size: 20 kg or 22.5 kg
-        const sackSize = parseFloat(calcSackSize.value) || 20;
-        totalUnits = Math.round(weightKg / sackSize);
-        unitsLabel = lang === 'es' ? `Sacos de ${sackSize} kg` : (lang === 'zh' ? `${sackSize}公斤编织袋` : `${sackSize} kg Sacks`);
-      } else if (product === 'shrimp') {
-        // Cooked shrimp: standard commercial box (e.g. 5 kg pack, 10 kg master)
-        // Assume standard B2B commercial 10 kg master boxes
-        totalUnits = Math.round(weightKg / 10);
-        unitsLabel = lang === 'es' ? 'Cajas Máster (10 kg)' : (lang === 'zh' ? '10公斤商用箱' : '10 kg Master Boxes');
-      } else {
-        // Basa or Mix: standard industrial 15 kg boxes
-        totalUnits = Math.round(weightKg / 15);
-        unitsLabel = lang === 'es' ? 'Cajas Industriales (15 kg)' : (lang === 'zh' ? '15公斤工业箱' : '15 kg Industrial Boxes');
-      }
-
-      // 4. Container count calculations
-      // Capacity limit = 24 Metric Tons = 24,000 kg per B2B container
-      const containerCapacity = 24000;
-      const containerCountPrecise = weightKg / containerCapacity;
-      
-      let containerText = '';
-      if (containerCountPrecise === 0) {
-        containerText = `0 ${t.containers}`;
-      } else {
-        const wholeContainers = Math.floor(containerCountPrecise);
-        const remainder = containerCountPrecise - wholeContainers;
-        const partialPercent = Math.round(remainder * 100);
-
-        if (wholeContainers === 0) {
-          containerText = `${partialPercent}% ${lang === 'es' ? 'capacidad de 1 contenedor' : (lang === 'zh' ? '单箱装载率' : 'load of 1 container')}`;
-        } else if (partialPercent === 0) {
-          containerText = `${wholeContainers} ${wholeContainers === 1 ? (lang === 'es' ? 'contenedor completo' : (lang === 'zh' ? '个整箱' : 'full container')) : (lang === 'es' ? 'contenedores completos' : (lang === 'zh' ? '个整箱' : 'full containers'))}`;
-        } else {
-          const transPartial = t.partialContainer.replace('{partial}', partialPercent);
-          containerText = `${wholeContainers} ${transPartial}`;
-        }
-      }
-
-      // 5. Update UI values elegantly
-      resultUnitsVal.textContent = totalUnits.toLocaleString();
-      resultUnitsLabel.textContent = unitsLabel;
-      
-      resultKgVal.textContent = Math.round(weightKg).toLocaleString() + ' kg';
-      resultLbsVal.textContent = Math.round(weightLbs).toLocaleString() + ' lbs';
-      
-      resultContainersVal.textContent = containerCountPrecise.toFixed(2);
-      resultContainersLabel.textContent = containerText;
-    }
-
-    // Run initial calculation on page load
-    calculateLogistics();
+    // Auto-rotate
+    world.controls().autoRotate = true;
+    world.controls().autoRotateSpeed = 0.8;
   }
-
+  
   /* ==========================================================================
      6. B2B SECURE FORM VALIDATION & MODAL SUCCESS
      ========================================================================== */
