@@ -631,13 +631,19 @@ section {
   margin-top: 0.5rem;
   margin-bottom: 2rem;
   font-weight: 300;
+  text-align: left;
+  line-height: 1.5;
+  text-wrap: pretty;
 }
 
 .body-text {
   color: #475569;
   font-size: 1.05rem;
   margin-bottom: 1.5rem;
-  text-align: justify;
+  text-align: left;
+  line-height: 1.6;
+  text-wrap: pretty;
+  letter-spacing: -0.01em;
 }
 
 /* Cinematic Fullscreen Map Section */
