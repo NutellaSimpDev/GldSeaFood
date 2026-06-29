@@ -398,7 +398,6 @@ document.addEventListener('DOMContentLoaded', () => {
         form.reset();
         
         // Trigger calculator recalculation to base state if exists
-        calculateLogistics();
       }
     });
   });
