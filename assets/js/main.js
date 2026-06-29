@@ -201,17 +201,31 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>`)
       .pointRadius(0.8)
       .onPointClick(d => {
+        world.controls().autoRotate = false; // Stop rotating when user clicks
         customTooltip.style.display = 'block';
         customTooltip.innerHTML = `
-          <button style="position: absolute; top: 10px; right: 10px; background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; padding: 0;" onclick="this.parentElement.style.display='none'">×</button>
+          <button id="close-globe-tooltip" style="position: absolute; top: 10px; right: 10px; background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; padding: 0;">×</button>
           <strong style="display: block; font-size: 1.1rem; margin-bottom: 5px; color: #D4AF37; padding-right: 20px;">📍 ${d.label}</strong>
           <span style="font-size: 0.9rem; line-height: 1.4; display: block;">${d.desc}</span>
         `;
         world.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.5 }, 1000);
+        
+        document.getElementById('close-globe-tooltip').addEventListener('click', () => {
+          customTooltip.style.display = 'none';
+          world.controls().autoRotate = true; // Resume rotating when closed
+        });
       });
 
     // Initial position
     world.pointOfView({ lat: 10, lng: -70, altitude: 2.2 });
+
+    // Pause rotation on hover
+    globeContainer.addEventListener('mouseenter', () => { world.controls().autoRotate = false; });
+    globeContainer.addEventListener('mouseleave', () => { 
+      if (customTooltip.style.display !== 'block') {
+        world.controls().autoRotate = true; 
+      }
+    });
 
     // Handle resize
     window.addEventListener('resize', () => {
