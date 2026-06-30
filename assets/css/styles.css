@@ -459,8 +459,19 @@ section {
   line-height: 1.1;
   margin-bottom: 2rem;
   max-width: 1000px;
-  color: var(--white);
-  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  color: transparent;
+  background: linear-gradient(
+    170deg, 
+    rgba(255,255,255,1) 0%, 
+    rgba(255,255,255,0.85) 35%, 
+    rgba(255,255,255,0.4) 48%, 
+    rgba(255,255,255,0.95) 52%, 
+    rgba(255,255,255,1) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.6));
 }
 
 .hero-lead {
