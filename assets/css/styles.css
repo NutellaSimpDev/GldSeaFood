@@ -1800,6 +1800,12 @@ button.map-pin:focus-visible {
     gap: 2rem;
   }
   
+  .product-header {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+  
   .display-title {
     font-size: 2.2rem;
   }
