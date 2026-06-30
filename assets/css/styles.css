@@ -336,14 +336,14 @@ section {
   display: block;
   width: 25px;
   height: 2px;
-  background-color: var(--navy-primary);
+  background-color: var(--gold-primary);
   margin: 5px 0;
   transition: var(--transition-fast);
 }
 
 .hero-section {
   position: relative;
-  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   color: var(--white);
@@ -372,7 +372,7 @@ section {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(0, 11, 20, 0.90) 0%, rgba(0, 11, 20, 0.70) 50%, rgba(0, 11, 20, 0.90) 100%);
+  background: linear-gradient(135deg, rgba(0, 11, 20, 0.60) 0%, rgba(0, 11, 20, 0.50) 50%, rgba(0, 11, 20, 0.90) 100%);
   z-index: 2;
   pointer-events: none;
 }
@@ -1641,20 +1641,20 @@ button.map-pin:focus-visible {
   }
   
   .nav-container, .header-nav.scrolled .nav-container {
-    height: 70px;
+    height: 80px;
   }
   
   .logo-link, .header-nav.scrolled .logo-link {
-    height: 50px;
+    height: 55px;
   }
   
   .nav-links {
     position: fixed;
-    top: 70px;
+    top: 80px;
     left: -100%;
     visibility: hidden; /* Evita fugas de navegación de foco mediante tabulador en móvil */
     width: 100%;
-    height: calc(100vh - 70px);
+    height: calc(100svh - 80px);
     background: var(--navy-deep);
     border-top: 1px solid var(--gold-border);
     flex-direction: column;
