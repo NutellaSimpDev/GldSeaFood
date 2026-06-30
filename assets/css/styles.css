@@ -446,8 +446,21 @@ section {
   letter-spacing: -2px;
   line-height: 1.1;
   margin-bottom: 2rem;
-  color: var(--white);
   max-width: 1000px;
+  
+  /* Liquid Glass Effect */
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.4);
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.9) 0%, 
+    rgba(255, 255, 255, 0.05) 35%, 
+    rgba(255, 255, 255, 0.05) 65%, 
+    rgba(255, 255, 255, 0.8) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.5));
 }
 
 .hero-lead {
