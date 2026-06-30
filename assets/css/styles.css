@@ -1195,7 +1195,8 @@ button.map-pin:focus-visible {
   font-size: clamp(2rem, 4vw, 2.8rem);
   font-weight: 600;
   margin-bottom: 1rem;
-  background: linear-gradient(to right, var(--white), var(--gold-primary));
+  background: linear-gradient(110deg, var(--gold-light) 0%, var(--white) 35%, var(--gold-primary) 50%, var(--white) 70%, var(--gold-light) 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   line-height: 1.1;
@@ -2260,7 +2261,8 @@ section h2 {
   font-size: clamp(2rem, 4vw, 2.8rem);
   font-weight: 600;
   margin-bottom: 1rem;
-  background: linear-gradient(to right, var(--white), var(--gold-primary));
+  background: linear-gradient(110deg, var(--gold-light) 0%, var(--white) 35%, var(--gold-primary) 50%, var(--white) 70%, var(--gold-light) 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   line-height: 1.1;
@@ -2277,7 +2279,8 @@ section h2 {
   font-size: clamp(2rem, 4vw, 2.8rem);
   font-weight: 600;
   margin-bottom: 1rem;
-  background: linear-gradient(to right, var(--white), var(--gold-primary));
+  background: linear-gradient(110deg, var(--gold-light) 0%, var(--white) 35%, var(--gold-primary) 50%, var(--white) 70%, var(--gold-light) 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   line-height: 1.1;
