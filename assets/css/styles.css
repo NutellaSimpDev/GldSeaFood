@@ -442,7 +442,7 @@ section {
 
 .display-title {
   font-size: 5.5rem;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: -2px;
   line-height: 1.1;
   margin-bottom: 2rem;
@@ -1192,10 +1192,12 @@ button.map-pin:focus-visible {
 
 .contact-info h2 {
   font-family: var(--font-title);
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 600;
   margin-bottom: 1rem;
-  color: var(--white);
+  background: linear-gradient(to right, var(--white), var(--gold-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   line-height: 1.1;
 }
 
@@ -2255,10 +2257,12 @@ button.map-pin:focus-visible {
 /* Premium H2 Gradient */
 section h2 {
   font-family: var(--font-title);
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 600;
   margin-bottom: 1rem;
-  color: var(--white);
+  background: linear-gradient(to right, var(--white), var(--gold-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   line-height: 1.1;
 }
 
@@ -2270,10 +2274,12 @@ section h2 {
 /* Premium H2 Gradient */
 section h2 {
   font-family: var(--font-title);
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 600;
   margin-bottom: 1rem;
-  color: var(--white);
+  background: linear-gradient(to right, var(--white), var(--gold-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   line-height: 1.1;
 }
 
