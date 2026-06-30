@@ -1209,9 +1209,9 @@ button.map-pin:focus-visible {
 }
 
 .contact-info .body-text {
-  color: rgba(255,255,255,0.7) !important;
+  color: rgba(255,255,255,0.95) !important;
   font-size: 1rem;
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: 1.5rem;
   text-align: left;
   line-height: 1.8;
@@ -1219,15 +1219,21 @@ button.map-pin:focus-visible {
 }
 
 .logistics-badge {
-  background: #FEF2F2;
-  border: 1px solid #FCA5A5;
-  color: #991B1B;
+  background: rgba(0, 11, 20, 0.4);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  color: var(--white);
   padding: 1.2rem;
-  border-radius: 4px;
+  border-radius: 8px;
   font-size: 0.85rem;
-  font-weight: 500;
-  line-height: 1.5;
-  box-shadow: var(--shadow-sm);
+  font-weight: 400;
+  line-height: 1.6;
+  box-shadow: var(--shadow-md);
+}
+
+.logistics-badge strong {
+  color: var(--gold-primary);
 }
 
 .form-wrapper {
