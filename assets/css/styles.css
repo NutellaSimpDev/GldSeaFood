@@ -442,7 +442,7 @@ section {
 
 .display-title {
   font-size: 5.5rem;
-  font-weight: 200;
+  font-weight: 500;
   letter-spacing: -2px;
   line-height: 1.1;
   margin-bottom: 2rem;
@@ -1195,9 +1195,7 @@ button.map-pin:focus-visible {
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 700;
   margin-bottom: 1rem;
-  background: linear-gradient(to right, var(--white), var(--gold-primary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--white);
   line-height: 1.1;
 }
 
@@ -1276,12 +1274,14 @@ button.map-pin:focus-visible {
 .b2b-contact-form select, 
 .b2b-contact-form textarea {
   width: 100%;
-  background: var(--white);
-  border: 1px solid var(--grey-cool);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 0.9rem 1.2rem;
   font-family: var(--font-body);
   font-size: 0.95rem;
-  color: var(--navy-deep);
+  color: var(--white);
   border-radius: 4px;
   transition: var(--transition-fast);
 }
@@ -1291,7 +1291,14 @@ button.map-pin:focus-visible {
 .b2b-contact-form textarea:focus {
   outline: none;
   border-color: var(--gold-primary);
-  box-shadow: 0 0 8px rgba(212, 175, 55, 0.25);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.b2b-contact-form input::placeholder,
+.b2b-contact-form select::placeholder,
+.b2b-contact-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .b2b-contact-form select {
@@ -2251,9 +2258,7 @@ section h2 {
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 700;
   margin-bottom: 1rem;
-  background: linear-gradient(to right, var(--white), var(--gold-primary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--white);
   line-height: 1.1;
 }
 
@@ -2268,9 +2273,7 @@ section h2 {
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 700;
   margin-bottom: 1rem;
-  background: linear-gradient(to right, var(--white), var(--gold-primary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--white);
   line-height: 1.1;
 }
 
@@ -2403,4 +2406,9 @@ main {
 .cta-group {
   gap: 1.5rem !important;
   margin-top: 2.5rem !important;
+}
+
+.b2b-contact-form select option {
+  color: var(--navy-deep);
+  background: var(--white);
 }
