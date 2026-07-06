@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Firma de Correo Corporativa - Golden Seafood</title>
+  <title>Professional Email Signature - Golden Seafood</title>
   <style>
     body {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -136,21 +136,21 @@
 <body>
 
   <div class="container">
-    <h1>Firma de Correo Profesional - Golden Seafood</h1>
-    <div class="subtitle">Desarrollada bajo estándares de máxima compatibilidad (Outlook, Gmail, Apple Mail)</div>
+    <h1>Professional Email Signature - Golden Seafood</h1>
+    <div class="subtitle">Developed with highest compatibility standards (Outlook, Gmail, Apple Mail)</div>
 
     <!-- Formulario de Edición -->
     <div class="form-container">
       <div class="form-group">
-        <label>Nombre y Apellido</label>
+        <label>Full Name</label>
         <input type="text" id="input-name" value="Sebastián Montero R." oninput="updateSignature()">
       </div>
       <div class="form-group">
-        <label>Cargo</label>
+        <label>Job Title</label>
         <input type="text" id="input-title" value="General Manager" oninput="updateSignature()">
       </div>
       <div class="form-group full-width">
-        <label>Correo Electrónico</label>
+        <label>Email Address</label>
         <input type="email" id="input-email" value="smontero@gldseafood.com" oninput="updateSignature()">
       </div>
     </div>
@@ -194,20 +194,20 @@
       <!-- FIN DE LA FIRMA HTML -->
     </div>
 
-    <button class="btn-copy" onclick="copySignature()">Copiar Firma al Portapapeles</button>
-    <div class="alert-success" id="alert-msg">¡Firma copiada con éxito! Ya puedes pegarla en Outlook.</div>
+    <button class="btn-copy" onclick="copySignature()">Copy Signature to Clipboard</button>
+    <div class="alert-success" id="alert-msg">Signature copied successfully! You can now paste it into Outlook.</div>
 
     <div class="instructions" style="margin-top: 2.5rem;">
-      <h2>¿Cómo configurar en Outlook (Mac o Windows)?</h2>
+      <h2>How to set up in Outlook (Mac or Windows)?</h2>
       <ol>
-        <li>Haz clic en el botón de arriba **"Copiar Firma al Portapapeles"** (esto copiará el diseño HTML formateado y enriquecido con imágenes absolutas).</li>
-        <li>Abre **Microsoft Outlook** en tu computadora.</li>
-        <li>Ve al menú **Outlook** (en Mac) o **Archivo** (en Windows) y selecciona **Preferencias** o **Opciones** y luego haz clic en **Firmas** (Signatures).</li>
-        <li>Haz clic en el botón **"+"** o **"Nueva"** para crear una nueva firma, y asígnale un nombre (ej. *Sebastián Montero - Golden Seafood*).</li>
-        <li>Haz clic en el cuadro de edición de la firma en la parte inferior y presiona **Cmd + V** (en Mac) o **Ctrl + V** (en Windows) para pegar la firma.</li>
-        <li>El diseño, el logo de alta fidelidad, la barra divisoria dorada y los datos aparecerán idénticos a la tarjeta física.</li>
-        <li>En la sección "Elegir firma predeterminada", selecciona tu nueva firma para "Mensajes nuevos" y "Respuestas o reenvíos".</li>
-        <li>¡Listo! Guarda los cambios y tu firma estará activa en todos tus correos enviados.</li>
+        <li>Click the **"Copy Signature to Clipboard"** button above (this will copy the formatted HTML layout enriched with absolute images).</li>
+        <li>Open **Microsoft Outlook** on your computer.</li>
+        <li>Go to the **Outlook** menu (on Mac) or **File** (on Windows) and select **Preferences** or **Options**, then click on **Signatures**.</li>
+        <li>Click the **"+"** or **"New"** button to create a new signature, and give it a name (e.g. *Sebastián Montero - Golden Seafood*).</li>
+        <li>Click on the signature edit box at the bottom and press **Cmd + V** (on Mac) or **Ctrl + V** (on Windows) to paste the signature.</li>
+        <li>The layout, high-fidelity logo, golden divider, and data will appear identical to the physical card.</li>
+        <li>In the "Choose default signature" section, select your new signature for "New messages" and "Replies/forwards".</li>
+        <li>Done! Save the changes and your signature will be active on all your sent emails.</li>
       </ol>
     </div>
   </div>
@@ -249,7 +249,7 @@
         }
       } catch (err) {
         console.error('Error al intentar copiar al portapapeles:', err);
-        alert('Por favor, selecciona manualmente la firma con el mouse, haz clic derecho y selecciona "Copiar".');
+        alert('Please manually select the signature with your mouse, right-click and select "Copy".');
       }
       
       // Deseleccionar texto
