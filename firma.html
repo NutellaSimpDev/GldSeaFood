@@ -96,6 +96,41 @@
       font-size: 0.9rem;
       margin-top: 1rem;
     }
+    /* Estilos del Formulario */
+    .form-container {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 0.3rem;
+    }
+    .form-group input {
+      padding: 0.6rem;
+      border: 1px solid #CBD5E1;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus {
+      border-color: #173159;
+    }
   </style>
 </head>
 <body>
@@ -103,6 +138,22 @@
   <div class="container">
     <h1>Firma de Correo Profesional - Golden Seafood</h1>
     <div class="subtitle">Desarrollada bajo estándares de máxima compatibilidad (Outlook, Gmail, Apple Mail)</div>
+
+    <!-- Formulario de Edición -->
+    <div class="form-container">
+      <div class="form-group">
+        <label>Nombre y Apellido</label>
+        <input type="text" id="input-name" value="Sebastián Montero R." oninput="updateSignature()">
+      </div>
+      <div class="form-group">
+        <label>Cargo</label>
+        <input type="text" id="input-title" value="General Manager" oninput="updateSignature()">
+      </div>
+      <div class="form-group full-width">
+        <label>Correo Electrónico</label>
+        <input type="email" id="input-email" value="smontero@gldseafood.com" oninput="updateSignature()">
+      </div>
+    </div>
 
     <!-- Caja de Firma Seleccionable -->
     <div class="signature-box" id="signature-container">
@@ -121,16 +172,16 @@
             <img src="https://NutellaSimpDev.github.io/GldSeaFood/assets/images/divider.png" alt="|" width="12" height="135" style="border: 0; display: block;" />
           </td>
           
-          <!-- Columna Derecha: Datos de Sebastián Montero -->
+          <!-- Columna Derecha: Datos -->
           <td valign="middle" style="text-align: left;">
-            <div style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 21px; font-weight: bold; color: #173159; line-height: 1.25; margin-bottom: 2px; letter-spacing: 0.5px;">
+            <div id="sig-name" style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 21px; font-weight: bold; color: #173159; line-height: 1.25; margin-bottom: 2px; letter-spacing: 0.5px;">
               Sebastián Montero R.
             </div>
-            <div style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 15px; color: #173159; margin-bottom: 12px; letter-spacing: 0.5px;">
+            <div id="sig-title" style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 15px; color: #173159; margin-bottom: 12px; letter-spacing: 0.5px;">
               General Manager
             </div>
             <div style="font-size: 13.5px; color: #173159; margin-bottom: 10px; font-weight: 600;">
-              <a href="mailto:smontero@gldseafood.com" style="color: #173159; text-decoration: none;">smontero@gldseafood.com</a>
+              <a id="sig-email" href="mailto:smontero@gldseafood.com" style="color: #173159; text-decoration: none;">smontero@gldseafood.com</a>
             </div>
             <div style="font-size: 11.5px; color: #173159; line-height: 1.45; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9; font-weight: 500;">
               60 Paya Lebar Road, #04/16,<br />
@@ -162,6 +213,19 @@
   </div>
 
   <script>
+    function updateSignature() {
+      const name = document.getElementById('input-name').value || 'Nombre Apellido';
+      const title = document.getElementById('input-title').value || 'Cargo';
+      const email = document.getElementById('input-email').value || 'correo@gldseafood.com';
+      
+      document.getElementById('sig-name').textContent = name;
+      document.getElementById('sig-title').textContent = title;
+      
+      const sigEmail = document.getElementById('sig-email');
+      sigEmail.textContent = email;
+      sigEmail.href = 'mailto:' + email;
+    }
+
     function copySignature() {
       const container = document.getElementById('signature-container');
       
