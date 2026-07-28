@@ -6,12 +6,46 @@ import {
   ShieldCheck, Award, TrendingUp, Calculator, CheckCircle2, Box
 } from 'lucide-react';
 import GlobeMap from './components/GlobeMap';
+import WaveCursor from './components/WaveCursor';
 
 /* ═══════════════════════════════════════════════════════════════
-   BASE PATH FOR GITHUB PAGES / LOCAL DEV
+   BASE PATH & ANIMATION VARIANTS
    ═══════════════════════════════════════════════════════════════ */
 const BASE = import.meta.env.BASE_URL;
 
+const fadeInUp: any = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } 
+  }
+};
+
+const staggerContainer: any = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1
+    }
+  }
+};
+
+const cardItem: any = {
+  hidden: { opacity: 0, y: 35, scale: 0.96 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1,
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } 
+  }
+};
+
+/* ═══════════════════════════════════════════════════════════════
+   DATA
+   ═══════════════════════════════════════════════════════════════ */
 const markets = [
   { name: 'México', code: 'mx', hub: 'Manzanillo / Veracruz', capacity: '18,000 MT/año' },
   { name: 'Costa Rica', code: 'cr', hub: 'Puerto Caldera', capacity: '8,500 MT/año' },
@@ -36,7 +70,7 @@ const products = [
     name: 'Filete de Tilapia Premium',
     tag: 'IQF · Sin Piel · Carne Blanca',
     image: `${BASE}images/products/tilapia_fillet.png`,
-    desc: 'Filetes seleccionados de carne blanca y firme, sin espinas ni piel. Clasificados estrictamente por gramaje para distribución industrial y canal food-service.',
+    desc: 'Filetes seleccionados de carne blanca y firme, sin espinas ni piel. Clasificados strictly por gramaje para distribución industrial y canal food-service.',
     boxWeightKg: 4.54,
     boxWeightLb: 10,
     specs: [
@@ -134,7 +168,7 @@ const advantages = [
 ];
 
 /* ═══════════════════════════════════════════════════════════════
-   NAVBAR (Mobile Responsive Clean Header)
+   NAVBAR
    ═══════════════════════════════════════════════════════════════ */
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -262,7 +296,7 @@ function Navbar() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   HERO (Mobile Perfected Layout)
+   HERO
    ═══════════════════════════════════════════════════════════════ */
 function Hero() {
   return (
@@ -283,37 +317,53 @@ function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
           {/* Left Column: Hero Copy */}
-          <div className="lg:col-span-8 space-y-5 sm:space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/30 max-w-full">
+          <motion.div 
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+            className="lg:col-span-8 space-y-5 sm:space-y-6"
+          >
+            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/30 max-w-full">
               <span className="w-2 h-2 rounded-full bg-[var(--gold-bright)] animate-pulse shrink-0" />
               <span className="text-[var(--gold-bright)] text-[0.68rem] sm:text-xs font-bold tracking-[1.2px] sm:tracking-[2px] uppercase truncate">
                 Red de Suministro Internacional Activa
               </span>
-            </div>
+            </motion.div>
 
-            <h1 className="text-gradient-white text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.12] sm:leading-[1.06]"
-              style={{ fontFamily: '"Bodoni Moda", serif' }}>
+            <motion.h1 
+              variants={fadeInUp}
+              className="text-gradient-white text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.12] sm:leading-[1.06]"
+              style={{ fontFamily: '"Bodoni Moda", serif' }}
+            >
               Importación Directa & Logística Mayorista de Seafood
-            </h1>
+            </motion.h1>
 
-            <p className="text-white/80 text-sm sm:text-lg md:text-xl max-w-2xl leading-relaxed font-light">
+            <motion.p 
+              variants={fadeInUp}
+              className="text-white/80 text-sm sm:text-lg md:text-xl max-w-2xl leading-relaxed font-light"
+            >
               Abastecemos a las principales cadenas de distribución, supermercados e industrias alimentarias de América Latina. 
               Garantía de origen, congelación rápida IQF y trámites sanitarios 100% integrados.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-wrap gap-3 sm:gap-4 pt-2 sm:pt-4">
+            <motion.div variants={fadeInUp} className="flex flex-wrap gap-3 sm:gap-4 pt-2 sm:pt-4">
               <a href="#productos" className="btn-gold text-xs px-6 py-3.5">
                 Explorar Catálogo <ArrowRight size={16} />
               </a>
               <a href="#contacto" className="btn-outline text-xs px-6 py-3.5">
                 Contáctenos
               </a>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Right Column: Floating KPI Glass Badges */}
-          <div className="lg:col-span-4 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-3 sm:gap-4">
-            <div className="glass p-4 sm:p-5 rounded-2xl border border-white/10 hover:border-[var(--gold)]/40 transition-all duration-300">
+          <motion.div 
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+            className="lg:col-span-4 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-3 sm:gap-4"
+          >
+            <motion.div variants={cardItem} className="glass p-4 sm:p-5 rounded-2xl border border-white/10 hover:border-[var(--gold)]/40 transition-all duration-300 hover:scale-[1.02]">
               <div className="flex items-center gap-3.5">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[var(--gold)]/10 border border-[var(--gold)]/30 flex items-center justify-center text-[var(--gold-bright)] shrink-0">
                   <TrendingUp size={22} />
@@ -323,9 +373,9 @@ function Hero() {
                   <p className="text-white/50 text-[0.65rem] sm:text-xs font-medium uppercase tracking-wider">Volumen Anual Consolidado</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="glass p-4 sm:p-5 rounded-2xl border border-white/10 hover:border-[var(--gold)]/40 transition-all duration-300">
+            <motion.div variants={cardItem} className="glass p-4 sm:p-5 rounded-2xl border border-white/10 hover:border-[var(--gold)]/40 transition-all duration-300 hover:scale-[1.02]">
               <div className="flex items-center gap-3.5">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[var(--gold)]/10 border border-[var(--gold)]/30 flex items-center justify-center text-[var(--gold-bright)] shrink-0">
                   <Snowflake size={22} />
@@ -335,9 +385,9 @@ function Hero() {
                   <p className="text-white/50 text-[0.65rem] sm:text-xs font-medium uppercase tracking-wider">Cadena de Frío Garantizada</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="glass p-4 sm:p-5 rounded-2xl border border-white/10 hover:border-[var(--gold)]/40 transition-all duration-300">
+            <motion.div variants={cardItem} className="glass p-4 sm:p-5 rounded-2xl border border-white/10 hover:border-[var(--gold)]/40 transition-all duration-300 hover:scale-[1.02]">
               <div className="flex items-center gap-3.5">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[var(--gold)]/10 border border-[var(--gold)]/30 flex items-center justify-center text-[var(--gold-bright)] shrink-0">
                   <ShieldCheck size={22} />
@@ -347,8 +397,8 @@ function Hero() {
                   <p className="text-white/50 text-[0.65rem] sm:text-xs font-medium uppercase tracking-wider">Gestión Aduanal Completa</p>
                 </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
         </div>
       </div>
@@ -363,7 +413,13 @@ function CertificationsBar() {
   return (
     <section className="py-6 sm:py-8 bg-[#040609] border-y border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={fadeInUp}
+          className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6"
+        >
           <div className="text-white/40 text-[0.7rem] sm:text-xs uppercase tracking-[2px] sm:tracking-[3px] font-semibold text-center sm:text-left">
             Estándares & Certificaciones:
           </div>
@@ -375,7 +431,7 @@ function CertificationsBar() {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -388,21 +444,34 @@ function Operations() {
   return (
     <section id="operaciones" className="relative py-20 sm:py-32">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center mb-12 sm:mb-16">
-        <p className="text-[var(--gold-bright)] text-xs tracking-[3px] sm:tracking-[4px] uppercase mb-3 font-semibold">
-          Alcance Internacional & Puertos Operativos
-        </p>
-        <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
-          Presencia Directa en Origen y Destino
-        </h2>
-        <p className="text-white/70 text-sm sm:text-base md:text-lg leading-relaxed font-light mb-6 sm:mb-8">
-          Operamos con oficinas y contratos de abastecimiento en los principales hubs pesqueros de Asia y América Latina. 
-          Garantizamos tiempos de tránsito optimizados y cupos constantes en buques porta-contenedores reefer.
-        </p>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+        >
+          <motion.p variants={fadeInUp} className="text-[var(--gold-bright)] text-xs tracking-[3px] sm:tracking-[4px] uppercase mb-3 font-semibold">
+            Alcance Internacional & Puertos Operativos
+          </motion.p>
+          <motion.h2 variants={fadeInUp} className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
+            Presencia Directa en Origen y Destino
+          </motion.h2>
+          <motion.p variants={fadeInUp} className="text-white/70 text-sm sm:text-base md:text-lg leading-relaxed font-light mb-6 sm:mb-8">
+            Operamos con oficinas y contratos de abastecimiento en los principales hubs pesqueros de Asia y América Latina. 
+            Garantizamos tiempos de tránsito optimizados y cupos constantes en buques porta-contenedores reefer.
+          </motion.p>
+        </motion.div>
 
         {/* Real Country Flags Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3"
+        >
           {markets.map(m => (
-            <div key={m.code} className="glass p-2.5 sm:p-3 rounded-xl border border-white/10 text-left hover:border-[var(--gold)]/40 transition-all">
+            <motion.div key={m.code} variants={cardItem} className="glass p-2.5 sm:p-3 rounded-xl border border-white/10 text-left hover:border-[var(--gold)]/40 transition-all hover:scale-[1.03]">
               <div className="flex items-center gap-2 mb-1">
                 <img
                   src={`https://flagcdn.com/w40/${m.code}.png`}
@@ -412,13 +481,19 @@ function Operations() {
                 <span className="text-white font-bold text-[0.75rem] sm:text-xs">{m.name}</span>
               </div>
               <p className="text-white/40 text-[0.65rem] sm:text-[0.7rem] line-clamp-1">{m.hub}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       {/* Globe */}
-      <div className="relative max-w-4xl mx-auto px-2 sm:px-4">
+      <motion.div 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+        variants={fadeInUp}
+        className="relative max-w-4xl mx-auto px-2 sm:px-4"
+      >
         <GlobeMap />
 
         <p className="text-center text-white/50 text-[0.7rem] sm:text-xs uppercase tracking-widest mt-6 mb-4 font-medium">
@@ -429,7 +504,7 @@ function Operations() {
             Ir al Catálogo de Productos <ChevronDown size={14} />
           </a>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
@@ -506,19 +581,25 @@ function Catalog() {
   return (
     <section id="productos" className="relative py-20 sm:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-10 sm:mb-12">
-          <p className="text-[var(--gold-bright)] text-xs tracking-[3px] sm:tracking-[4px] uppercase mb-3 font-semibold">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+          className="text-center mb-10 sm:mb-12"
+        >
+          <motion.p variants={fadeInUp} className="text-[var(--gold-bright)] text-xs tracking-[3px] sm:tracking-[4px] uppercase mb-3 font-semibold">
             Catálogo de Abastecimiento B2B
-          </p>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4">
+          </motion.p>
+          <motion.h2 variants={fadeInUp} className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4">
             Especies & Productos Marinos Procesados
-          </h2>
-          <p className="text-white/60 max-w-xl mx-auto font-light text-xs sm:text-base mb-6 sm:mb-8">
+          </motion.h2>
+          <motion.p variants={fadeInUp} className="text-white/60 max-w-xl mx-auto font-light text-xs sm:text-base mb-6 sm:mb-8">
             Seleccione una categoría para consultar presentaciones comerciales, calibres y especificaciones de empaque industrial.
-          </p>
+          </motion.p>
 
           {/* Category Filter Tabs */}
-          <div className="inline-flex flex-wrap justify-center p-1 sm:p-1.5 rounded-2xl glass border border-white/10 gap-1.5 sm:gap-2 max-w-full">
+          <motion.div variants={fadeInUp} className="inline-flex flex-wrap justify-center p-1 sm:p-1.5 rounded-2xl glass border border-white/10 gap-1.5 sm:gap-2 max-w-full">
             {[
               { id: 'todos', label: 'Todos' },
               { id: 'pescados', label: 'Pescados & Filetes' },
@@ -537,14 +618,21 @@ function Catalog() {
                 {tab.label}
               </button>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+        >
           {filteredProducts.map(p => (
-            <div
+            <motion.div
               key={p.id}
+              variants={cardItem}
               onClick={() => setSelected(p)}
               className="glass glass-hover rounded-2xl overflow-hidden cursor-pointer flex flex-col group border border-white/10 relative"
             >
@@ -585,9 +673,9 @@ function Catalog() {
                   <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       {/* Product Detail Modal */}
@@ -615,7 +703,13 @@ function ContainerCalculator() {
   return (
     <section id="calculadora" className="py-20 sm:py-32 relative bg-gradient-to-b from-transparent via-[#0a0e17] to-transparent">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-10 sm:mb-12">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={fadeInUp}
+          className="text-center mb-10 sm:mb-12"
+        >
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/25 mb-3">
             <Calculator size={14} className="text-[var(--gold-bright)]" />
             <span className="text-[var(--gold-bright)] text-[0.68rem] sm:text-xs font-semibold tracking-[2px] uppercase">Herramienta B2B</span>
@@ -626,10 +720,15 @@ function ContainerCalculator() {
           <p className="text-white/60 max-w-xl mx-auto font-light text-xs sm:text-base">
             Estime la cantidad aproximada de cajas y peso neto utilizable por tipo de contenedor frigorífico (Reefer).
           </p>
-        </div>
+        </motion.div>
 
-        <div className="glass rounded-3xl p-6 sm:p-12 border border-[var(--gold)]/25 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
-          
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={fadeInUp}
+          className="glass rounded-3xl p-6 sm:p-12 border border-[var(--gold)]/25 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center"
+        >
           {/* Controls Column */}
           <div className="lg:col-span-6 space-y-5">
             <div>
@@ -712,8 +811,7 @@ function ContainerCalculator() {
               </a>
             </div>
           </div>
-
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -726,7 +824,13 @@ function Advantages() {
   return (
     <section id="ventajas" className="relative py-20 sm:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-12 sm:mb-16">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={fadeInUp}
+          className="text-center mb-12 sm:mb-16"
+        >
           <p className="text-[var(--gold-bright)] text-xs tracking-[3px] sm:tracking-[4px] uppercase mb-3 font-semibold">
             Ventajas Competitivas B2B
           </p>
@@ -736,11 +840,17 @@ function Advantages() {
           <p className="text-white/60 max-w-xl mx-auto font-light text-xs sm:text-base">
             Diseñamos soluciones de abastecimiento continuo que optimizan sus costos operativos y protegen sus márgenes de ganancia.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8"
+        >
           {advantages.map((a, i) => (
-            <div key={i} className="advantage-card glass relative overflow-hidden p-6 sm:p-8">
+            <motion.div key={i} variants={cardItem} className="advantage-card glass relative overflow-hidden p-6 sm:p-8">
               <div className="absolute top-4 right-4 px-2.5 py-1 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/30 text-[var(--gold-bright)] text-[0.6rem] sm:text-[0.65rem] font-bold uppercase tracking-wider">
                 {a.kpi}
               </div>
@@ -752,9 +862,9 @@ function Advantages() {
                 {a.title}
               </h3>
               <p className="text-white/60 leading-relaxed text-xs sm:text-sm font-light">{a.desc}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -776,7 +886,13 @@ function Contact() {
   return (
     <section id="contacto" className="relative py-20 sm:py-32">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-10 sm:mb-14">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={fadeInUp}
+          className="text-center mb-10 sm:mb-14"
+        >
           <p className="text-[var(--gold-bright)] text-xs tracking-[3px] sm:tracking-[4px] uppercase mb-3 font-semibold">
             Atención Comercial Especializada
           </p>
@@ -786,9 +902,15 @@ function Contact() {
           <p className="text-white/60 max-w-lg mx-auto font-light text-xs sm:text-base">
             Estructure una propuesta adaptada a sus requerimientos de volumen, puerto de destino y frecuencia de embarque.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="glass rounded-3xl p-6 sm:p-12 border border-[var(--gold)]/25">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={fadeInUp}
+          className="glass rounded-3xl p-6 sm:p-12 border border-[var(--gold)]/25"
+        >
           {/* Volume Notice */}
           <div className="flex items-start gap-3 bg-[var(--gold)]/10 border border-[var(--gold)]/30 rounded-xl p-3.5 sm:p-4 mb-6 sm:mb-8">
             <AlertTriangle size={18} className="text-[var(--gold-bright)] mt-0.5 shrink-0" />
@@ -856,7 +978,7 @@ function Contact() {
               Enviar Solicitud de Cotización B2B
             </button>
           </form>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -956,6 +1078,9 @@ function Footer() {
 export default function App() {
   return (
     <>
+      {/* Liquid Ocean Wave Mouse Cursor */}
+      <WaveCursor />
+
       {/* 120 FPS High Performance GPU Aurora Background */}
       <div className="aurora-bg">
         <div className="aurora-blob aurora-1" />
