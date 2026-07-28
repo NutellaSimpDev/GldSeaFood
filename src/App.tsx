@@ -70,7 +70,7 @@ const products = [
     name: 'Filete de Tilapia Premium',
     tag: 'IQF · Sin Piel · Carne Blanca',
     image: `${BASE}images/products/tilapia_fillet.png`,
-    desc: 'Filetes seleccionados de carne blanca y firme, sin espinas ni piel. Clasificados strictly por gramaje para distribución industrial y canal food-service.',
+    desc: 'Filetes seleccionados de carne blanca y firme, sin espinas ni piel. Clasificados estrictamente por gramaje para distribución industrial y canal food-service.',
     boxWeightKg: 4.54,
     boxWeightLb: 10,
     specs: [
@@ -296,21 +296,27 @@ function Navbar() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   HERO
+   HERO (Full Cover Video Fix for Mobile)
    ═══════════════════════════════════════════════════════════════ */
 function Hero() {
   return (
     <section id="inicio" className="relative min-h-screen flex items-center overflow-hidden pt-28 sm:pt-32 pb-16">
-      {/* Background Video */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <video autoPlay loop muted playsInline className="w-full h-full object-cover">
+      {/* Background Video Container - Fixed Full Cover for Mobile */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          className="absolute inset-0 w-full h-full min-w-full min-h-full object-cover object-center"
+        >
           <source src={`${BASE}videos/basa-boomerang.mp4`} type="video/mp4" />
         </video>
       </div>
 
-      {/* Luxury Dual Overlay */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-r from-[#06080c] via-[#06080c]/85 to-[#06080c]/60 sm:to-transparent pointer-events-none" />
-      <div className="absolute inset-0 z-[1] bg-gradient-to-t from-[#06080c] via-transparent to-black/70 pointer-events-none" />
+      {/* Smooth Uniform Dark Overlay for Mobile & Desktop */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[#06080c]/80 via-[#06080c]/75 to-[#06080c] sm:bg-gradient-to-r sm:from-[#06080c] sm:via-[#06080c]/85 sm:to-black/40 pointer-events-none" />
+      <div className="absolute inset-0 z-[1] bg-gradient-to-t from-[#06080c] via-transparent to-black/60 pointer-events-none" />
 
       {/* Content Container */}
       <div className="relative z-[3] max-w-7xl mx-auto px-4 sm:px-6 w-full">
