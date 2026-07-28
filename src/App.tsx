@@ -8,8 +8,10 @@ import {
 import GlobeMap from './components/GlobeMap';
 
 /* ═══════════════════════════════════════════════════════════════
-   DATA & CONFIGS
+   BASE PATH FOR GITHUB PAGES / LOCAL DEV
    ═══════════════════════════════════════════════════════════════ */
+const BASE = import.meta.env.BASE_URL;
+
 const markets = [
   { name: 'México', code: 'mx', hub: 'Manzanillo / Veracruz', capacity: '18,000 MT/año' },
   { name: 'Costa Rica', code: 'cr', hub: 'Puerto Caldera', capacity: '8,500 MT/año' },
@@ -33,7 +35,7 @@ const products = [
     category: 'pescados',
     name: 'Filete de Tilapia Premium',
     tag: 'IQF · Sin Piel · Carne Blanca',
-    image: '/images/products/tilapia_fillet.png',
+    image: `${BASE}images/products/tilapia_fillet.png`,
     desc: 'Filetes seleccionados de carne blanca y firme, sin espinas ni piel. Clasificados estrictamente por gramaje para distribución industrial y canal food-service.',
     boxWeightKg: 4.54,
     boxWeightLb: 10,
@@ -49,7 +51,7 @@ const products = [
     category: 'cefalopodos',
     name: 'Calamar Gigante',
     tag: 'Dosidicus gigas · Origen Perú',
-    image: '/images/products/giant_squid.png',
+    image: `${BASE}images/products/giant_squid.png`,
     desc: 'Extraído de las aguas frías del Pacífico Sur. Excelente blancura y consistencia. Disponible en tubos, aletas, tentáculos y tiras para reempaque.',
     boxWeightKg: 20,
     boxWeightLb: 44,
@@ -65,7 +67,7 @@ const products = [
     category: 'mariscos',
     name: 'Camarón Cocido',
     tag: 'Listo para Consumo · Pelado & Desvenado',
-    image: '/images/products/cooked_shrimp.png',
+    image: `${BASE}images/products/cooked_shrimp.png`,
     desc: 'Camarón de cultivo pelado y desvenado, cocido al vapor en origen. Mantiene un color naranja brillante, textura crujiente y cero mermas al descongelar.',
     boxWeightKg: 10,
     boxWeightLb: 22,
@@ -81,7 +83,7 @@ const products = [
     category: 'pescados',
     name: 'Filete de Basa White',
     tag: 'Pangasius · Premium Trim',
-    image: '/images/products/tilapia_fillet.png',
+    image: `${BASE}images/products/tilapia_fillet.png`,
     desc: 'Filetes bien recortados (well-trimmed), sin grasa, sin espinas y sin línea roja. Rendimiento 100% neto para comedores industriales y procesadores.',
     boxWeightKg: 15,
     boxWeightLb: 33,
@@ -97,13 +99,13 @@ const products = [
     category: 'pescados',
     name: 'Tilapia Entera GGS',
     tag: 'Gilled, Gutted & Scaled',
-    image: '/images/products/product_4_1_transparent.png',
+    image: `${BASE}images/products/product_4_1_transparent.png`,
     desc: 'Tilapia entera limpia (sin agallas, sin vísceras y sin escamas). Procesada inmediatamente tras la cosecha para preservar sabor y estructura marinos.',
     boxWeightKg: 18.14,
     boxWeightLb: 40,
     specs: [
       { label: 'Presentación', value: 'Caja Máster de 40 lb (18.14 kg)' },
-      { label: 'Especificación', value: 'GGS (Limpia y lista para cocina)' },
+      { label: 'Especificación', value: 'Sin agallas, vísceras ni escamas (GGS)' },
       { label: 'Conservación', value: 'IQF bolsa individual' },
       { label: 'Tallas', value: '350-550g, 550-750g, 750g+' },
     ],
@@ -169,7 +171,7 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <a href="#inicio" className="block shrink-0">
           <img
-            src="/images/logo.png"
+            src={`${BASE}images/logo.png`}
             alt="Golden Seafood"
             style={{
               height: scrolled ? '42px' : '52px',
@@ -268,7 +270,7 @@ function Hero() {
       {/* Background Video */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <video autoPlay loop muted playsInline className="w-full h-full object-cover">
-          <source src="/videos/basa-boomerang.mp4" type="video/mp4" />
+          <source src={`${BASE}videos/basa-boomerang.mp4`} type="video/mp4" />
         </video>
       </div>
 
@@ -871,7 +873,7 @@ function Footer() {
           {/* Brand */}
           <div>
             <img
-              src="/images/logo.png"
+              src={`${BASE}images/logo.png`}
               alt="Golden Seafood"
               style={{ height: '48px', width: 'auto', maxHeight: '48px', objectFit: 'contain' }}
               className="mb-6 brightness-0 invert opacity-90 block"

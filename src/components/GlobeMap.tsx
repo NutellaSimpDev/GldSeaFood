@@ -30,7 +30,7 @@ export default function GlobeMap() {
     ];
 
     // High performance Globe initialization
-    const world = Globe({ waitForGlobeReady: true })(containerRef.current)
+    const world = (Globe as any)({ waitForGlobeReady: true })(containerRef.current)
       .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
       .backgroundColor('rgba(0,0,0,0)')
       .showAtmosphere(false);
@@ -61,7 +61,6 @@ export default function GlobeMap() {
       .then(res => res.json())
       .then(countries => {
         const activeISOs = mapData.map(d => d.iso);
-        // CRITICAL PERFORMANCE FIX: Filter features to ONLY active countries (6 instead of 180!)
         const activeFeatures = countries.features.filter((f: any) => activeISOs.includes(f.properties.ISO_A3));
 
         world
