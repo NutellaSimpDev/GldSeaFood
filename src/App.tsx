@@ -296,7 +296,7 @@ function Navbar() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   HERO (Updated Title & Subheadline per Camila Roropea's exact request)
+   HERO
    ═══════════════════════════════════════════════════════════════ */
 function Hero() {
   return (
@@ -336,7 +336,6 @@ function Hero() {
               </span>
             </motion.div>
 
-            {/* Title (Arriba): Replaces previous headline as requested by Camila Roropea */}
             <motion.h1 
               variants={fadeInUp}
               className="text-gradient-white text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.12] sm:leading-[1.06]"
@@ -344,7 +343,6 @@ function Hero() {
               Su Socio Global en Abastecimiento de Pescados y Mariscos
             </motion.h1>
 
-            {/* Paragraph (Abajo): Updated text requested by Camila Roropea */}
             <motion.p 
               variants={fadeInUp}
               className="text-white/85 text-sm sm:text-lg md:text-xl max-w-2xl leading-relaxed font-light"
@@ -878,7 +876,7 @@ function Advantages() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   CONTACT FORM
+   CONTACT FORM (Country field updated to open text input)
    ═══════════════════════════════════════════════════════════════ */
 function Contact() {
   const [formData, setFormData] = useState({
@@ -942,17 +940,11 @@ function Contact() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+              {/* Updated: Country field is now a text input for direct user entry */}
               <div>
                 <label className="block text-xs font-semibold text-white/80 uppercase tracking-wider mb-2">País de Operación</label>
-                <select required className="form-input text-xs sm:text-sm" value={formData.pais}
-                  onChange={e => setFormData({...formData, pais: e.target.value})}>
-                  <option value="">Seleccione...</option>
-                  <option>México</option>
-                  <option>Costa Rica</option>
-                  <option>Colombia</option>
-                  <option>Perú</option>
-                  <option>Otro Mercado Internacional</option>
-                </select>
+                <input type="text" required placeholder="Ej: México, Costa Rica, Colombia..." className="form-input text-xs sm:text-sm"
+                  value={formData.pais} onChange={e => setFormData({...formData, pais: e.target.value})} />
               </div>
               <div>
                 <label className="block text-xs font-semibold text-white/80 uppercase tracking-wider mb-2">Email Corporativo</label>
