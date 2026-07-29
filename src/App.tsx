@@ -876,7 +876,7 @@ function Advantages() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   CONTACT FORM (Country field updated to open text input)
+   CONTACT FORM (Placeholder updated: "Empresa S.A.")
    ═══════════════════════════════════════════════════════════════ */
 function Contact() {
   const [formData, setFormData] = useState({
@@ -932,15 +932,15 @@ function Contact() {
                 <input type="text" required placeholder="Carlos Mendoza" className="form-input text-xs sm:text-sm"
                   value={formData.nombre} onChange={e => setFormData({...formData, nombre: e.target.value})} />
               </div>
+              {/* Placeholder updated to "Empresa S.A." as requested */}
               <div>
                 <label className="block text-xs font-semibold text-white/80 uppercase tracking-wider mb-2">Empresa / Razón Social</label>
-                <input type="text" required placeholder="Distribuidora del Pacífico S.A." className="form-input text-xs sm:text-sm"
+                <input type="text" required placeholder="Empresa S.A." className="form-input text-xs sm:text-sm"
                   value={formData.empresa} onChange={e => setFormData({...formData, empresa: e.target.value})} />
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
-              {/* Updated: Country field is now a text input for direct user entry */}
               <div>
                 <label className="block text-xs font-semibold text-white/80 uppercase tracking-wider mb-2">País de Operación</label>
                 <input type="text" required placeholder="Ej: México, Costa Rica, Colombia..." className="form-input text-xs sm:text-sm"
