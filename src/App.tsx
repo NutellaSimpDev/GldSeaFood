@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Snowflake, FileText, Package, ChevronDown, X, ArrowRight, 
   Globe2, Mail, MapPin, AlertTriangle, Menu, Sparkles, 
-  ShieldCheck, Award, TrendingUp, Calculator, CheckCircle2, Box
+  ShieldCheck, Award, TrendingUp, Calculator, CheckCircle2, Box, FileCheck
 } from 'lucide-react';
 import GlobeMap from './components/GlobeMap';
 import WaveCursor from './components/WaveCursor';
@@ -146,6 +146,7 @@ const products = [
   },
 ];
 
+/* Updated Advantages Card Array per Camila Roropea's request (Documentation & Tracking Focus) */
 const advantages = [
   {
     icon: Snowflake,
@@ -154,10 +155,10 @@ const advantages = [
     desc: 'Sensores térmicos continuos desde la planta de origen hasta su bodega final. Garantía de temperatura constante a -18°C.',
   },
   {
-    icon: FileText,
-    title: 'Importación & Aduanas 100% Llave en Mano',
-    kpi: 'Nacionalizado',
-    desc: 'Gestionamos permisos sanitarios (SENASA/DIPOA), licencias y trámites aduanales en México, Costa Rica, Colombia y Perú.',
+    icon: FileCheck,
+    title: 'Trazabilidad & Seguimiento Documental',
+    kpi: 'Trazabilidad Total',
+    desc: 'Monitoreo en tiempo real y gestión ordenada de expedientes de embarque, BL, certificados sanitarios y factura comercial para una liberación ágil en puerto.',
   },
   {
     icon: Package,
@@ -296,7 +297,7 @@ function Navbar() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   HERO (Brighter Oceanic Overlay & Exact Copy)
+   HERO
    ═══════════════════════════════════════════════════════════════ */
 function Hero() {
   return (
@@ -314,7 +315,7 @@ function Hero() {
         </video>
       </div>
 
-      {/* Brighter Oceanic Blue Dual Overlay (Not too dark) */}
+      {/* Brighter Oceanic Blue Dual Overlay */}
       <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[#0b1424]/65 via-[#0b1424]/60 to-[#090e17] sm:bg-gradient-to-r sm:from-[#0b1424]/90 sm:via-[#0b1424]/70 sm:to-[#0b1424]/30 pointer-events-none" />
       <div className="absolute inset-0 z-[1] bg-gradient-to-t from-[#090e17] via-transparent to-[#0b1424]/40 pointer-events-none" />
 
@@ -343,7 +344,6 @@ function Hero() {
               Importación Directa & Logística Mayorista de Seafood
             </motion.h1>
 
-            {/* Client Copy Directive: "Su socio global en abastecimiento de pescados y mariscos" */}
             <motion.p 
               variants={fadeInUp}
               className="text-white/90 text-base sm:text-xl md:text-2xl max-w-2xl leading-relaxed font-normal"
@@ -395,11 +395,11 @@ function Hero() {
             <motion.div variants={cardItem} className="glass p-4 sm:p-5 rounded-2xl border border-white/15 hover:border-[var(--gold)]/50 transition-all duration-300 hover:scale-[1.02]">
               <div className="flex items-center gap-3.5">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[var(--gold)]/15 border border-[var(--gold)]/35 flex items-center justify-center text-[var(--gold-bright)] shrink-0">
-                  <ShieldCheck size={22} />
+                  <FileCheck size={22} />
                 </div>
                 <div>
-                  <h4 className="text-xl sm:text-2xl font-bold text-white">100% Nacionalizado</h4>
-                  <p className="text-white/60 text-[0.65rem] sm:text-xs font-medium uppercase tracking-wider">Gestión Aduanal Completa</p>
+                  <h4 className="text-xl sm:text-2xl font-bold text-white">Trazabilidad Total</h4>
+                  <p className="text-white/60 text-[0.65rem] sm:text-xs font-medium uppercase tracking-wider">Seguimiento Documental</p>
                 </div>
               </div>
             </motion.div>
@@ -505,7 +505,6 @@ function Operations() {
           Haga clic en la esfera para interactuar con las ubicaciones clave
         </p>
         
-        {/* Client Directive: Button text "Ver Catálogo de Productos" */}
         <div className="text-center">
           <a href="#productos" className="btn-gold text-xs px-6 py-3">
             Ver Catálogo de Productos <ChevronDown size={14} />
@@ -809,7 +808,6 @@ function ContainerCalculator() {
               </div>
             </div>
 
-            {/* Client Directive: Button text "Iniciar Cotización" */}
             <div className="pt-3 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-white/70">
               <span className="flex items-center gap-1.5 text-white/90 font-medium text-xs">
                 <CheckCircle2 size={16} className="text-[var(--gold-bright)] shrink-0" /> Carga Optimizada
@@ -993,7 +991,7 @@ function Contact() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   FOOTER (Client Directives for Contact Order & Text)
+   FOOTER
    ═══════════════════════════════════════════════════════════════ */
 function Footer() {
   return (
@@ -1045,23 +1043,20 @@ function Footer() {
             </ul>
           </div>
 
-          {/* Contact - Client Directive: Email FIRST & "América Latina" instead of LATAM */}
+          {/* Contact */}
           <div>
             <h4 className="text-[var(--gold-bright)] text-xs font-semibold tracking-[2px] uppercase mb-4 sm:mb-6 pb-3 border-b border-[var(--gold)]/25">
               Contacto Regional
             </h4>
             <ul className="space-y-3 sm:space-y-4">
-              {/* Item 1: Email FIRST */}
               <li className="flex gap-3 items-start text-xs sm:text-sm">
                 <Mail size={16} className="text-[var(--gold-bright)] mt-0.5 shrink-0" />
                 <span className="text-white/70"><strong className="text-[var(--gold-bright)] font-semibold">Comercial:</strong> <a href="mailto:info@gldseafood.com" className="hover:text-[var(--gold-bright)] transition-colors">info@gldseafood.com</a></span>
               </li>
-              {/* Item 2: "América Latina:" instead of LATAM */}
               <li className="flex gap-3 items-start text-xs sm:text-sm">
                 <MapPin size={16} className="text-[var(--gold-bright)] mt-0.5 shrink-0" />
                 <span className="text-white/70"><strong className="text-[var(--gold-bright)] font-semibold">América Latina:</strong> México, Costa Rica, Colombia, Perú.</span>
               </li>
-              {/* Item 3: Modality */}
               <li className="flex gap-3 items-start text-xs sm:text-sm">
                 <Globe2 size={16} className="text-[var(--gold-bright)] mt-0.5 shrink-0" />
                 <span className="text-white/70"><strong className="text-[var(--gold-bright)] font-semibold">Modalidad:</strong> FOB y CIF para volúmenes mayoristas.</span>
