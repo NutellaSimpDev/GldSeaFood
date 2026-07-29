@@ -442,9 +442,15 @@ function CertificationsBar() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   OPERATIONS / GLOBE
+   OPERATIONS / GLOBE (Interactive Country Cards trigger popup)
    ═══════════════════════════════════════════════════════════════ */
 function Operations() {
+  const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
+
+  const handleCountryClick = (code: string) => {
+    setSelectedCountry(code);
+  };
+
   return (
     <section id="operaciones" className="relative py-20 sm:py-32">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center mb-12 sm:mb-16">
@@ -466,7 +472,7 @@ function Operations() {
           </motion.p>
         </motion.div>
 
-        {/* Real Country Flags Grid */}
+        {/* Real Country Flags Grid - Now Interactive: Click to open description card */}
         <motion.div 
           initial="hidden"
           whileInView="visible"
@@ -474,19 +480,31 @@ function Operations() {
           variants={staggerContainer}
           className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3"
         >
-          {markets.map(m => (
-            <motion.div key={m.code} variants={cardItem} className="glass p-2.5 sm:p-3 rounded-xl border border-white/15 text-left hover:border-[var(--gold)]/40 transition-all hover:scale-[1.03]">
-              <div className="flex items-center gap-2 mb-1">
-                <img
-                  src={`https://flagcdn.com/w40/${m.code}.png`}
-                  alt={m.name}
-                  className="w-4 h-3 rounded object-cover shadow border border-white/20"
-                />
-                <span className="text-white font-bold text-[0.75rem] sm:text-xs">{m.name}</span>
-              </div>
-              <p className="text-white/50 text-[0.65rem] sm:text-[0.7rem] line-clamp-1">{m.hub}</p>
-            </motion.div>
-          ))}
+          {markets.map(m => {
+            const isSelected = selectedCountry === m.code;
+            return (
+              <motion.button
+                key={m.code}
+                variants={cardItem}
+                onClick={() => handleCountryClick(m.code)}
+                className={`glass p-2.5 sm:p-3 rounded-xl border text-left cursor-pointer transition-all hover:scale-[1.04] ${
+                  isSelected 
+                    ? 'border-[var(--gold-bright)] bg-[var(--gold)]/20 shadow-[0_0_20px_rgba(212,168,83,0.35)]' 
+                    : 'border-white/15 hover:border-[var(--gold)]/40'
+                }`}
+              >
+                <div className="flex items-center gap-2 mb-1">
+                  <img
+                    src={`https://flagcdn.com/w40/${m.code}.png`}
+                    alt={m.name}
+                    className="w-4 h-3 rounded object-cover shadow border border-white/20"
+                  />
+                  <span className="text-white font-bold text-[0.75rem] sm:text-xs">{m.name}</span>
+                </div>
+                <p className="text-white/60 text-[0.65rem] sm:text-[0.7rem] line-clamp-1">{m.hub}</p>
+              </motion.button>
+            );
+          })}
         </motion.div>
       </div>
 
@@ -498,10 +516,13 @@ function Operations() {
         variants={fadeInUp}
         className="relative max-w-4xl mx-auto px-2 sm:px-4"
       >
-        <GlobeMap />
+        <GlobeMap 
+          selectedCode={selectedCountry} 
+          onSelectCountry={(code) => setSelectedCountry(code)} 
+        />
 
         <p className="text-center text-white/60 text-[0.7rem] sm:text-xs uppercase tracking-widest mt-6 mb-4 font-medium">
-          Haga clic en la esfera para interactuar con las ubicaciones clave
+          Haga clic en las tarjetas de país o en la esfera para consultar detalles
         </p>
         
         <div className="text-center">
@@ -876,7 +897,7 @@ function Advantages() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   CONTACT FORM (Placeholder updated: "Empresa S.A.")
+   CONTACT FORM
    ═══════════════════════════════════════════════════════════════ */
 function Contact() {
   const [formData, setFormData] = useState({
@@ -932,7 +953,6 @@ function Contact() {
                 <input type="text" required placeholder="Carlos Mendoza" className="form-input text-xs sm:text-sm"
                   value={formData.nombre} onChange={e => setFormData({...formData, nombre: e.target.value})} />
               </div>
-              {/* Placeholder updated to "Empresa S.A." as requested */}
               <div>
                 <label className="block text-xs font-semibold text-white/80 uppercase tracking-wider mb-2">Empresa / Razón Social</label>
                 <input type="text" required placeholder="Empresa S.A." className="form-input text-xs sm:text-sm"

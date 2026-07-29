@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Globe from 'globe.gl';
 
-interface CountryData {
+export interface CountryData {
   iso: string;
   lat: number;
   lng: number;
@@ -12,22 +12,38 @@ interface CountryData {
   desc: string;
 }
 
-export default function GlobeMap() {
+export const mapData: CountryData[] = [
+  { iso: 'MEX', lat: 23.63, lng: -102.55, size: 0.05, color: '#d4a853', label: 'México', flagCode: 'mx', desc: 'Hub de distribución central. Acceso directo a mercados del norte y centro del país con infraestructura frigorífica certificada.' },
+  { iso: 'CRI', lat: 9.75, lng: -83.75, size: 0.05, color: '#d4a853', label: 'Costa Rica', flagCode: 'cr', desc: 'Centro estratégico en América Central con operaciones de importación directa y redistribución regional.' },
+  { iso: 'COL', lat: 4.57, lng: -74.30, size: 0.05, color: '#d4a853', label: 'Colombia', flagCode: 'co', desc: 'Presencia en Bogotá y Buenaventura. Importación directa con gestión aduanal integral.' },
+  { iso: 'PER', lat: -9.19, lng: -75.02, size: 0.05, color: '#d4a853', label: 'Perú', flagCode: 'pe', desc: 'Origen del Calamar Gigante Dosidicus gigas. Plantas de procesamiento certificadas en la costa.' },
+  { iso: 'CHN', lat: 36.07, lng: 120.38, size: 0.05, color: '#d4a853', label: 'China', flagCode: 'cn', desc: 'Abastecimiento de tilapia y basa desde Qingdao y Hainan. Control de calidad en origen.' },
+  { iso: 'VNM', lat: 14.06, lng: 108.28, size: 0.05, color: '#d4a853', label: 'Vietnam', flagCode: 'vn', desc: 'Producción de filete de basa premium. Procesamiento de alta tecnología con certificación BAP.' },
+];
+
+interface GlobeMapProps {
+  selectedCode?: string | null;
+  onSelectCountry?: (code: string | null) => void;
+}
+
+export default function GlobeMap({ selectedCode, onSelectCountry }: GlobeMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [tooltip, setTooltip] = useState<CountryData | null>(null);
   const worldRef = useRef<any>(null);
 
+  // Sync external selectedCode changes
+  useEffect(() => {
+    if (!selectedCode) return;
+    const match = mapData.find(m => m.flagCode === selectedCode || m.iso === selectedCode);
+    if (match && worldRef.current) {
+      setTooltip(match);
+      worldRef.current.controls().autoRotate = false;
+      worldRef.current.pointOfView({ lat: match.lat, lng: match.lng, altitude: 1.5 }, 600);
+    }
+  }, [selectedCode]);
+
   useEffect(() => {
     if (!containerRef.current) return;
-
-    const mapData: CountryData[] = [
-      { iso: 'MEX', lat: 23.63, lng: -102.55, size: 0.05, color: '#d4a853', label: 'México', flagCode: 'mx', desc: 'Hub de distribución central. Acceso directo a mercados del norte y centro del país con infraestructura frigorífica certificada.' },
-      { iso: 'CRI', lat: 9.75, lng: -83.75, size: 0.05, color: '#d4a853', label: 'Costa Rica', flagCode: 'cr', desc: 'Centro estratégico en América Central con operaciones de importación directa y redistribución regional.' },
-      { iso: 'COL', lat: 4.57, lng: -74.30, size: 0.05, color: '#d4a853', label: 'Colombia', flagCode: 'co', desc: 'Presencia en Bogotá y Buenaventura. Importación directa con gestión aduanal integral.' },
-      { iso: 'PER', lat: -9.19, lng: -75.02, size: 0.05, color: '#d4a853', label: 'Perú', flagCode: 'pe', desc: 'Origen del Calamar Gigante Dosidicus gigas. Plantas de procesamiento certificadas en la costa.' },
-      { iso: 'CHN', lat: 36.07, lng: 120.38, size: 0.05, color: '#d4a853', label: 'China', flagCode: 'cn', desc: 'Abastecimiento de tilapia y basa desde Qingdao y Hainan. Control de calidad en origen.' },
-      { iso: 'VNM', lat: 14.06, lng: 108.28, size: 0.05, color: '#d4a853', label: 'Vietnam', flagCode: 'vn', desc: 'Producción de filete de basa premium. Procesamiento de alta tecnología con certificación BAP.' },
-    ];
 
     // High performance Globe initialization
     const world = (Globe as any)({ waitForGlobeReady: true })(containerRef.current)
@@ -79,6 +95,7 @@ export default function GlobeMap() {
             const match = mapData.find(m => m.iso === iso);
             if (match) {
               setTooltip(match);
+              if (onSelectCountry) onSelectCountry(match.flagCode);
               controls.autoRotate = false;
               world.pointOfView({ lat: match.lat, lng: match.lng, altitude: 1.5 }, 600);
             }
@@ -95,6 +112,7 @@ export default function GlobeMap() {
       .onPointClick((d: any) => {
         const data = d as CountryData;
         setTooltip(data);
+        if (onSelectCountry) onSelectCountry(data.flagCode);
         controls.autoRotate = false;
         world.pointOfView({ lat: data.lat, lng: data.lng, altitude: 1.5 }, 600);
       });
@@ -104,6 +122,7 @@ export default function GlobeMap() {
 
   const closeTooltip = () => {
     setTooltip(null);
+    if (onSelectCountry) onSelectCountry(null);
     if (worldRef.current) {
       worldRef.current.controls().autoRotate = true;
       worldRef.current.pointOfView({ lat: 10, lng: -70, altitude: 2.2 }, 600);
@@ -114,27 +133,27 @@ export default function GlobeMap() {
     <div className="relative w-full flex justify-center">
       <div ref={containerRef} className="cursor-grab active:cursor-grabbing w-full max-w-4xl" />
       
-      {/* Tooltip */}
+      {/* Tooltip Card */}
       {tooltip && (
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 w-[90%] max-w-md">
-          <div className="glass rounded-xl p-5 shadow-2xl border border-[var(--gold)]/30">
+          <div className="glass rounded-2xl p-5 sm:p-6 shadow-2xl border border-[var(--gold)]/40 relative bg-[#0e1726]/95 backdrop-blur-xl">
             <button
               onClick={closeTooltip}
-              className="absolute top-3 right-3 text-white/50 hover:text-white transition-colors text-xl font-bold cursor-pointer leading-none p-1"
+              className="absolute top-3 right-3 text-white/60 hover:text-white transition-colors text-xl font-bold cursor-pointer leading-none p-1"
             >
               ×
             </button>
 
-            <div className="flex items-center gap-2.5 mb-2">
+            <div className="flex items-center gap-3 mb-2.5">
               <img
                 src={`https://flagcdn.com/w40/${tooltip.flagCode}.png`}
                 alt={tooltip.label}
-                className="w-6 h-4 rounded object-cover shadow-sm border border-white/20"
+                className="w-7 h-5 rounded object-cover shadow-sm border border-white/20"
               />
-              <strong className="text-[var(--gold-bright)] text-base font-bold">{tooltip.label}</strong>
+              <strong className="text-[var(--gold-bright)] text-lg font-bold">{tooltip.label}</strong>
             </div>
 
-            <p className="text-white/80 text-sm leading-relaxed font-light">{tooltip.desc}</p>
+            <p className="text-white/90 text-xs sm:text-sm leading-relaxed font-light">{tooltip.desc}</p>
           </div>
         </div>
       )}
