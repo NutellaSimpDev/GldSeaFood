@@ -200,7 +200,7 @@ function Navbar() {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? 'py-2.5 sm:py-3.5 bg-[#06080c]/95 shadow-[0_10px_30px_rgba(0,0,0,0.6)]' : 'py-4 sm:py-6 bg-gradient-to-b from-black/90 to-transparent'
+      scrolled ? 'py-2.5 sm:py-3.5 bg-[#0e1726]/95 shadow-[0_10px_30px_rgba(0,0,0,0.5)]' : 'py-4 sm:py-6 bg-gradient-to-b from-[#090e17]/90 to-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
         <a href="#inicio" className="block shrink-0">
@@ -296,12 +296,12 @@ function Navbar() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   HERO (Full Cover Video Fix for Mobile)
+   HERO (Brighter Oceanic Overlay & Exact Copy)
    ═══════════════════════════════════════════════════════════════ */
 function Hero() {
   return (
     <section id="inicio" className="relative min-h-screen flex items-center overflow-hidden pt-28 sm:pt-32 pb-16">
-      {/* Background Video Container - Fixed Full Cover for Mobile */}
+      {/* Background Video Container */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <video 
           autoPlay 
@@ -314,9 +314,9 @@ function Hero() {
         </video>
       </div>
 
-      {/* Smooth Uniform Dark Overlay for Mobile & Desktop */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[#06080c]/80 via-[#06080c]/75 to-[#06080c] sm:bg-gradient-to-r sm:from-[#06080c] sm:via-[#06080c]/85 sm:to-black/40 pointer-events-none" />
-      <div className="absolute inset-0 z-[1] bg-gradient-to-t from-[#06080c] via-transparent to-black/60 pointer-events-none" />
+      {/* Brighter Oceanic Blue Dual Overlay (Not too dark) */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[#0b1424]/65 via-[#0b1424]/60 to-[#090e17] sm:bg-gradient-to-r sm:from-[#0b1424]/90 sm:via-[#0b1424]/70 sm:to-[#0b1424]/30 pointer-events-none" />
+      <div className="absolute inset-0 z-[1] bg-gradient-to-t from-[#090e17] via-transparent to-[#0b1424]/40 pointer-events-none" />
 
       {/* Content Container */}
       <div className="relative z-[3] max-w-7xl mx-auto px-4 sm:px-6 w-full">
@@ -329,7 +329,7 @@ function Hero() {
             variants={staggerContainer}
             className="lg:col-span-8 space-y-5 sm:space-y-6"
           >
-            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/30 max-w-full">
+            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--gold)]/15 border border-[var(--gold)]/35 max-w-full">
               <span className="w-2 h-2 rounded-full bg-[var(--gold-bright)] animate-pulse shrink-0" />
               <span className="text-[var(--gold-bright)] text-[0.68rem] sm:text-xs font-bold tracking-[1.2px] sm:tracking-[2px] uppercase truncate">
                 Red de Suministro Internacional Activa
@@ -339,17 +339,16 @@ function Hero() {
             <motion.h1 
               variants={fadeInUp}
               className="text-gradient-white text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.12] sm:leading-[1.06]"
-              style={{ fontFamily: '"Bodoni Moda", serif' }}
             >
               Importación Directa & Logística Mayorista de Seafood
             </motion.h1>
 
+            {/* Client Copy Directive: "Su socio global en abastecimiento de pescados y mariscos" */}
             <motion.p 
               variants={fadeInUp}
-              className="text-white/80 text-sm sm:text-lg md:text-xl max-w-2xl leading-relaxed font-light"
+              className="text-white/90 text-base sm:text-xl md:text-2xl max-w-2xl leading-relaxed font-normal"
             >
-              Abastecemos a las principales cadenas de distribución, supermercados e industrias alimentarias de América Latina. 
-              Garantía de origen, congelación rápida IQF y trámites sanitarios 100% integrados.
+              “Su socio global en abastecimiento de pescados y mariscos”
             </motion.p>
 
             <motion.div variants={fadeInUp} className="flex flex-wrap gap-3 sm:gap-4 pt-2 sm:pt-4">
@@ -369,38 +368,38 @@ function Hero() {
             variants={staggerContainer}
             className="lg:col-span-4 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-3 sm:gap-4"
           >
-            <motion.div variants={cardItem} className="glass p-4 sm:p-5 rounded-2xl border border-white/10 hover:border-[var(--gold)]/40 transition-all duration-300 hover:scale-[1.02]">
+            <motion.div variants={cardItem} className="glass p-4 sm:p-5 rounded-2xl border border-white/15 hover:border-[var(--gold)]/50 transition-all duration-300 hover:scale-[1.02]">
               <div className="flex items-center gap-3.5">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[var(--gold)]/10 border border-[var(--gold)]/30 flex items-center justify-center text-[var(--gold-bright)] shrink-0">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[var(--gold)]/15 border border-[var(--gold)]/35 flex items-center justify-center text-[var(--gold-bright)] shrink-0">
                   <TrendingUp size={22} />
                 </div>
                 <div>
                   <h4 className="text-xl sm:text-2xl font-bold text-white">+50,000 MT</h4>
-                  <p className="text-white/50 text-[0.65rem] sm:text-xs font-medium uppercase tracking-wider">Volumen Anual Consolidado</p>
+                  <p className="text-white/60 text-[0.65rem] sm:text-xs font-medium uppercase tracking-wider">Volumen Anual Consolidado</p>
                 </div>
               </div>
             </motion.div>
 
-            <motion.div variants={cardItem} className="glass p-4 sm:p-5 rounded-2xl border border-white/10 hover:border-[var(--gold)]/40 transition-all duration-300 hover:scale-[1.02]">
+            <motion.div variants={cardItem} className="glass p-4 sm:p-5 rounded-2xl border border-white/15 hover:border-[var(--gold)]/50 transition-all duration-300 hover:scale-[1.02]">
               <div className="flex items-center gap-3.5">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[var(--gold)]/10 border border-[var(--gold)]/30 flex items-center justify-center text-[var(--gold-bright)] shrink-0">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[var(--gold)]/15 border border-[var(--gold)]/35 flex items-center justify-center text-[var(--gold-bright)] shrink-0">
                   <Snowflake size={22} />
                 </div>
                 <div>
                   <h4 className="text-xl sm:text-2xl font-bold text-white">-18°C Constantes</h4>
-                  <p className="text-white/50 text-[0.65rem] sm:text-xs font-medium uppercase tracking-wider">Cadena de Frío Garantizada</p>
+                  <p className="text-white/60 text-[0.65rem] sm:text-xs font-medium uppercase tracking-wider">Cadena de Frío Garantizada</p>
                 </div>
               </div>
             </motion.div>
 
-            <motion.div variants={cardItem} className="glass p-4 sm:p-5 rounded-2xl border border-white/10 hover:border-[var(--gold)]/40 transition-all duration-300 hover:scale-[1.02]">
+            <motion.div variants={cardItem} className="glass p-4 sm:p-5 rounded-2xl border border-white/15 hover:border-[var(--gold)]/50 transition-all duration-300 hover:scale-[1.02]">
               <div className="flex items-center gap-3.5">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[var(--gold)]/10 border border-[var(--gold)]/30 flex items-center justify-center text-[var(--gold-bright)] shrink-0">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[var(--gold)]/15 border border-[var(--gold)]/35 flex items-center justify-center text-[var(--gold-bright)] shrink-0">
                   <ShieldCheck size={22} />
                 </div>
                 <div>
                   <h4 className="text-xl sm:text-2xl font-bold text-white">100% Nacionalizado</h4>
-                  <p className="text-white/50 text-[0.65rem] sm:text-xs font-medium uppercase tracking-wider">Gestión Aduanal Completa</p>
+                  <p className="text-white/60 text-[0.65rem] sm:text-xs font-medium uppercase tracking-wider">Gestión Aduanal Completa</p>
                 </div>
               </div>
             </motion.div>
@@ -417,7 +416,7 @@ function Hero() {
    ═══════════════════════════════════════════════════════════════ */
 function CertificationsBar() {
   return (
-    <section className="py-6 sm:py-8 bg-[#040609] border-y border-white/10">
+    <section className="py-6 sm:py-8 bg-[#0d1624] border-y border-white/15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <motion.div 
           initial="hidden"
@@ -426,12 +425,12 @@ function CertificationsBar() {
           variants={fadeInUp}
           className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6"
         >
-          <div className="text-white/40 text-[0.7rem] sm:text-xs uppercase tracking-[2px] sm:tracking-[3px] font-semibold text-center sm:text-left">
+          <div className="text-white/50 text-[0.7rem] sm:text-xs uppercase tracking-[2px] sm:tracking-[3px] font-semibold text-center sm:text-left">
             Estándares & Certificaciones:
           </div>
           <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8">
             {certifications.map((c, i) => (
-              <div key={i} className="flex items-center gap-1.5 text-white/70 hover:text-[var(--gold-bright)] transition-colors">
+              <div key={i} className="flex items-center gap-1.5 text-white/80 hover:text-[var(--gold-bright)] transition-colors">
                 <Award size={16} className="text-[var(--gold-bright)] shrink-0" />
                 <span className="text-[0.65rem] sm:text-xs font-semibold tracking-wider uppercase">{c.name}</span>
               </div>
@@ -462,7 +461,7 @@ function Operations() {
           <motion.h2 variants={fadeInUp} className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
             Presencia Directa en Origen y Destino
           </motion.h2>
-          <motion.p variants={fadeInUp} className="text-white/70 text-sm sm:text-base md:text-lg leading-relaxed font-light mb-6 sm:mb-8">
+          <motion.p variants={fadeInUp} className="text-white/80 text-sm sm:text-base md:text-lg leading-relaxed font-light mb-6 sm:mb-8">
             Operamos con oficinas y contratos de abastecimiento en los principales hubs pesqueros de Asia y América Latina. 
             Garantizamos tiempos de tránsito optimizados y cupos constantes en buques porta-contenedores reefer.
           </motion.p>
@@ -477,7 +476,7 @@ function Operations() {
           className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3"
         >
           {markets.map(m => (
-            <motion.div key={m.code} variants={cardItem} className="glass p-2.5 sm:p-3 rounded-xl border border-white/10 text-left hover:border-[var(--gold)]/40 transition-all hover:scale-[1.03]">
+            <motion.div key={m.code} variants={cardItem} className="glass p-2.5 sm:p-3 rounded-xl border border-white/15 text-left hover:border-[var(--gold)]/40 transition-all hover:scale-[1.03]">
               <div className="flex items-center gap-2 mb-1">
                 <img
                   src={`https://flagcdn.com/w40/${m.code}.png`}
@@ -486,7 +485,7 @@ function Operations() {
                 />
                 <span className="text-white font-bold text-[0.75rem] sm:text-xs">{m.name}</span>
               </div>
-              <p className="text-white/40 text-[0.65rem] sm:text-[0.7rem] line-clamp-1">{m.hub}</p>
+              <p className="text-white/50 text-[0.65rem] sm:text-[0.7rem] line-clamp-1">{m.hub}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -502,12 +501,14 @@ function Operations() {
       >
         <GlobeMap />
 
-        <p className="text-center text-white/50 text-[0.7rem] sm:text-xs uppercase tracking-widest mt-6 mb-4 font-medium">
+        <p className="text-center text-white/60 text-[0.7rem] sm:text-xs uppercase tracking-widest mt-6 mb-4 font-medium">
           Haga clic en la esfera para interactuar con las ubicaciones clave
         </p>
+        
+        {/* Client Directive: Button text "Ver Catálogo de Productos" */}
         <div className="text-center">
           <a href="#productos" className="btn-gold text-xs px-6 py-3">
-            Ir al Catálogo de Productos <ChevronDown size={14} />
+            Ver Catálogo de Productos <ChevronDown size={14} />
           </a>
         </div>
       </motion.div>
@@ -527,40 +528,40 @@ function ProductDetail({ product, onClose }: { product: typeof products[0]; onCl
       className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4"
       onClick={onClose}
     >
-      <div className="absolute inset-0 bg-black/85 backdrop-blur-md" />
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-md" />
       <motion.div
         initial={{ scale: 0.95, y: 20 }}
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.95, y: 20 }}
         transition={{ type: 'spring', damping: 25, stiffness: 260 }}
         onClick={e => e.stopPropagation()}
-        className="relative glass rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl border border-[var(--gold)]/30 max-h-[90vh] overflow-y-auto"
+        className="relative glass rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl border border-[var(--gold)]/35 max-h-[90vh] overflow-y-auto"
       >
         <button onClick={onClose} className="absolute top-4 right-4 z-10 text-white/60 hover:text-white transition-colors cursor-pointer p-1">
           <X size={24} />
         </button>
 
-        <div className="h-48 sm:h-64 relative bg-gradient-to-b from-[#0f141d] to-[#06080c] flex items-center justify-center p-6 sm:p-8 overflow-hidden">
+        <div className="h-48 sm:h-64 relative bg-gradient-to-b from-[#162236] to-[#0e1726] flex items-center justify-center p-6 sm:p-8 overflow-hidden">
           <div className="absolute inset-0 bg-radial from-[var(--gold)]/15 via-transparent to-transparent pointer-events-none" />
           <img
             src={product.image}
             alt={product.name}
             style={{ maxHeight: '180px', maxWidth: '90%', objectFit: 'contain' }}
-            className="drop-shadow-[0_20px_40px_rgba(0,0,0,0.9)] relative z-1"
+            className="drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] relative z-1"
           />
         </div>
 
         <div className="p-5 sm:p-8">
-          <div className="inline-block px-3 py-1 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/20 mb-3">
+          <div className="inline-block px-3 py-1 rounded-full bg-[var(--gold)]/15 border border-[var(--gold)]/25 mb-3">
             <span className="text-[var(--gold-bright)] text-[0.7rem] font-semibold tracking-[1.5px] uppercase">{product.tag}</span>
           </div>
-          <h3 className="text-xl sm:text-3xl font-bold mb-3 sm:mb-4" style={{ fontFamily: '"Bodoni Moda", serif' }}>{product.name}</h3>
-          <p className="text-white/70 leading-relaxed mb-5 font-light text-xs sm:text-sm">{product.desc}</p>
+          <h3 className="text-xl sm:text-3xl font-bold mb-3 sm:mb-4">{product.name}</h3>
+          <p className="text-white/80 leading-relaxed mb-5 font-light text-xs sm:text-sm">{product.desc}</p>
 
-          <div className="border border-white/10 rounded-xl p-4 sm:p-5 bg-white/5 space-y-2.5">
+          <div className="border border-white/15 rounded-xl p-4 sm:p-5 bg-white/5 space-y-2.5">
             <h4 className="text-[var(--gold-bright)] text-[0.7rem] font-semibold tracking-[1.8px] uppercase mb-2">Especificaciones de Empaque B2B</h4>
             {product.specs.map((s, i) => (
-              <div key={i} className={`flex justify-between items-center py-1.5 ${i < product.specs.length - 1 ? 'border-b border-white/5' : ''}`}>
+              <div key={i} className={`flex justify-between items-center py-1.5 ${i < product.specs.length - 1 ? 'border-b border-white/10' : ''}`}>
                 <span className="text-white/60 text-xs font-medium">{s.label}</span>
                 <span className="text-white font-semibold text-xs">{s.value}</span>
               </div>
@@ -568,7 +569,7 @@ function ProductDetail({ product, onClose }: { product: typeof products[0]; onCl
           </div>
 
           <a href="#contacto" className="btn-gold w-full justify-center mt-5 text-xs py-3.5" onClick={onClose}>
-            Solicitar Cotización de Contenedor <ArrowRight size={16} />
+            Iniciar Cotización <ArrowRight size={16} />
           </a>
         </div>
       </motion.div>
@@ -600,12 +601,12 @@ function Catalog() {
           <motion.h2 variants={fadeInUp} className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4">
             Especies & Productos Marinos Procesados
           </motion.h2>
-          <motion.p variants={fadeInUp} className="text-white/60 max-w-xl mx-auto font-light text-xs sm:text-base mb-6 sm:mb-8">
+          <motion.p variants={fadeInUp} className="text-white/70 max-w-xl mx-auto font-light text-xs sm:text-base mb-6 sm:mb-8">
             Seleccione una categoría para consultar presentaciones comerciales, calibres y especificaciones de empaque industrial.
           </motion.p>
 
           {/* Category Filter Tabs */}
-          <motion.div variants={fadeInUp} className="inline-flex flex-wrap justify-center p-1 sm:p-1.5 rounded-2xl glass border border-white/10 gap-1.5 sm:gap-2 max-w-full">
+          <motion.div variants={fadeInUp} className="inline-flex flex-wrap justify-center p-1 sm:p-1.5 rounded-2xl glass border border-white/15 gap-1.5 sm:gap-2 max-w-full">
             {[
               { id: 'todos', label: 'Todos' },
               { id: 'pescados', label: 'Pescados & Filetes' },
@@ -618,7 +619,7 @@ function Catalog() {
                 className={`px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl text-[0.7rem] sm:text-xs font-semibold tracking-wider uppercase transition-all cursor-pointer ${
                   activeTab === tab.id
                     ? 'bg-[var(--gold)] text-black shadow-md'
-                    : 'text-white/70 hover:text-white hover:bg-white/5'
+                    : 'text-white/80 hover:text-white hover:bg-white/10'
                 }`}
               >
                 {tab.label}
@@ -640,23 +641,23 @@ function Catalog() {
               key={p.id}
               variants={cardItem}
               onClick={() => setSelected(p)}
-              className="glass glass-hover rounded-2xl overflow-hidden cursor-pointer flex flex-col group border border-white/10 relative"
+              className="glass glass-hover rounded-2xl overflow-hidden cursor-pointer flex flex-col group border border-white/15 relative"
             >
               {/* Top Quality Badge */}
               <div className="absolute top-3 left-3 z-10">
-                <span className="px-2.5 py-1 rounded-full bg-black/70 border border-[var(--gold)]/30 text-[var(--gold-bright)] text-[0.6rem] font-bold uppercase tracking-widest backdrop-blur-md">
+                <span className="px-2.5 py-1 rounded-full bg-black/70 border border-[var(--gold)]/40 text-[var(--gold-bright)] text-[0.6rem] font-bold uppercase tracking-widest backdrop-blur-md">
                   100% IQF
                 </span>
               </div>
 
               {/* Product Image Container */}
-              <div className="h-52 sm:h-60 relative bg-gradient-to-b from-[#0f141d] to-[#06080c] flex items-center justify-center p-6 overflow-hidden">
-                <div className="absolute inset-0 bg-radial from-[var(--gold)]/10 via-transparent to-transparent pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="h-52 sm:h-60 relative bg-gradient-to-b from-[#162236] to-[#0e1726] flex items-center justify-center p-6 overflow-hidden">
+                <div className="absolute inset-0 bg-radial from-[var(--gold)]/15 via-transparent to-transparent pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
                 <img
                   src={p.image}
                   alt={p.name}
                   style={{ maxHeight: '160px', maxWidth: '85%', objectFit: 'contain' }}
-                  className="drop-shadow-[0_15px_30px_rgba(0,0,0,0.85)] group-hover:scale-105 transition-transform duration-300 relative z-1"
+                  className="drop-shadow-[0_15px_30px_rgba(0,0,0,0.75)] group-hover:scale-105 transition-transform duration-300 relative z-1"
                 />
               </div>
 
@@ -666,15 +667,15 @@ function Catalog() {
                   {p.tag}
                 </span>
 
-                <h3 className="text-lg sm:text-xl font-bold mb-2 text-white group-hover:text-[var(--gold-bright)] transition-colors" style={{ fontFamily: '"Bodoni Moda", serif' }}>
+                <h3 className="text-lg sm:text-xl font-bold mb-2 text-white group-hover:text-[var(--gold-bright)] transition-colors">
                   {p.name}
                 </h3>
                 
-                <p className="text-white/60 text-xs sm:text-sm leading-relaxed mb-4 font-light flex-grow line-clamp-2">
+                <p className="text-white/70 text-xs sm:text-sm leading-relaxed mb-4 font-light flex-grow line-clamp-2">
                   {p.desc}
                 </p>
 
-                <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[0.75rem] text-white/50 group-hover:text-[var(--gold-bright)] transition-colors">
+                <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[0.75rem] text-white/60 group-hover:text-[var(--gold-bright)] transition-colors">
                   <span className="font-medium">Ver especificaciones</span>
                   <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -707,7 +708,7 @@ function ContainerCalculator() {
   const totalNetWeightLb = (estimatedBoxes * selectedProduct.boxWeightLb).toLocaleString('es-MX', { maximumFractionDigits: 0 });
 
   return (
-    <section id="calculadora" className="py-20 sm:py-32 relative bg-gradient-to-b from-transparent via-[#0a0e17] to-transparent">
+    <section id="calculadora" className="py-20 sm:py-32 relative bg-gradient-to-b from-transparent via-[#0f1b2d] to-transparent">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <motion.div 
           initial="hidden"
@@ -716,14 +717,14 @@ function ContainerCalculator() {
           variants={fadeInUp}
           className="text-center mb-10 sm:mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/25 mb-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--gold)]/15 border border-[var(--gold)]/30 mb-3">
             <Calculator size={14} className="text-[var(--gold-bright)]" />
             <span className="text-[var(--gold-bright)] text-[0.68rem] sm:text-xs font-semibold tracking-[2px] uppercase">Herramienta B2B</span>
           </div>
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
             Calculadora de Capacidad por Contenedor
           </h2>
-          <p className="text-white/60 max-w-xl mx-auto font-light text-xs sm:text-base">
+          <p className="text-white/70 max-w-xl mx-auto font-light text-xs sm:text-base">
             Estime la cantidad aproximada de cajas y peso neto utilizable por tipo de contenedor frigorífico (Reefer).
           </p>
         </motion.div>
@@ -733,12 +734,12 @@ function ContainerCalculator() {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={fadeInUp}
-          className="glass rounded-3xl p-6 sm:p-12 border border-[var(--gold)]/25 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center"
+          className="glass rounded-3xl p-6 sm:p-12 border border-[var(--gold)]/30 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center"
         >
           {/* Controls Column */}
           <div className="lg:col-span-6 space-y-5">
             <div>
-              <label className="block text-xs font-semibold text-white/70 uppercase tracking-wider mb-2">
+              <label className="block text-xs font-semibold text-white/80 uppercase tracking-wider mb-2">
                 1. Seleccione la Especie / Producto
               </label>
               <select
@@ -755,7 +756,7 @@ function ContainerCalculator() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-white/70 uppercase tracking-wider mb-2">
+              <label className="block text-xs font-semibold text-white/80 uppercase tracking-wider mb-2">
                 2. Tipo de Contenedor Frigorífico (Reefer)
               </label>
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
@@ -763,57 +764,58 @@ function ContainerCalculator() {
                   onClick={() => setContainerType('20ft')}
                   className={`p-3.5 sm:p-4 rounded-xl border text-left cursor-pointer transition-all ${
                     containerType === '20ft'
-                      ? 'bg-[var(--gold)]/15 border-[var(--gold)] text-white'
-                      : 'border-white/10 text-white/60 hover:border-white/20'
+                      ? 'bg-[var(--gold)]/20 border-[var(--gold)] text-white'
+                      : 'border-white/15 text-white/70 hover:border-white/30'
                   }`}
                 >
                   <Box size={18} className={containerType === '20ft' ? 'text-[var(--gold-bright)] mb-1' : 'mb-1'} />
                   <strong className="block text-xs sm:text-sm font-bold">20ft Reefer</strong>
-                  <span className="text-[0.65rem] sm:text-[0.7rem] text-white/50">~18 Toneladas</span>
+                  <span className="text-[0.65rem] sm:text-[0.7rem] text-white/60">~18 Toneladas</span>
                 </button>
 
                 <button
                   onClick={() => setContainerType('40ft')}
                   className={`p-3.5 sm:p-4 rounded-xl border text-left cursor-pointer transition-all ${
                     containerType === '40ft'
-                      ? 'bg-[var(--gold)]/15 border-[var(--gold)] text-white'
-                      : 'border-white/10 text-white/60 hover:border-white/20'
+                      ? 'bg-[var(--gold)]/20 border-[var(--gold)] text-white'
+                      : 'border-white/15 text-white/70 hover:border-white/30'
                   }`}
                 >
                   <Box size={18} className={containerType === '40ft' ? 'text-[var(--gold-bright)] mb-1' : 'mb-1'} />
                   <strong className="block text-xs sm:text-sm font-bold">40ft High Cube</strong>
-                  <span className="text-[0.65rem] sm:text-[0.7rem] text-white/50">~26.5 Toneladas</span>
+                  <span className="text-[0.65rem] sm:text-[0.7rem] text-white/60">~26.5 Toneladas</span>
                 </button>
               </div>
             </div>
           </div>
 
           {/* Live Result Display Column */}
-          <div className="lg:col-span-6 bg-white/5 rounded-2xl p-5 sm:p-8 border border-white/10 space-y-5">
+          <div className="lg:col-span-6 bg-white/5 rounded-2xl p-5 sm:p-8 border border-white/15 space-y-5">
             <h4 className="text-[var(--gold-bright)] text-xs font-semibold tracking-[1.5px] uppercase pb-2.5 border-b border-white/10">
               Estimación de Capacidad de Embarque
             </h4>
 
             <div className="grid grid-cols-2 gap-3 sm:gap-4">
               <div>
-                <span className="text-white/40 text-[0.65rem] sm:text-xs font-medium uppercase tracking-wider block">Total Cajas</span>
+                <span className="text-white/50 text-[0.65rem] sm:text-xs font-medium uppercase tracking-wider block">Total Cajas</span>
                 <strong className="text-2xl sm:text-3xl font-bold text-white mt-1 block">{estimatedBoxes.toLocaleString('es-MX')}</strong>
-                <span className="text-white/50 text-[0.7rem]">Cajas Máster</span>
+                <span className="text-white/60 text-[0.7rem]">Cajas Máster</span>
               </div>
 
               <div>
-                <span className="text-white/40 text-[0.65rem] sm:text-xs font-medium uppercase tracking-wider block">Peso Neto</span>
+                <span className="text-white/50 text-[0.65rem] sm:text-xs font-medium uppercase tracking-wider block">Peso Neto</span>
                 <strong className="text-2xl sm:text-3xl font-bold text-[var(--gold-bright)] mt-1 block">{totalNetWeightKg} kg</strong>
-                <span className="text-white/50 text-[0.7rem]">({totalNetWeightLb} lb)</span>
+                <span className="text-white/60 text-[0.7rem]">({totalNetWeightLb} lb)</span>
               </div>
             </div>
 
-            <div className="pt-3 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-white/60">
-              <span className="flex items-center gap-1.5 text-white/80 font-medium text-xs">
+            {/* Client Directive: Button text "Iniciar Cotización" */}
+            <div className="pt-3 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-white/70">
+              <span className="flex items-center gap-1.5 text-white/90 font-medium text-xs">
                 <CheckCircle2 size={16} className="text-[var(--gold-bright)] shrink-0" /> Carga Optimizada
               </span>
-              <a href="#contacto" className="btn-gold text-[0.75rem] py-2.5 px-4 w-full sm:w-auto text-center justify-center">
-                Cotizar Directa
+              <a href="#contacto" className="btn-gold text-[0.75rem] py-2.5 px-5 w-full sm:w-auto text-center justify-center">
+                Iniciar Cotización
               </a>
             </div>
           </div>
@@ -843,7 +845,7 @@ function Advantages() {
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4">
             Garantía Total en Cada Contenedor
           </h2>
-          <p className="text-white/60 max-w-xl mx-auto font-light text-xs sm:text-base">
+          <p className="text-white/70 max-w-xl mx-auto font-light text-xs sm:text-base">
             Diseñamos soluciones de abastecimiento continuo que optimizan sus costos operativos y protegen sus márgenes de ganancia.
           </p>
         </motion.div>
@@ -857,17 +859,17 @@ function Advantages() {
         >
           {advantages.map((a, i) => (
             <motion.div key={i} variants={cardItem} className="advantage-card glass relative overflow-hidden p-6 sm:p-8">
-              <div className="absolute top-4 right-4 px-2.5 py-1 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/30 text-[var(--gold-bright)] text-[0.6rem] sm:text-[0.65rem] font-bold uppercase tracking-wider">
+              <div className="absolute top-4 right-4 px-2.5 py-1 rounded-full bg-[var(--gold)]/15 border border-[var(--gold)]/30 text-[var(--gold-bright)] text-[0.6rem] sm:text-[0.65rem] font-bold uppercase tracking-wider">
                 {a.kpi}
               </div>
 
               <div className="icon-ring">
                 <a.icon size={24} strokeWidth={1.5} />
               </div>
-              <h3 className="text-lg sm:text-xl font-bold mb-2.5 text-white" style={{ fontFamily: '"Bodoni Moda", serif' }}>
+              <h3 className="text-lg sm:text-xl font-bold mb-2.5 text-white">
                 {a.title}
               </h3>
-              <p className="text-white/60 leading-relaxed text-xs sm:text-sm font-light">{a.desc}</p>
+              <p className="text-white/70 leading-relaxed text-xs sm:text-sm font-light">{a.desc}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -905,7 +907,7 @@ function Contact() {
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4">
             Inicie su Cotización Corporativa
           </h2>
-          <p className="text-white/60 max-w-lg mx-auto font-light text-xs sm:text-base">
+          <p className="text-white/70 max-w-lg mx-auto font-light text-xs sm:text-base">
             Estructure una propuesta adaptada a sus requerimientos de volumen, puerto de destino y frecuencia de embarque.
           </p>
         </motion.div>
@@ -915,12 +917,12 @@ function Contact() {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={fadeInUp}
-          className="glass rounded-3xl p-6 sm:p-12 border border-[var(--gold)]/25"
+          className="glass rounded-3xl p-6 sm:p-12 border border-[var(--gold)]/30"
         >
           {/* Volume Notice */}
-          <div className="flex items-start gap-3 bg-[var(--gold)]/10 border border-[var(--gold)]/30 rounded-xl p-3.5 sm:p-4 mb-6 sm:mb-8">
+          <div className="flex items-start gap-3 bg-[var(--gold)]/15 border border-[var(--gold)]/35 rounded-xl p-3.5 sm:p-4 mb-6 sm:mb-8">
             <AlertTriangle size={18} className="text-[var(--gold-bright)] mt-0.5 shrink-0" />
-            <p className="text-xs text-white/80 leading-relaxed">
+            <p className="text-xs text-white/90 leading-relaxed">
               <strong className="text-[var(--gold-bright)]">NOTA DE VOLUMEN:</strong> Solo procesamos solicitudes 
               para compras al por mayor y contenedores consolidados (Reefer 20ft / 40ft). No realizamos ventas al menudeo.
             </p>
@@ -929,12 +931,12 @@ function Contact() {
           <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
               <div>
-                <label className="block text-xs font-semibold text-white/70 uppercase tracking-wider mb-2">Nombre Completo</label>
+                <label className="block text-xs font-semibold text-white/80 uppercase tracking-wider mb-2">Nombre Completo</label>
                 <input type="text" required placeholder="Carlos Mendoza" className="form-input text-xs sm:text-sm"
                   value={formData.nombre} onChange={e => setFormData({...formData, nombre: e.target.value})} />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-white/70 uppercase tracking-wider mb-2">Empresa / Razón Social</label>
+                <label className="block text-xs font-semibold text-white/80 uppercase tracking-wider mb-2">Empresa / Razón Social</label>
                 <input type="text" required placeholder="Distribuidora del Pacífico S.A." className="form-input text-xs sm:text-sm"
                   value={formData.empresa} onChange={e => setFormData({...formData, empresa: e.target.value})} />
               </div>
@@ -942,7 +944,7 @@ function Contact() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
               <div>
-                <label className="block text-xs font-semibold text-white/70 uppercase tracking-wider mb-2">País de Operación</label>
+                <label className="block text-xs font-semibold text-white/80 uppercase tracking-wider mb-2">País de Operación</label>
                 <select required className="form-input text-xs sm:text-sm" value={formData.pais}
                   onChange={e => setFormData({...formData, pais: e.target.value})}>
                   <option value="">Seleccione...</option>
@@ -954,14 +956,14 @@ function Contact() {
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-semibold text-white/70 uppercase tracking-wider mb-2">Email Corporativo</label>
+                <label className="block text-xs font-semibold text-white/80 uppercase tracking-wider mb-2">Email Corporativo</label>
                 <input type="email" required placeholder="carlos.mendoza@empresa.com" className="form-input text-xs sm:text-sm"
                   value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-white/70 uppercase tracking-wider mb-2">Producto Requerido</label>
+              <label className="block text-xs font-semibold text-white/80 uppercase tracking-wider mb-2">Producto Requerido</label>
               <select required className="form-input text-xs sm:text-sm" value={formData.producto}
                 onChange={e => setFormData({...formData, producto: e.target.value})}>
                 <option value="">Seleccione el producto...</option>
@@ -975,7 +977,7 @@ function Contact() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-white/70 uppercase tracking-wider mb-2">Puerto de Destino / Volumen Estimado</label>
+              <label className="block text-xs font-semibold text-white/80 uppercase tracking-wider mb-2">Puerto de Destino / Volumen Estimado</label>
               <textarea rows={4} placeholder="Indique puerto de destino (ej: Manzanillo, Buenaventura, Caldera), volumen estimado y frecuencia de compra..." className="form-input text-xs sm:text-sm resize-y"
                 value={formData.detalles} onChange={e => setFormData({...formData, detalles: e.target.value})} />
             </div>
@@ -991,11 +993,11 @@ function Contact() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   FOOTER
+   FOOTER (Client Directives for Contact Order & Text)
    ═══════════════════════════════════════════════════════════════ */
 function Footer() {
   return (
-    <footer className="border-t border-white/10 pt-16 sm:pt-20 pb-10 bg-[#040609]">
+    <footer className="border-t border-white/15 pt-16 sm:pt-20 pb-10 bg-[#080d16]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 sm:gap-12 mb-12">
           {/* Brand */}
@@ -1004,17 +1006,17 @@ function Footer() {
               src={`${BASE}images/logo.png`}
               alt="Golden Seafood"
               style={{ height: '40px', width: 'auto', maxHeight: '44px', objectFit: 'contain' }}
-              className="mb-5 brightness-0 invert opacity-90 block"
+              className="mb-5 brightness-0 invert opacity-95 block"
             />
-            <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-6 font-light">
+            <p className="text-white/60 text-xs sm:text-sm leading-relaxed mb-6 font-light">
               Líderes regionales en importación y logística de productos marinos congelados premium. 
               Abastecimiento constante en toda América Latina.
             </p>
             <div className="flex gap-3">
-              <a href="#" className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/50 hover:text-[var(--gold-bright)] hover:border-[var(--gold-bright)] transition-all text-xs font-semibold">
+              <a href="#" className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-[var(--gold-bright)] hover:border-[var(--gold-bright)] transition-all text-xs font-semibold">
                 in
               </a>
-              <a href="mailto:info@gldseafood.com" className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/50 hover:text-[var(--gold-bright)] hover:border-[var(--gold-bright)] transition-all">
+              <a href="mailto:info@gldseafood.com" className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-[var(--gold-bright)] hover:border-[var(--gold-bright)] transition-all">
                 <Mail size={14} />
               </a>
             </div>
@@ -1022,7 +1024,7 @@ function Footer() {
 
           {/* Links */}
           <div>
-            <h4 className="text-[var(--gold-bright)] text-xs font-semibold tracking-[2px] uppercase mb-4 sm:mb-6 pb-3 border-b border-[var(--gold)]/20">
+            <h4 className="text-[var(--gold-bright)] text-xs font-semibold tracking-[2px] uppercase mb-4 sm:mb-6 pb-3 border-b border-[var(--gold)]/25">
               Enlaces Rápidos
             </h4>
             <ul className="space-y-2.5 sm:space-y-3">
@@ -1035,7 +1037,7 @@ function Footer() {
                 { label: 'Solicitud de Cotización', href: '#contacto' },
               ].map((item, i) => (
                 <li key={i}>
-                  <a href={item.href} className="text-white/60 hover:text-[var(--gold-bright)] text-xs sm:text-sm transition-colors hover:pl-1 inline-block">
+                  <a href={item.href} className="text-white/70 hover:text-[var(--gold-bright)] text-xs sm:text-sm transition-colors hover:pl-1 inline-block">
                     {item.label}
                   </a>
                 </li>
@@ -1043,33 +1045,36 @@ function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Contact - Client Directive: Email FIRST & "América Latina" instead of LATAM */}
           <div>
-            <h4 className="text-[var(--gold-bright)] text-xs font-semibold tracking-[2px] uppercase mb-4 sm:mb-6 pb-3 border-b border-[var(--gold)]/20">
+            <h4 className="text-[var(--gold-bright)] text-xs font-semibold tracking-[2px] uppercase mb-4 sm:mb-6 pb-3 border-b border-[var(--gold)]/25">
               Contacto Regional
             </h4>
             <ul className="space-y-3 sm:space-y-4">
-              <li className="flex gap-3 items-start text-xs sm:text-sm">
-                <MapPin size={16} className="text-[var(--gold-bright)] mt-0.5 shrink-0" />
-                <span className="text-white/60"><strong className="text-[var(--gold-bright)] font-semibold">Latam:</strong> México, Costa Rica, Colombia, Perú.</span>
-              </li>
+              {/* Item 1: Email FIRST */}
               <li className="flex gap-3 items-start text-xs sm:text-sm">
                 <Mail size={16} className="text-[var(--gold-bright)] mt-0.5 shrink-0" />
-                <span className="text-white/60"><strong className="text-[var(--gold-bright)] font-semibold">Comercial:</strong> <a href="mailto:info@gldseafood.com" className="hover:text-[var(--gold-bright)] transition-colors">info@gldseafood.com</a></span>
+                <span className="text-white/70"><strong className="text-[var(--gold-bright)] font-semibold">Comercial:</strong> <a href="mailto:info@gldseafood.com" className="hover:text-[var(--gold-bright)] transition-colors">info@gldseafood.com</a></span>
               </li>
+              {/* Item 2: "América Latina:" instead of LATAM */}
+              <li className="flex gap-3 items-start text-xs sm:text-sm">
+                <MapPin size={16} className="text-[var(--gold-bright)] mt-0.5 shrink-0" />
+                <span className="text-white/70"><strong className="text-[var(--gold-bright)] font-semibold">América Latina:</strong> México, Costa Rica, Colombia, Perú.</span>
+              </li>
+              {/* Item 3: Modality */}
               <li className="flex gap-3 items-start text-xs sm:text-sm">
                 <Globe2 size={16} className="text-[var(--gold-bright)] mt-0.5 shrink-0" />
-                <span className="text-white/60"><strong className="text-[var(--gold-bright)] font-semibold">Modalidad:</strong> FOB y CIF para volúmenes mayoristas.</span>
+                <span className="text-white/70"><strong className="text-[var(--gold-bright)] font-semibold">Modalidad:</strong> FOB y CIF para volúmenes mayoristas.</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-          <p className="text-white/40 text-[0.7rem] sm:text-xs">© 2026 Golden Seafood. Todos los derechos reservados. Abastecimiento B2B.</p>
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+          <p className="text-white/50 text-[0.7rem] sm:text-xs">© 2026 Golden Seafood. Todos los derechos reservados. Abastecimiento B2B.</p>
           <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
             {['Términos y Condiciones', 'Política de Privacidad B2B', 'Normativas de Inocuidad'].map(label => (
-              <a key={label} href="#" className="text-white/40 hover:text-white/70 text-[0.7rem] sm:text-xs transition-colors">{label}</a>
+              <a key={label} href="#" className="text-white/50 hover:text-white/80 text-[0.7rem] sm:text-xs transition-colors">{label}</a>
             ))}
           </div>
         </div>
@@ -1087,7 +1092,7 @@ export default function App() {
       {/* Liquid Ocean Wave Mouse Cursor */}
       <WaveCursor />
 
-      {/* 120 FPS High Performance GPU Aurora Background */}
+      {/* Brighter 120 FPS High Performance GPU Aurora Background */}
       <div className="aurora-bg">
         <div className="aurora-blob aurora-1" />
         <div className="aurora-blob aurora-2" />
