@@ -146,7 +146,6 @@ const products = [
   },
 ];
 
-/* Updated Advantage Card KPI text to "100% de Trazabilidad" per requested feedback */
 const advantages = [
   {
     icon: Snowflake,
@@ -297,7 +296,7 @@ function Navbar() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   HERO
+   HERO (Increased paragraph font size & weight for better contrast)
    ═══════════════════════════════════════════════════════════════ */
 function Hero() {
   return (
@@ -344,9 +343,10 @@ function Hero() {
               Su Socio Global en Abastecimiento de Pescados y Mariscos
             </motion.h1>
 
+            {/* Subheadline paragraph size & contrast increased for legibility */}
             <motion.p 
               variants={fadeInUp}
-              className="text-white/85 text-sm sm:text-lg md:text-xl max-w-2xl leading-relaxed font-light"
+              className="text-white/95 text-base sm:text-xl md:text-2xl lg:text-[1.35rem] max-w-3xl leading-relaxed font-medium"
             >
               Garantizamos el abastecimiento continuo de Premium Seafood de alta calidad para distribuidores y pescaderías. Logística de cadena de frío impecable y certificada, directamente desde el origen hasta sus almacenes.
             </motion.p>
@@ -443,7 +443,7 @@ function CertificationsBar() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   OPERATIONS / GLOBE
+   OPERATIONS / GLOBE ("esfera" changed to "globo")
    ═══════════════════════════════════════════════════════════════ */
 function Operations() {
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
@@ -522,8 +522,9 @@ function Operations() {
           onSelectCountry={(code) => setSelectedCountry(code)} 
         />
 
-        <p className="text-center text-white/60 text-[0.7rem] sm:text-xs uppercase tracking-widest mt-6 mb-4 font-medium">
-          Haga clic en las tarjetas de país o en la esfera para consultar detalles
+        {/* Updated "esfera" to "globo" as requested */}
+        <p className="text-center text-white/70 text-xs sm:text-sm uppercase tracking-widest mt-6 mb-4 font-semibold">
+          Haga clic en las tarjetas de país o en el globo para consultar detalles
         </p>
         
         <div className="text-center">
@@ -1005,7 +1006,7 @@ function Contact() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   FOOTER (Comercial first, América Latina second)
+   FOOTER
    ═══════════════════════════════════════════════════════════════ */
 function Footer() {
   return (
