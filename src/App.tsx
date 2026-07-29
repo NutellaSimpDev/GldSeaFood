@@ -146,7 +146,6 @@ const products = [
   },
 ];
 
-/* Updated Advantages Card Array per Camila Roropea's request (Documentation & Tracking Focus) */
 const advantages = [
   {
     icon: Snowflake,
@@ -297,7 +296,7 @@ function Navbar() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   HERO
+   HERO (Updated Title & Subheadline per Camila Roropea's exact request)
    ═══════════════════════════════════════════════════════════════ */
 function Hero() {
   return (
@@ -337,18 +336,20 @@ function Hero() {
               </span>
             </motion.div>
 
+            {/* Title (Arriba): Replaces previous headline as requested by Camila Roropea */}
             <motion.h1 
               variants={fadeInUp}
               className="text-gradient-white text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.12] sm:leading-[1.06]"
             >
-              Importación Directa & Logística Mayorista de Seafood
+              Su Socio Global en Abastecimiento de Pescados y Mariscos
             </motion.h1>
 
+            {/* Paragraph (Abajo): Updated text requested by Camila Roropea */}
             <motion.p 
               variants={fadeInUp}
-              className="text-white/90 text-base sm:text-xl md:text-2xl max-w-2xl leading-relaxed font-normal"
+              className="text-white/85 text-sm sm:text-lg md:text-xl max-w-2xl leading-relaxed font-light"
             >
-              “Su socio global en abastecimiento de pescados y mariscos”
+              Garantizamos el abastecimiento continuo de Premium Seafood de alta calidad para distribuidores y pescaderías. Logística de cadena de frío impecable y certificada, directamente desde el origen hasta sus almacenes.
             </motion.p>
 
             <motion.div variants={fadeInUp} className="flex flex-wrap gap-3 sm:gap-4 pt-2 sm:pt-4">
