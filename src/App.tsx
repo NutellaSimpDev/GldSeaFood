@@ -146,6 +146,7 @@ const products = [
   },
 ];
 
+/* Updated Advantage Card KPI text to "100% de Trazabilidad" per requested feedback */
 const advantages = [
   {
     icon: Snowflake,
@@ -156,7 +157,7 @@ const advantages = [
   {
     icon: FileCheck,
     title: 'Trazabilidad & Seguimiento Documental',
-    kpi: 'Trazabilidad Total',
+    kpi: '100% de Trazabilidad',
     desc: 'Monitoreo en tiempo real y gestión ordenada de expedientes de embarque, BL, certificados sanitarios y factura comercial para una liberación ágil en puerto.',
   },
   {
@@ -397,7 +398,7 @@ function Hero() {
                   <FileCheck size={22} />
                 </div>
                 <div>
-                  <h4 className="text-xl sm:text-2xl font-bold text-white">Trazabilidad Total</h4>
+                  <h4 className="text-xl sm:text-2xl font-bold text-white">100% Trazabilidad</h4>
                   <p className="text-white/60 text-[0.65rem] sm:text-xs font-medium uppercase tracking-wider">Seguimiento Documental</p>
                 </div>
               </div>
@@ -442,7 +443,7 @@ function CertificationsBar() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   OPERATIONS / GLOBE (Interactive Country Cards trigger popup)
+   OPERATIONS / GLOBE
    ═══════════════════════════════════════════════════════════════ */
 function Operations() {
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
@@ -472,7 +473,7 @@ function Operations() {
           </motion.p>
         </motion.div>
 
-        {/* Real Country Flags Grid - Now Interactive: Click to open description card */}
+        {/* Real Country Flags Grid */}
         <motion.div 
           initial="hidden"
           whileInView="visible"
@@ -1004,7 +1005,7 @@ function Contact() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   FOOTER
+   FOOTER (Comercial first, América Latina second)
    ═══════════════════════════════════════════════════════════════ */
 function Footer() {
   return (
