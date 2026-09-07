@@ -30,8 +30,23 @@
   --cyan-bright: var(--color-cyan-bright);
 }
 
-html {
-  scroll-behavior: smooth;
+/* Sin scroll-behavior: smooth — lo gestiona Lenis (src/lib/smooth-scroll.tsx).
+   Los dos juntos producen un doble easing que se siente elastico y roto. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 body {
@@ -130,7 +145,7 @@ img, video {
    ACCESIBILIDAD: respetar prefers-reduced-motion
    ═══════════════════════════════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  html { scroll-behavior: auto !important; }
 
   .aurora-blob { animation: none; }
 

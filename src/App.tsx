@@ -9,6 +9,8 @@ import WaveCursor from './components/WaveCursor';
 import { products, categories, type Product, type CategoryId } from './data/products';
 import { useI18n, LANGUAGES, AVAILABLE, type Lang } from './i18n';
 import type { ProductKey } from './i18n/es';
+import { RevealText, useParallax, TiltCard, Magnetic, ScrollProgress } from './components/motion-primitives';
+import { useScrollLock } from './lib/smooth-scroll';
 
 // three.js + globe.gl son ~1.8 MB y solo se usan en la seccion Operaciones,
 // a mitad de pagina. Cargarlos aparte libera el hilo principal en el hero.
@@ -232,6 +234,9 @@ function Navbar() {
    ═══════════════════════════════════════════════════════════════ */
 function Hero() {
   const { t } = useI18n();
+  // El video se aleja y crece mientras el contenido sube mas rapido:
+  // ese diferencial de velocidad es lo que produce la profundidad.
+  const { ref, y, escala, opacidad } = useParallax(140);
 
   const kpis = [
     { icon: TrendingUp, value: '+50,000 MT', label: t.hero.kpiVolume },
@@ -240,9 +245,12 @@ function Hero() {
   ];
 
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center overflow-hidden pt-28 sm:pt-32 pb-16">
+    <section ref={ref} id="inicio" className="relative min-h-screen flex items-center overflow-hidden pt-28 sm:pt-32 pb-16">
       {/* Background Video Container */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+      <motion.div
+        style={{ y, scale: escala }}
+        className="absolute inset-0 z-0 pointer-events-none overflow-hidden will-change-transform"
+      >
         <video
           autoPlay
           loop
@@ -252,14 +260,14 @@ function Hero() {
         >
           <source src={`${BASE}videos/basa-boomerang.mp4`} type="video/mp4" />
         </video>
-      </div>
+      </motion.div>
 
       {/* Brighter Oceanic Blue Dual Overlay */}
       <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[#0b1424]/65 via-[#0b1424]/60 to-[#090e17] sm:bg-gradient-to-r sm:from-[#0b1424]/90 sm:via-[#0b1424]/70 sm:to-[#0b1424]/30 pointer-events-none" />
       <div className="absolute inset-0 z-[1] bg-gradient-to-t from-[#090e17] via-transparent to-[#0b1424]/40 pointer-events-none" />
 
       {/* Content Container */}
-      <div className="relative z-[3] max-w-7xl mx-auto px-4 sm:px-6 w-full">
+      <motion.div style={{ opacity: opacidad }} className="relative z-[3] max-w-7xl mx-auto px-4 sm:px-6 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
           {/* Left Column: Hero Copy */}
@@ -276,12 +284,15 @@ function Hero() {
               </span>
             </motion.div>
 
-            <motion.h1
-              variants={fadeInUp}
-              className="text-gradient-white text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.12] sm:leading-[1.06]"
-            >
-              {t.hero.title}
-            </motion.h1>
+            {/* El degradado va en wordClassName, no en className: si se queda
+                en el <h1>, las palabras heredan el relleno transparente sin el
+                degradado detras y el titular se vuelve invisible. */}
+            <RevealText
+              text={t.hero.title}
+              delay={0.15}
+              className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.12] sm:leading-[1.06]"
+              wordClassName="text-gradient-white"
+            />
 
             <motion.p
               variants={fadeInUp}
@@ -291,12 +302,16 @@ function Hero() {
             </motion.p>
 
             <motion.div variants={fadeInUp} className="flex flex-wrap gap-3 sm:gap-4 pt-2 sm:pt-4">
-              <a href="#productos" className="btn-gold text-xs px-6 py-3.5">
-                {t.hero.ctaPrimary} <ArrowRight size={16} />
-              </a>
-              <a href="#contacto" className="btn-outline text-xs px-6 py-3.5">
-                {t.hero.ctaSecondary}
-              </a>
+              <Magnetic>
+                <a href="#productos" className="btn-gold text-xs px-6 py-3.5">
+                  {t.hero.ctaPrimary} <ArrowRight size={16} />
+                </a>
+              </Magnetic>
+              <Magnetic>
+                <a href="#contacto" className="btn-outline text-xs px-6 py-3.5">
+                  {t.hero.ctaSecondary}
+                </a>
+              </Magnetic>
             </motion.div>
           </motion.div>
 
@@ -323,7 +338,7 @@ function Hero() {
           </motion.div>
 
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
@@ -470,6 +485,16 @@ function Operations() {
 function ProductDetail({ product, onClose }: { product: Product; onClose: () => void }) {
   const { t } = useI18n();
   const copy = t.products[product.slug as ProductKey];
+  // Congela el scroll de fondo: sin esto el modal flota sobre una pagina
+  // que sigue moviendose detras. Era un bug preexistente.
+  useScrollLock(true);
+
+  // Cerrar con Escape
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
 
   return (
     <motion.div
@@ -591,11 +616,10 @@ function Catalog() {
           {filteredProducts.map(p => {
             const copy = t.products[p.slug as ProductKey];
             return (
-              <motion.div
-                key={p.slug}
-                variants={cardItem}
+              <motion.div key={p.slug} variants={cardItem}>
+              <TiltCard
                 onClick={() => setSelected(p)}
-                className="glass glass-hover rounded-2xl overflow-hidden cursor-pointer flex flex-col group border border-white/15 relative"
+                className="glass glass-hover rounded-2xl overflow-hidden cursor-pointer flex flex-col group border border-white/15 relative h-full"
               >
                 {/* Top Quality Badge */}
                 <div className="absolute top-3 left-3 z-10">
@@ -635,6 +659,7 @@ function Catalog() {
                     <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
+              </TiltCard>
               </motion.div>
             );
           })}
@@ -914,6 +939,9 @@ function Footer() {
 export default function App() {
   return (
     <>
+      {/* Barra de progreso de lectura */}
+      <ScrollProgress />
+
       {/* Liquid Ocean Wave Mouse Cursor */}
       <WaveCursor />
 
