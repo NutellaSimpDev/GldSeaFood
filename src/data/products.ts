@@ -123,7 +123,8 @@ export const products: Product[] = [
     name: 'Vannamei Shrimp HOSO',
     category: 'shrimp',
     image: `${IMG}shrimp-vannamei-hoso.png`,
-    iqf: true,
+    // Entero con cabeza: se despacha en bloque, no en IQF individual
+    iqf: false,
   },
   {
     slug: 'shrimp-vannamei-pd',
