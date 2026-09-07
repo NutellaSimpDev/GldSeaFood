@@ -68,14 +68,18 @@ img, video {
 /* ═══════════════════════════════════════════════════════════════
    ULTRA-SMOOTH AMBIENT BACKGROUND GLOW (FIXED BLUR & EDGES)
    ═══════════════════════════════════════════════════════════════ */
+/* El contenedor NO lleva filter: un blur sobre una capa fixed a viewport
+   completo obliga al compositor a rasterizar y desenfocar un buffer del
+   tamano de la pantalla en cada frame en que los blobs se mueven.
+   Un unico blur en los blobs (~150px = sqrt(120^2+100^2)) conserva el
+   mismo aspecto suave a una fraccion del coste. */
 .aurora-bg {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-  filter: blur(120px);
-  -webkit-filter: blur(120px);
+  contain: layout paint style;
 }
 
 .aurora-blob {
@@ -84,8 +88,8 @@ img, video {
   opacity: 0.35;
   will-change: transform;
   transform: translate3d(0,0,0);
-  filter: blur(100px);
-  -webkit-filter: blur(100px);
+  filter: blur(150px);
+  -webkit-filter: blur(150px);
 }
 
 .aurora-1 {
@@ -120,6 +124,21 @@ img, video {
 @keyframes auroraFloat3 {
   0%   { transform: translate3d(0, 0, 0); }
   100% { transform: translate3d(6vw, -5vh, 0); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ACCESIBILIDAD: respetar prefers-reduced-motion
+   ═══════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  .aurora-blob { animation: none; }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════════
