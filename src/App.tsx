@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import {
   Snowflake, Package, ChevronDown, X, ArrowRight,
   Globe2, Mail, MapPin, AlertTriangle, Menu,
-  Award, TrendingUp, Calculator, CheckCircle2, Box, FileCheck
+  Award, TrendingUp, FileCheck
 } from 'lucide-react';
 import WaveCursor from './components/WaveCursor';
 import { products, categories, type Product, type CategoryId } from './data/products';
@@ -18,19 +18,6 @@ const GlobeMap = lazy(() => import('./components/GlobeMap'));
    BASE PATH & ANIMATION VARIANTS
    ═══════════════════════════════════════════════════════════════ */
 const BASE = import.meta.env.BASE_URL;
-
-/**
- * Calculadora de contenedor: OCULTA a proposito.
- *
- * 14 de los 21 productos tienen boxWeightKg tomado de una presentacion
- * estandar del rubro, no de la ficha tecnica real (ver `weightConfirmed`
- * en src/data/products.ts). Publicarla asi le daria a un comprador cifras
- * de cajas y peso neto equivocadas.
- *
- * Para reactivarla: confirmar los pesos, poner weightConfirmed en true
- * y cambiar esta bandera a true. El componente y sus textos siguen intactos.
- */
-const MOSTRAR_CALCULADORA: boolean = false;
 
 const fadeInUp: any = {
   hidden: { opacity: 0, y: 30 },
@@ -107,9 +94,8 @@ function Navbar() {
     { href: '#inicio', label: t.nav.inicio },
     { href: '#operaciones', label: t.nav.operaciones },
     { href: '#productos', label: t.nav.productos },
-    { href: '#calculadora', label: t.nav.calculadora },
     { href: '#ventajas', label: t.nav.ventajas },
-  ].filter(l => MOSTRAR_CALCULADORA || l.href !== '#calculadora');
+  ];
 
   const actual = LANGUAGES.find(l => l.code === lang) ?? LANGUAGES[0];
 
@@ -664,138 +650,6 @@ function Catalog() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   B2B CONTAINER VOLUME CALCULATOR
-   ═══════════════════════════════════════════════════════════════ */
-function ContainerCalculator() {
-  const { t, lang } = useI18n();
-  const [selectedSlug, setSelectedSlug] = useState<string>(products[0].slug);
-  const [containerType, setContainerType] = useState<'20ft' | '40ft'>('40ft');
-
-  const selectedProduct = products.find(p => p.slug === selectedSlug) || products[0];
-  const locale = lang === 'en' ? 'en-US' : 'es-MX';
-
-  const maxPayloadKg = containerType === '40ft' ? 26500 : 18000;
-  const estimatedBoxes = Math.floor(maxPayloadKg / selectedProduct.boxWeightKg);
-  const totalNetWeightKg = (estimatedBoxes * selectedProduct.boxWeightKg).toLocaleString(locale, { maximumFractionDigits: 1 });
-  const totalNetWeightLb = (estimatedBoxes * selectedProduct.boxWeightLb).toLocaleString(locale, { maximumFractionDigits: 0 });
-
-  return (
-    <section id="calculadora" className="py-20 sm:py-32 relative bg-gradient-to-b from-transparent via-[#0f1b2d] to-transparent">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={fadeInUp}
-          className="text-center mb-10 sm:mb-12"
-        >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--gold)]/15 border border-[var(--gold)]/30 mb-3">
-            <Calculator size={14} className="text-[var(--gold-bright)]" />
-            <span className="text-[var(--gold-bright)] text-[0.68rem] sm:text-xs font-semibold tracking-[2px] uppercase">{t.calculator.badge}</span>
-          </div>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
-            {t.calculator.title}
-          </h2>
-          <p className="text-white/70 max-w-xl mx-auto font-light text-xs sm:text-base">
-            {t.calculator.body}
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={fadeInUp}
-          className="glass rounded-3xl p-6 sm:p-12 border border-[var(--gold)]/30 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center"
-        >
-          {/* Controls Column */}
-          <div className="lg:col-span-6 space-y-5">
-            <div>
-              <label htmlFor="calc-producto" className="block text-xs font-semibold text-white/80 uppercase tracking-wider mb-2">
-                {t.calculator.step1}
-              </label>
-              <select
-                id="calc-producto"
-                className="form-input text-xs sm:text-sm font-medium"
-                value={selectedSlug}
-                onChange={e => setSelectedSlug(e.target.value)}
-              >
-                {categories.map(cat => (
-                  <optgroup key={cat} label={t.catalog.categories[cat]}>
-                    {products.filter(p => p.category === cat).map(p => (
-                      <option key={p.slug} value={p.slug}>{p.name}</option>
-                    ))}
-                  </optgroup>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <span className="block text-xs font-semibold text-white/80 uppercase tracking-wider mb-2">
-                {t.calculator.step2}
-              </span>
-              <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                {([['20ft', t.calculator.c20, t.calculator.c20sub], ['40ft', t.calculator.c40, t.calculator.c40sub]] as const).map(([id, title, sub]) => (
-                  <button
-                    key={id}
-                    onClick={() => setContainerType(id as '20ft' | '40ft')}
-                    className={`p-3.5 sm:p-4 rounded-xl border text-left cursor-pointer transition-all ${
-                      containerType === id
-                        ? 'bg-[var(--gold)]/20 border-[var(--gold)] text-white'
-                        : 'border-white/15 text-white/70 hover:border-white/30'
-                    }`}
-                  >
-                    <Box size={18} className={containerType === id ? 'text-[var(--gold-bright)] mb-1' : 'mb-1'} />
-                    <strong className="block text-xs sm:text-sm font-bold">{title}</strong>
-                    <span className="text-[0.65rem] sm:text-[0.7rem] text-white/60">{sub}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Live Result Display Column */}
-          <div className="lg:col-span-6 bg-white/5 rounded-2xl p-5 sm:p-8 border border-white/15 space-y-5">
-            <h4 className="text-[var(--gold-bright)] text-xs font-semibold tracking-[1.5px] uppercase pb-2.5 border-b border-white/10">
-              {t.calculator.resultTitle}
-            </h4>
-
-            <div className="grid grid-cols-2 gap-3 sm:gap-4">
-              <div>
-                <span className="text-white/50 text-[0.65rem] sm:text-xs font-medium uppercase tracking-wider block">{t.calculator.totalBoxes}</span>
-                <strong className="text-2xl sm:text-3xl font-bold text-white mt-1 block">{estimatedBoxes.toLocaleString(locale)}</strong>
-                <span className="text-white/60 text-[0.7rem]">{t.calculator.boxesUnit}</span>
-              </div>
-
-              <div>
-                <span className="text-white/50 text-[0.65rem] sm:text-xs font-medium uppercase tracking-wider block">{t.calculator.netWeight}</span>
-                <strong className="text-2xl sm:text-3xl font-bold text-[var(--gold-bright)] mt-1 block">{totalNetWeightKg} kg</strong>
-                <span className="text-white/60 text-[0.7rem]">({totalNetWeightLb} lb)</span>
-              </div>
-            </div>
-
-            {!selectedProduct.weightConfirmed && (
-              <p className="text-[0.65rem] text-white/50 leading-relaxed border-l-2 border-[var(--gold)]/40 pl-2.5">
-                {t.calculator.estimateNote}
-              </p>
-            )}
-
-            <div className="pt-3 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-white/70">
-              <span className="flex items-center gap-1.5 text-white/90 font-medium text-xs">
-                <CheckCircle2 size={16} className="text-[var(--gold-bright)] shrink-0" /> {t.calculator.optimized}
-              </span>
-              <a href="#contacto" className="btn-gold text-[0.75rem] py-2.5 px-5 w-full sm:w-auto text-center justify-center">
-                {t.calculator.quote}
-              </a>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════
    ADVANTAGES
    ═══════════════════════════════════════════════════════════════ */
 function Advantages() {
@@ -974,10 +828,9 @@ function Footer() {
     { label: t.nav.inicio, href: '#inicio' },
     { label: t.nav.operaciones, href: '#operaciones' },
     { label: t.nav.productos, href: '#productos' },
-    { label: t.nav.calculadora, href: '#calculadora' },
     { label: t.nav.ventajas, href: '#ventajas' },
     { label: t.footer.quote, href: '#contacto' },
-  ].filter(l => MOSTRAR_CALCULADORA || l.href !== '#calculadora');
+  ];
 
   return (
     <footer className="border-t border-white/15 pt-16 sm:pt-20 pb-10 bg-[#080d16]">
@@ -1078,7 +931,6 @@ export default function App() {
         <CertificationsBar />
         <Operations />
         <Catalog />
-        {MOSTRAR_CALCULADORA && <ContainerCalculator />}
         <Advantages />
         <Contact />
         <Footer />
