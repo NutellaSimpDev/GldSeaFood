@@ -19,6 +19,19 @@ const GlobeMap = lazy(() => import('./components/GlobeMap'));
    ═══════════════════════════════════════════════════════════════ */
 const BASE = import.meta.env.BASE_URL;
 
+/**
+ * Calculadora de contenedor: OCULTA a proposito.
+ *
+ * 14 de los 21 productos tienen boxWeightKg tomado de una presentacion
+ * estandar del rubro, no de la ficha tecnica real (ver `weightConfirmed`
+ * en src/data/products.ts). Publicarla asi le daria a un comprador cifras
+ * de cajas y peso neto equivocadas.
+ *
+ * Para reactivarla: confirmar los pesos, poner weightConfirmed en true
+ * y cambiar esta bandera a true. El componente y sus textos siguen intactos.
+ */
+const MOSTRAR_CALCULADORA: boolean = false;
+
 const fadeInUp: any = {
   hidden: { opacity: 0, y: 30 },
   visible: {
@@ -96,7 +109,7 @@ function Navbar() {
     { href: '#productos', label: t.nav.productos },
     { href: '#calculadora', label: t.nav.calculadora },
     { href: '#ventajas', label: t.nav.ventajas },
-  ];
+  ].filter(l => MOSTRAR_CALCULADORA || l.href !== '#calculadora');
 
   const actual = LANGUAGES.find(l => l.code === lang) ?? LANGUAGES[0];
 
@@ -964,7 +977,7 @@ function Footer() {
     { label: t.nav.calculadora, href: '#calculadora' },
     { label: t.nav.ventajas, href: '#ventajas' },
     { label: t.footer.quote, href: '#contacto' },
-  ];
+  ].filter(l => MOSTRAR_CALCULADORA || l.href !== '#calculadora');
 
   return (
     <footer className="border-t border-white/15 pt-16 sm:pt-20 pb-10 bg-[#080d16]">
@@ -1065,7 +1078,7 @@ export default function App() {
         <CertificationsBar />
         <Operations />
         <Catalog />
-        <ContainerCalculator />
+        {MOSTRAR_CALCULADORA && <ContainerCalculator />}
         <Advantages />
         <Contact />
         <Footer />
