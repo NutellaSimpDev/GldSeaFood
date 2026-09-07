@@ -91,23 +91,47 @@ export default function WaveCursor() {
         prevY = p.y;
 
         // Draw wave trail segment.
-        // El resplandor lo pone `filter: blur()` en CSS sobre todo el canvas:
-        // ctx.shadowBlur costaba un pase de desenfoque por segmento (19 por
-        // frame) y en varios navegadores fuerza el render por CPU.
+        // El resplandor sale de dos trazos superpuestos (uno ancho y muy
+        // translucido, otro fino y brillante) en lugar de un desenfoque.
+        // ctx.shadowBlur costaba un pase de blur por segmento, y un
+        // filter CSS sobre el canvas obliga a componer una capa del tamano
+        // de la pantalla: ambos salen mucho mas caros que trazar dos veces.
         if (i > 0) {
           const alpha = 1 - i / POINT_COUNT;
           const radius = (POINT_COUNT - i) * 0.8;
+          const x0 = points[i - 1].x + offsetX;
+          const y0 = points[i - 1].y + offsetY;
+          const x1 = p.x + offsetX;
+          const y1 = p.y + offsetY;
 
+          // halo
           ctx.beginPath();
-          ctx.moveTo(points[i - 1].x + offsetX, points[i - 1].y + offsetY);
-          ctx.lineTo(p.x + offsetX, p.y + offsetY);
-          ctx.strokeStyle = `rgba(245, 200, 107, ${alpha * 0.4})`;
+          ctx.moveTo(x0, y0);
+          ctx.lineTo(x1, y1);
+          ctx.strokeStyle = `rgba(212, 168, 83, ${alpha * 0.12})`;
+          ctx.lineWidth = radius * 2.4;
+          ctx.stroke();
+
+          // nucleo
+          ctx.beginPath();
+          ctx.moveTo(x0, y0);
+          ctx.lineTo(x1, y1);
+          ctx.strokeStyle = `rgba(245, 200, 107, ${alpha * 0.38})`;
           ctx.lineWidth = radius;
           ctx.stroke();
         }
       }
 
-      // Draw cursor core golden drop
+      // Draw cursor core golden drop: el halo es un gradiente radial,
+      // barato porque solo cubre ~18px, no la pantalla entera.
+      const glow = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 18);
+      glow.addColorStop(0, 'rgba(245, 200, 107, 0.55)');
+      glow.addColorStop(1, 'rgba(245, 200, 107, 0)');
+      ctx.beginPath();
+      ctx.arc(mouse.x, mouse.y, 18, 0, Math.PI * 2);
+      ctx.fillStyle = glow;
+      ctx.fill();
+
       ctx.beginPath();
       ctx.arc(mouse.x, mouse.y, 5, 0, Math.PI * 2);
       ctx.fillStyle = 'rgba(245, 200, 107, 0.95)';
@@ -142,7 +166,6 @@ export default function WaveCursor() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-[9999] hidden md:block"
-      style={{ filter: 'blur(3px)' }}
     />
   );
 }
