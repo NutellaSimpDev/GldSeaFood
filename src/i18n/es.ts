@@ -54,7 +54,7 @@ export const es = {
       cr: { hub: 'Puerto Caldera', capacity: '8,500 MT/año' },
       co: { hub: 'Buenaventura / Cartagena', capacity: '12,000 MT/año' },
       pe: { hub: 'Callao / Paita', capacity: '15,000 MT/año' },
-      cn: { hub: 'Qingdao / Ningbo', capacity: 'Origen Primario' },
+      cn: { hub: 'Yantian (Shenzhen)', capacity: 'Origen Primario' },
       vn: { hub: 'Ho Chi Minh', capacity: 'Origen Primario' },
     },
     globe: {
@@ -62,7 +62,7 @@ export const es = {
       cr: 'Centro estratégico en América Central con operaciones de importación directa y redistribución regional.',
       co: 'Presencia en Bogotá y Buenaventura. Importación directa con gestión aduanal integral.',
       pe: 'Origen del Calamar Gigante Dosidicus gigas. Plantas de procesamiento certificadas en la costa.',
-      cn: 'Abastecimiento de tilapia y basa desde Qingdao y Hainan. Control de calidad en origen.',
+      cn: 'Abastecimiento de tilapia y panga desde el puerto de Yantian, Shenzhen. Control de calidad en origen.',
       vn: 'Producción de filete de panga premium. Procesamiento de alta tecnología con certificación BAP.',
     },
   },

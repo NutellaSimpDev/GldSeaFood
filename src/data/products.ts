@@ -16,6 +16,12 @@ export interface Product {
   name: string;
   category: CategoryId;
   image: string;
+  /**
+   * Muestra el distintivo "100% IQF" en la tarjeta.
+   * El calamar gigante va en bloque o saco de rafia, no IQF individual,
+   * asi que ahi el distintivo seria incorrecto.
+   */
+  iqf: boolean;
 }
 
 const IMG = 'images/catalog/';
@@ -29,42 +35,49 @@ export const products: Product[] = [
     name: 'Giant Squid Fillet',
     category: 'squid',
     image: `${IMG}giant-squid-fillet.png`,
+    iqf: false,
   },
   {
     slug: 'giant-squid-neck',
     name: 'Giant Squid Neck',
     category: 'squid',
     image: `${IMG}giant-squid-neck.png`,
+    iqf: false,
   },
   {
     slug: 'giant-squid-wing',
     name: 'Giant Squid Wing',
     category: 'squid',
     image: `${IMG}giant-squid-wing.png`,
+    iqf: false,
   },
   {
     slug: 'giant-squid-rings',
     name: 'Giant Squid Rings',
     category: 'squid',
     image: `${IMG}giant-squid-rings.png`,
+    iqf: false,
   },
   {
     slug: 'giant-squid-bp',
     name: 'Giant Squid BP',
     category: 'squid',
     image: `${IMG}giant-squid-bp.png`,
+    iqf: false,
   },
   {
     slug: 'giant-squid-sexual-organ',
     name: 'Giant Squid Sexual Organ',
     category: 'squid',
     image: `${IMG}giant-squid-sexual-organ.png`,
+    iqf: false,
   },
   {
     slug: 'giant-squid-tentacles',
     name: 'Giant Squid Tentacles',
     category: 'squid',
     image: `${IMG}giant-squid-tentacles.png`,
+    iqf: false,
   },
 
   // ─── TILAPIA ─────────────────────────────────────────────────────
@@ -73,30 +86,35 @@ export const products: Product[] = [
     name: 'Tilapia Fillet IVP',
     category: 'tilapia',
     image: `${IMG}tilapia-fillet-ivp.png`,
+    iqf: true,
   },
   {
     slug: 'tilapia-whole-round',
     name: 'Tilapia WR',
     category: 'tilapia',
     image: `${IMG}tilapia-whole-round.png`,
+    iqf: true,
   },
   {
     slug: 'tilapia-gs',
     name: 'Tilapia G/S',
     category: 'tilapia',
     image: `${IMG}tilapia-gs.png`,
+    iqf: true,
   },
   {
     slug: 'tilapia-breaded-raw',
     name: 'Raw Breaded Tilapia Fillet',
     category: 'tilapia',
     image: `${IMG}tilapia-breaded-raw.png`,
+    iqf: true,
   },
   {
     slug: 'tilapia-breaded-prefried',
     name: 'Pre-fried Breaded Tilapia Fillet',
     category: 'tilapia',
     image: `${IMG}tilapia-breaded-prefried.png`,
+    iqf: true,
   },
 
   // ─── SHRIMP (Litopenaeus vannamei) ───────────────────────────────
@@ -105,24 +123,28 @@ export const products: Product[] = [
     name: 'Vannamei Shrimp HOSO',
     category: 'shrimp',
     image: `${IMG}shrimp-vannamei-hoso.png`,
+    iqf: true,
   },
   {
     slug: 'shrimp-vannamei-pd',
     name: 'Vannamei Shrimp PD',
     category: 'shrimp',
     image: `${IMG}shrimp-vannamei-pd.png`,
+    iqf: true,
   },
   {
     slug: 'shrimp-cooked-pd',
     name: 'Cooked, Peeled & Deveined Shrimp',
     category: 'shrimp',
     image: `${IMG}shrimp-cooked-pd.png`,
+    iqf: true,
   },
   {
     slug: 'shrimp-paste',
     name: 'Shrimp Paste',
     category: 'shrimp',
     image: `${IMG}shrimp-paste.png`,
+    iqf: true,
   },
 
   // ─── PANGA / PANGASIUS ───────────────────────────────────────────
@@ -131,18 +153,21 @@ export const products: Product[] = [
     name: 'Rose Panga Fillet',
     category: 'panga',
     image: `${IMG}rose-panga-fillet.png`,
+    iqf: true,
   },
   {
     slug: 'panga-steaks',
     name: 'Panga Steaks',
     category: 'panga',
     image: `${IMG}panga-steaks.png`,
+    iqf: true,
   },
   {
     slug: 'panga-breaded-fillet',
     name: 'Breaded Panga Fillet',
     category: 'panga',
     image: `${IMG}panga-breaded-fillet.png`,
+    iqf: true,
   },
 
   // ─── TUNA ────────────────────────────────────────────────────────
@@ -151,11 +176,13 @@ export const products: Product[] = [
     name: 'Tuna Steaks',
     category: 'tuna',
     image: `${IMG}tuna-steaks.png`,
+    iqf: true,
   },
   {
     slug: 'tuna-cubes',
     name: 'Tuna Cubes',
     category: 'tuna',
     image: `${IMG}tuna-cubes.png`,
+    iqf: true,
   },
 ];

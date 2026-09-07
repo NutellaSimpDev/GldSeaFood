@@ -11,14 +11,26 @@ export interface CountryData {
   flagCode: string;
 }
 
-/** Geometria y etiquetas; las descripciones llegan traducidas por prop. */
+/**
+ * Geometria y etiquetas; las descripciones llegan traducidas por prop.
+ *
+ * Las coordenadas apuntan al PUERTO operativo, no al centroide del pais:
+ * antes el marcador de Mexico caia en el desierto de Zacatecas y el de
+ * Peru en plena selva, lejos de los puertos que dice la ficha.
+ */
 export const mapData: CountryData[] = [
-  { iso: 'MEX', lat: 23.63, lng: -102.55, size: 0.05, color: '#d4a853', label: 'México', flagCode: 'mx' },
-  { iso: 'CRI', lat: 9.75, lng: -83.75, size: 0.05, color: '#d4a853', label: 'Costa Rica', flagCode: 'cr' },
-  { iso: 'COL', lat: 4.57, lng: -74.30, size: 0.05, color: '#d4a853', label: 'Colombia', flagCode: 'co' },
-  { iso: 'PER', lat: -9.19, lng: -75.02, size: 0.05, color: '#d4a853', label: 'Perú', flagCode: 'pe' },
-  { iso: 'CHN', lat: 36.07, lng: 120.38, size: 0.05, color: '#d4a853', label: 'China', flagCode: 'cn' },
-  { iso: 'VNM', lat: 14.06, lng: 108.28, size: 0.05, color: '#d4a853', label: 'Vietnam', flagCode: 'vn' },
+  // Manzanillo, Colima — principal puerto del Pacifico mexicano
+  { iso: 'MEX', lat: 19.05, lng: -104.31, size: 0.05, color: '#d4a853', label: 'México', flagCode: 'mx' },
+  // Puerto Caldera, Puntarenas
+  { iso: 'CRI', lat: 9.91, lng: -84.72, size: 0.05, color: '#d4a853', label: 'Costa Rica', flagCode: 'cr' },
+  // Buenaventura, Valle del Cauca — principal puerto del Pacifico colombiano
+  { iso: 'COL', lat: 3.88, lng: -77.03, size: 0.05, color: '#d4a853', label: 'Colombia', flagCode: 'co' },
+  // Callao, Lima
+  { iso: 'PER', lat: -12.05, lng: -77.14, size: 0.05, color: '#d4a853', label: 'Perú', flagCode: 'pe' },
+  // Yantian, Shenzhen (Guangdong)
+  { iso: 'CHN', lat: 22.58, lng: 114.27, size: 0.05, color: '#d4a853', label: 'China', flagCode: 'cn' },
+  // Cat Lai, Ho Chi Minh
+  { iso: 'VNM', lat: 10.76, lng: 106.70, size: 0.05, color: '#d4a853', label: 'Vietnam', flagCode: 'vn' },
 ];
 
 interface GlobeMapProps {

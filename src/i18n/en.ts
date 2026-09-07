@@ -55,7 +55,7 @@ export const en: Dict = {
       cr: { hub: 'Puerto Caldera', capacity: '8,500 MT/year' },
       co: { hub: 'Buenaventura / Cartagena', capacity: '12,000 MT/year' },
       pe: { hub: 'Callao / Paita', capacity: '15,000 MT/year' },
-      cn: { hub: 'Qingdao / Ningbo', capacity: 'Primary Origin' },
+      cn: { hub: 'Yantian (Shenzhen)', capacity: 'Primary Origin' },
       vn: { hub: 'Ho Chi Minh', capacity: 'Primary Origin' },
     },
     globe: {
@@ -63,7 +63,7 @@ export const en: Dict = {
       cr: 'Strategic center in Central America with direct import operations and regional redistribution.',
       co: 'Presence in Bogotá and Buenaventura. Direct import with full customs management.',
       pe: 'Origin of Giant Squid Dosidicus gigas. Certified processing plants along the coast.',
-      cn: 'Tilapia and panga sourcing from Qingdao and Hainan. Quality control at origin.',
+      cn: 'Tilapia and panga sourcing through the port of Yantian, Shenzhen. Quality control at origin.',
       vn: 'Premium panga fillet production. High-technology processing with BAP certification.',
     },
   },

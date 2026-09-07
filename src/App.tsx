@@ -621,12 +621,14 @@ function Catalog() {
                 onClick={() => setSelected(p)}
                 className="glass glass-hover rounded-2xl overflow-hidden cursor-pointer flex flex-col group border border-white/15 relative h-full"
               >
-                {/* Top Quality Badge */}
-                <div className="absolute top-3 left-3 z-10">
-                  <span className="px-2.5 py-1 rounded-full bg-black/70 border border-[var(--gold)]/40 text-[var(--gold-bright)] text-[0.6rem] font-bold uppercase tracking-widest backdrop-blur-md">
-                    {t.catalog.badge}
-                  </span>
-                </div>
+                {/* Top Quality Badge — solo en productos realmente IQF */}
+                {p.iqf && (
+                  <div className="absolute top-3 left-3 z-10">
+                    <span className="px-2.5 py-1 rounded-full bg-black/70 border border-[var(--gold)]/40 text-[var(--gold-bright)] text-[0.6rem] font-bold uppercase tracking-widest backdrop-blur-md">
+                      {t.catalog.badge}
+                    </span>
+                  </div>
+                )}
 
                 {/* Product Image Container */}
                 <div className="h-52 sm:h-60 relative bg-gradient-to-b from-[#162236] to-[#0e1726] flex items-center justify-center p-6 overflow-hidden">
