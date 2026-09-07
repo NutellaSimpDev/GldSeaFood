@@ -9,24 +9,26 @@ export interface CountryData {
   color: string;
   label: string;
   flagCode: string;
-  desc: string;
 }
 
+/** Geometria y etiquetas; las descripciones llegan traducidas por prop. */
 export const mapData: CountryData[] = [
-  { iso: 'MEX', lat: 23.63, lng: -102.55, size: 0.05, color: '#d4a853', label: 'México', flagCode: 'mx', desc: 'Hub de distribución central. Acceso directo a mercados del norte y centro del país con infraestructura frigorífica certificada.' },
-  { iso: 'CRI', lat: 9.75, lng: -83.75, size: 0.05, color: '#d4a853', label: 'Costa Rica', flagCode: 'cr', desc: 'Centro estratégico en América Central con operaciones de importación directa y redistribución regional.' },
-  { iso: 'COL', lat: 4.57, lng: -74.30, size: 0.05, color: '#d4a853', label: 'Colombia', flagCode: 'co', desc: 'Presencia en Bogotá y Buenaventura. Importación directa con gestión aduanal integral.' },
-  { iso: 'PER', lat: -9.19, lng: -75.02, size: 0.05, color: '#d4a853', label: 'Perú', flagCode: 'pe', desc: 'Origen del Calamar Gigante Dosidicus gigas. Plantas de procesamiento certificadas en la costa.' },
-  { iso: 'CHN', lat: 36.07, lng: 120.38, size: 0.05, color: '#d4a853', label: 'China', flagCode: 'cn', desc: 'Abastecimiento de tilapia y basa desde Qingdao y Hainan. Control de calidad en origen.' },
-  { iso: 'VNM', lat: 14.06, lng: 108.28, size: 0.05, color: '#d4a853', label: 'Vietnam', flagCode: 'vn', desc: 'Producción de filete de basa premium. Procesamiento de alta tecnología con certificación BAP.' },
+  { iso: 'MEX', lat: 23.63, lng: -102.55, size: 0.05, color: '#d4a853', label: 'México', flagCode: 'mx' },
+  { iso: 'CRI', lat: 9.75, lng: -83.75, size: 0.05, color: '#d4a853', label: 'Costa Rica', flagCode: 'cr' },
+  { iso: 'COL', lat: 4.57, lng: -74.30, size: 0.05, color: '#d4a853', label: 'Colombia', flagCode: 'co' },
+  { iso: 'PER', lat: -9.19, lng: -75.02, size: 0.05, color: '#d4a853', label: 'Perú', flagCode: 'pe' },
+  { iso: 'CHN', lat: 36.07, lng: 120.38, size: 0.05, color: '#d4a853', label: 'China', flagCode: 'cn' },
+  { iso: 'VNM', lat: 14.06, lng: 108.28, size: 0.05, color: '#d4a853', label: 'Vietnam', flagCode: 'vn' },
 ];
 
 interface GlobeMapProps {
   selectedCode?: string | null;
   onSelectCountry?: (code: string | null) => void;
+  /** Descripcion por codigo de pais en el idioma activo. */
+  descriptions: Record<string, string>;
 }
 
-export default function GlobeMap({ selectedCode, onSelectCountry }: GlobeMapProps) {
+export default function GlobeMap({ selectedCode, onSelectCountry, descriptions }: GlobeMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [tooltip, setTooltip] = useState<CountryData | null>(null);
   const worldRef = useRef<any>(null);
@@ -184,7 +186,7 @@ export default function GlobeMap({ selectedCode, onSelectCountry }: GlobeMapProp
               <strong className="text-[var(--gold-bright)] text-lg font-bold">{tooltip.label}</strong>
             </div>
 
-            <p className="text-white/90 text-xs sm:text-sm leading-relaxed font-light">{tooltip.desc}</p>
+            <p className="text-white/90 text-xs sm:text-sm leading-relaxed font-light">{descriptions[tooltip.flagCode]}</p>
           </div>
         </div>
       )}
