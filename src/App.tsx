@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Snowflake, Package, ChevronDown, X, ArrowRight,
   Globe2, Mail, MapPin, AlertTriangle, Menu,
   Award, TrendingUp, Calculator, CheckCircle2, Box, FileCheck
 } from 'lucide-react';
-import GlobeMap from './components/GlobeMap';
 import WaveCursor from './components/WaveCursor';
+
+// three.js + globe.gl son ~1.8 MB y solo se usan en la seccion Operaciones,
+// a mitad de pagina. Cargarlos aparte libera el hilo principal en el hero.
+const GlobeMap = lazy(() => import('./components/GlobeMap'));
 
 /* ═══════════════════════════════════════════════════════════════
    BASE PATH & ANIMATION VARIANTS
@@ -517,10 +520,23 @@ function Operations() {
         variants={fadeInUp}
         className="relative max-w-4xl mx-auto px-2 sm:px-4"
       >
-        <GlobeMap 
-          selectedCode={selectedCountry} 
-          onSelectCountry={(code) => setSelectedCountry(code)} 
-        />
+        {/* El placeholder replica la altura real del globo — min(ancho, 550px) —
+            para que la pagina no salte cuando termina de cargar el chunk. */}
+        <Suspense
+          fallback={
+            <div
+              className="w-full h-[min(90vw,550px)] flex items-center justify-center"
+              aria-label="Cargando mapa global"
+            >
+              <div className="w-16 h-16 rounded-full border-2 border-[var(--gold)]/25 border-t-[var(--gold-bright)] animate-spin" />
+            </div>
+          }
+        >
+          <GlobeMap
+            selectedCode={selectedCountry}
+            onSelectCountry={(code) => setSelectedCountry(code)}
+          />
+        </Suspense>
 
         {/* Updated "esfera" to "globo" as requested */}
         <p className="text-center text-white/70 text-xs sm:text-sm uppercase tracking-widest mt-6 mb-4 font-semibold">

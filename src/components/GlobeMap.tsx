@@ -31,6 +31,11 @@ export default function GlobeMap({ selectedCode, onSelectCountry }: GlobeMapProp
   const [tooltip, setTooltip] = useState<CountryData | null>(null);
   const worldRef = useRef<any>(null);
 
+  // Ref al callback: el efecto de montaje corre una sola vez, asi que leer
+  // onSelectCountry directamente dejaria una closure obsoleta.
+  const onSelectRef = useRef(onSelectCountry);
+  useEffect(() => { onSelectRef.current = onSelectCountry; }, [onSelectCountry]);
+
   // Sync external selectedCode changes
   useEffect(() => {
     if (!selectedCode) return;
@@ -45,8 +50,13 @@ export default function GlobeMap({ selectedCode, onSelectCountry }: GlobeMapProp
   useEffect(() => {
     if (!containerRef.current) return;
 
+    const container = containerRef.current;
+    // StrictMode monta el efecto dos veces en dev: sin esta guarda quedarian
+    // dos globos y dos contextos WebGL vivos sobre el mismo contenedor.
+    let disposed = false;
+
     // High performance Globe initialization
-    const world = (Globe as any)({ waitForGlobeReady: true })(containerRef.current)
+    const world = (Globe as any)({ waitForGlobeReady: true })(container)
       .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
       .backgroundColor('rgba(0,0,0,0)')
       .showAtmosphere(false);
@@ -74,8 +84,12 @@ export default function GlobeMap({ selectedCode, onSelectCountry }: GlobeMapProp
 
     // Load GeoJSON and FILTER ONLY OUR 6 ACTIVE COUNTRIES for 120 FPS WebGL rendering!
     fetch('https://raw.githubusercontent.com/vasturiano/globe.gl/master/example/datasets/ne_110m_admin_0_countries.geojson')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error(`GeoJSON HTTP ${res.status}`);
+        return res.json();
+      })
       .then(countries => {
+        if (disposed) return;
         const activeISOs = mapData.map(d => d.iso);
         const activeFeatures = countries.features.filter((f: any) => activeISOs.includes(f.properties.ISO_A3));
 
@@ -95,13 +109,17 @@ export default function GlobeMap({ selectedCode, onSelectCountry }: GlobeMapProp
             const match = mapData.find(m => m.iso === iso);
             if (match) {
               setTooltip(match);
-              if (onSelectCountry) onSelectCountry(match.flagCode);
+              onSelectRef.current?.(match.flagCode);
               controls.autoRotate = false;
               world.pointOfView({ lat: match.lat, lng: match.lng, altitude: 1.5 }, 600);
             }
           });
       })
-      .catch(() => {});
+      .catch(err => {
+        // Antes se tragaba el error en silencio: si el CDN fallaba, el globo
+        // se quedaba sin poligonos y no habia forma de saber por que.
+        console.error('[GlobeMap] no se pudieron cargar los poligonos de paises:', err);
+      });
 
     // Points
     world
@@ -112,12 +130,25 @@ export default function GlobeMap({ selectedCode, onSelectCountry }: GlobeMapProp
       .onPointClick((d: any) => {
         const data = d as CountryData;
         setTooltip(data);
-        if (onSelectCountry) onSelectCountry(data.flagCode);
+        onSelectRef.current?.(data.flagCode);
         controls.autoRotate = false;
         world.pointOfView({ lat: data.lat, lng: data.lng, altitude: 1.5 }, 600);
       });
 
-    return () => { window.removeEventListener('resize', resize); };
+    return () => {
+      disposed = true;
+      window.removeEventListener('resize', resize);
+
+      // Libera el contexto WebGL, el renderer y el loop de animacion.
+      // Sin esto cada remontaje dejaba un globo huerfano consumiendo GPU.
+      try {
+        world._destructor?.();
+      } catch (err) {
+        console.warn('[GlobeMap] fallo al destruir la instancia del globo:', err);
+      }
+      container.replaceChildren();
+      worldRef.current = null;
+    };
   }, []);
 
   const closeTooltip = () => {
