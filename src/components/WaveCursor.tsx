@@ -57,8 +57,7 @@ export default function WaveCursor() {
 
       for (let i = 0; i < POINT_COUNT; i++) {
         const p = points[i];
-        const delay = (i + 1) * 0.08;
-        
+
         // Fluid spring movement towards previous point
         p.x += (prevX - p.x) * 0.3;
         p.y += (prevY - p.y) * 0.3;

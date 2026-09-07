@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Snowflake, FileText, Package, ChevronDown, X, ArrowRight, 
-  Globe2, Mail, MapPin, AlertTriangle, Menu, Sparkles, 
-  ShieldCheck, Award, TrendingUp, Calculator, CheckCircle2, Box, FileCheck
+import { motion, AnimatePresence } from 'motion/react';
+import {
+  Snowflake, Package, ChevronDown, X, ArrowRight,
+  Globe2, Mail, MapPin, AlertTriangle, Menu,
+  Award, TrendingUp, Calculator, CheckCircle2, Box, FileCheck
 } from 'lucide-react';
 import GlobeMap from './components/GlobeMap';
 import WaveCursor from './components/WaveCursor';

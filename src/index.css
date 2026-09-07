@@ -1,17 +1,33 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..800;1,300..800&family=Outfit:wght@400;500;600;700;800&display=swap');
 
 /* ═══════════════════════════════════════════════════════════════
    DESIGN TOKENS & BRIGHT OCEANIC THEME
+   Tailwind v4 es CSS-first: @theme genera las utilidades
+   (bg-gold, text-gold-bright, font-display, ...).
+   Las fuentes se cargan desde index.html con preconnect.
    ═══════════════════════════════════════════════════════════════ */
+@theme {
+  --color-navy-deep: #0b1320;
+  --color-navy-card: #121c2e;
+  --color-navy-light: #1a273e;
+  --color-gold: #d4a853;
+  --color-gold-bright: #f5c86b;
+  --color-gold-dim: #9e7a32;
+  --color-cyan-bright: #38bdf8;
+
+  --font-sans: "Jost", system-ui, sans-serif;
+  --font-display: "Outfit", "Jost", system-ui, sans-serif;
+}
+
+/* Alias cortos: mantienen vivos los var(--gold) ya escritos en el JSX */
 :root {
-  --navy-deep: #0b1320;
-  --navy-card: #121c2e;
-  --navy-light: #1a273e;
-  --gold: #d4a853;
-  --gold-bright: #f5c86b;
-  --gold-dim: #9e7a32;
-  --cyan-bright: #38bdf8;
+  --navy-deep: var(--color-navy-deep);
+  --navy-card: var(--color-navy-card);
+  --navy-light: var(--color-navy-light);
+  --gold: var(--color-gold);
+  --gold-bright: var(--color-gold-bright);
+  --gold-dim: var(--color-gold-dim);
+  --cyan-bright: var(--color-cyan-bright);
 }
 
 html {
@@ -21,14 +37,16 @@ html {
 body {
   background: #090e17;
   color: #e2e8f0;
-  font-family: 'Jost', system-ui, sans-serif;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  /* clip recorta sin crear contenedor de scroll: deja position:sticky
+     utilizable en descendientes (necesario para secciones pinned) */
+  overflow-x: clip;
 }
 
 /* Headers with clean modern sans-serif font as requested by client */
 h1, h2, h3, h4 {
-  font-family: 'Outfit', 'Jost', system-ui, sans-serif;
+  font-family: var(--font-display);
   color: #ffffff;
 }
 
@@ -198,7 +216,7 @@ img, video {
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.18);
   padding: 0.9rem 1.25rem;
-  font-family: 'Jost', sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.95rem;
   color: #ffffff;
   border-radius: 10px;
