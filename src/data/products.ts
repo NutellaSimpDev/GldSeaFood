@@ -92,14 +92,14 @@ export const products: Product[] = [
   },
   {
     slug: 'tilapia-whole-round',
-    name: 'Tilapia WR (Whole Round)',
+    name: 'Tilapia WR',
     category: 'tilapia',
     image: `${IMG}tilapia-whole-round.png`,
     boxWeightKg: 18.14, boxWeightLb: 40, weightConfirmed: true,
   },
   {
     slug: 'tilapia-gs',
-    name: 'Tilapia G/S (Gutted & Scaled)',
+    name: 'Tilapia G/S',
     category: 'tilapia',
     image: `${IMG}tilapia-gs.png`,
     boxWeightKg: 18.14, boxWeightLb: 40, weightConfirmed: true,

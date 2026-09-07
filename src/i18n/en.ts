@@ -245,7 +245,7 @@ export const en: Dict = {
     },
 
     'tilapia-fillet-ivp': {
-      tag: 'IVP · Skinless · White Flesh',
+      tag: 'Skinless · White Flesh · Vacuum Packed',
       desc: 'Selected fillets of firm white flesh, boneless and skinless, individually vacuum packed (IVP). Strictly graded by weight.',
       specs: [
         ['Presentation', 'Master carton 10 lb (4.54 kg)'],
@@ -255,7 +255,7 @@ export const en: Dict = {
       ],
     },
     'tilapia-whole-round': {
-      tag: 'WR · Unprocessed Whole',
+      tag: 'Unprocessed Whole Round',
       desc: 'Whole ungutted tilapia, frozen immediately after harvest. A lower cost-per-kilo format for plants with their own processing line.',
       specs: [
         ['Presentation', 'Master carton 40 lb (18.14 kg)'],
@@ -265,7 +265,7 @@ export const en: Dict = {
       ],
     },
     'tilapia-gs': {
-      tag: 'Gutted & Scaled',
+      tag: 'Whole · Gutted & Scaled',
       desc: 'Clean whole tilapia, gutted and scaled. Processed immediately after harvest to preserve flavor and flesh structure.',
       specs: [
         ['Presentation', 'Master carton 40 lb (18.14 kg)'],
@@ -296,7 +296,7 @@ export const en: Dict = {
     },
 
     'shrimp-vannamei-hoso': {
-      tag: 'HOSO · Head-On Shell-On',
+      tag: 'Head-On, Shell-On',
       desc: 'Whole farmed Vannamei shrimp, head-on and shell-on. Color and freshness preserved by immediate freezing at origin.',
       specs: [
         ['Presentation', 'Master carton 10 kg (blocks or IQF)'],
@@ -306,7 +306,7 @@ export const en: Dict = {
       ],
     },
     'shrimp-vannamei-pd': {
-      tag: 'PD · Raw Peeled & Deveined',
+      tag: 'Raw · Peeled and Deveined',
       desc: 'Raw peeled and deveined Vannamei shrimp. Net yield with no peeling loss, ideal for production lines and high-volume kitchens.',
       specs: [
         ['Presentation', 'Master carton 10 kg (1 kg bags)'],

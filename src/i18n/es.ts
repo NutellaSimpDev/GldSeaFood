@@ -245,7 +245,7 @@ export const es = {
     },
 
     'tilapia-fillet-ivp': {
-      tag: 'IVP · Sin Piel · Carne Blanca',
+      tag: 'Sin Piel · Carne Blanca · Empaque al Vacío',
       desc: 'Filetes seleccionados de carne blanca y firme, sin espinas ni piel, empacados individualmente al vacío (IVP). Clasificados estrictamente por gramaje.',
       specs: [
         ['Presentación', 'Caja Máster 10 lb (4.54 kg)'],
@@ -255,7 +255,7 @@ export const es = {
       ],
     },
     'tilapia-whole-round': {
-      tag: 'WR · Entera sin Procesar',
+      tag: 'Entera Sin Procesar · Whole Round',
       desc: 'Tilapia entera sin eviscerar, congelada inmediatamente tras la cosecha. Formato de menor costo por kilo para plantas con proceso propio.',
       specs: [
         ['Presentación', 'Caja Máster 40 lb (18.14 kg)'],
@@ -265,7 +265,7 @@ export const es = {
       ],
     },
     'tilapia-gs': {
-      tag: 'Gutted & Scaled',
+      tag: 'Entera · Sin Vísceras ni Escamas',
       desc: 'Tilapia entera limpia, sin vísceras y sin escamas. Procesada inmediatamente tras la cosecha para preservar sabor y estructura de la carne.',
       specs: [
         ['Presentación', 'Caja Máster 40 lb (18.14 kg)'],
@@ -296,7 +296,7 @@ export const es = {
     },
 
     'shrimp-vannamei-hoso': {
-      tag: 'HOSO · Entero con Cabeza',
+      tag: 'Entero con Cabeza y Caparazón',
       desc: 'Camarón Vannamei de cultivo entero, con cabeza y caparazón (Head-On Shell-On). Color y frescura preservados por congelación inmediata en origen.',
       specs: [
         ['Presentación', 'Caja Máster 10 kg (bloques o IQF)'],
@@ -306,7 +306,7 @@ export const es = {
       ],
     },
     'shrimp-vannamei-pd': {
-      tag: 'PD · Pelado & Desvenado Crudo',
+      tag: 'Crudo · Pelado y Desvenado',
       desc: 'Camarón Vannamei pelado y desvenado en crudo. Rendimiento neto sin merma de pelado, ideal para líneas de producción y cocina de volumen.',
       specs: [
         ['Presentación', 'Caja Máster 10 kg (bolsas 1 kg)'],
