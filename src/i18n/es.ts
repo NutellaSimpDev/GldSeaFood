@@ -13,6 +13,7 @@ export const es = {
   nav: {
     inicio: 'Inicio',
     operaciones: 'Alcance Global',
+    produccion: 'Planta & Proceso',
     productos: 'Catálogo',
     calculadora: 'Calculadora B2B',
     ventajas: 'Ventajas',
@@ -64,6 +65,52 @@ export const es = {
       pe: 'Origen del Calamar Gigante Dosidicus gigas. Plantas de procesamiento certificadas en la costa.',
       cn: 'Abastecimiento de tilapia y panga desde el puerto de Yantian, Shenzhen. Control de calidad en origen.',
       vn: 'Producción de filete de panga premium. Procesamiento de alta tecnología con certificación BAP.',
+    },
+  },
+
+  production: {
+    eyebrow: 'Infraestructura & Procesamiento',
+    title: 'Planta de Procesamiento & Control de Calidad en Origen',
+    subtitle:
+      'Nuestras plantas asociadas en China y Sudamérica operan bajo estándares internacionales de inocuidad alimentaria. Integramos líneas continuas de fileteo y sistemas automatizados de termoformado al vacío (IVP) para asegurar máxima frescura.',
+    videoTag: 'Filmación Oficial en Planta · Yantian / China',
+    videoSub: 'Inspección técnica directa en líneas de producción y termoformado.',
+    jumpToStep: 'Saltar a etapa en video:',
+    steps: [
+      {
+        num: '01',
+        time: 5,
+        title: 'Recepción & Selección de Materia Prima',
+        desc: 'Inspección organoléptica inicial, calibración y pesaje en mesas de acero inoxidable grado alimentario.',
+      },
+      {
+        num: '02',
+        time: 74,
+        title: 'Fileteo Artesanal & Desespinado en Línea',
+        desc: 'Líneas continuas con operarios calificados en uniforme oficial Golden Seafood, cuidando el corte y la merma.',
+      },
+      {
+        num: '03',
+        time: 115,
+        title: 'Control de Inocuidad & Lavado Sanitario',
+        desc: 'Lavado con agua ozonizada, drenaje en bandejas sanitarias y verificación constante de temperatura.',
+      },
+      {
+        num: '04',
+        time: 145,
+        title: 'Termoformado Automatizado (IVP)',
+        desc: 'Maquinaria continua de empaque al vacío individual de alta barrera para conservar textura, humedad y vida útil.',
+      },
+    ],
+    kpis: {
+      capacity: 'Capacidad de Procesamiento',
+      capacityVal: '50+ TM / Día',
+      temp: 'Monitoreo de Cadena de Frío',
+      tempVal: '-18°C a -25°C',
+      standards: 'Certificación de Planta',
+      standardsVal: 'HACCP · FDA · BRCGS',
+      trace: 'Trazabilidad por Lote',
+      traceVal: '100% Origen a Destino',
     },
   },
 

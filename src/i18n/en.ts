@@ -14,6 +14,7 @@ export const en: Dict = {
   nav: {
     inicio: 'Home',
     operaciones: 'Global Reach',
+    produccion: 'Plant & Process',
     productos: 'Catalog',
     calculadora: 'B2B Calculator',
     ventajas: 'Advantages',
@@ -65,6 +66,52 @@ export const en: Dict = {
       pe: 'Origin of Giant Squid Dosidicus gigas. Certified processing plants along the coast.',
       cn: 'Tilapia and panga sourcing through the port of Yantian, Shenzhen. Quality control at origin.',
       vn: 'Premium panga fillet production. High-technology processing with BAP certification.',
+    },
+  },
+
+  production: {
+    eyebrow: 'Infrastructure & Processing',
+    title: 'Processing Plant & Quality Control at Origin',
+    subtitle:
+      'Our partner processing facilities in China and South America adhere to the strictest international food safety standards. We integrate precision filleting lines with automated continuous vacuum thermoforming (IVP) to guarantee prime freshness.',
+    videoTag: 'Official Facility Footage · Yantian / China',
+    videoSub: 'Direct on-site inspection across processing and packaging lines.',
+    jumpToStep: 'Jump to stage in video:',
+    steps: [
+      {
+        num: '01',
+        time: 5,
+        title: 'Raw Material Intake & Sorting',
+        desc: 'Initial organoleptic evaluation, sizing, and precision weighing on food-grade stainless steel stations.',
+      },
+      {
+        num: '02',
+        time: 74,
+        title: 'Skilled Filleting & Precision Trimming',
+        desc: 'Continuous processing lines staffed by trained personnel in official Golden Seafood gear, optimizing cut and yield.',
+      },
+      {
+        num: '03',
+        time: 115,
+        title: 'Sanitation Control & Washing',
+        desc: 'Ozonated water rinsing, sanitary tray drainage, and continuous real-time temperature monitoring.',
+      },
+      {
+        num: '04',
+        time: 145,
+        title: 'Automated Vacuum Packaging (IVP)',
+        desc: 'High-barrier continuous thermoforming vacuum packing to preserve texture, moisture, and shelf life for export.',
+      },
+    ],
+    kpis: {
+      capacity: 'Processing Capacity',
+      capacityVal: '50+ MT / Day',
+      temp: 'Cold Chain Monitoring',
+      tempVal: '-18°C to -25°C',
+      standards: 'Facility Certification',
+      standardsVal: 'HACCP · FDA · BRCGS',
+      trace: 'Batch Traceability',
+      traceVal: '100% Origin to Port',
     },
   },
 

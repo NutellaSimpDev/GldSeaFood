@@ -1,9 +1,10 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect, lazy, Suspense, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Snowflake, Package, ChevronDown, X, ArrowRight,
   Globe2, Mail, MapPin, AlertTriangle, Menu,
-  Award, TrendingUp, FileCheck
+  Award, TrendingUp, FileCheck,
+  Play, Pause, Volume2, VolumeX, Maximize2, Factory, CheckCircle2
 } from 'lucide-react';
 import WaveCursor from './components/WaveCursor';
 import { products, categories, type Product, type CategoryId } from './data/products';
@@ -95,6 +96,7 @@ function Navbar() {
   const links = [
     { href: '#inicio', label: t.nav.inicio },
     { href: '#operaciones', label: t.nav.operaciones },
+    { href: '#produccion', label: t.nav.produccion },
     { href: '#productos', label: t.nav.productos },
     { href: '#ventajas', label: t.nav.ventajas },
   ];
@@ -258,7 +260,7 @@ function Hero() {
           playsInline
           className="absolute inset-0 w-full h-full min-w-full min-h-full object-cover object-center"
         >
-          <source src={`${BASE}videos/basa-boomerang.mp4`} type="video/mp4" />
+          <source src={`${BASE}videos/hero-plant-loop.mp4`} type="video/mp4" />
         </video>
       </motion.div>
 
@@ -470,11 +472,318 @@ function Operations() {
         </p>
 
         <div className="text-center">
-          <a href="#productos" className="btn-gold text-xs px-6 py-3">
+          <a href="#produccion" className="btn-gold text-xs px-6 py-3">
             {t.operations.cta} <ChevronDown size={14} />
           </a>
         </div>
       </motion.div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PRODUCTION & PROCESSING FACILITIES
+   ═══════════════════════════════════════════════════════════════ */
+function Production() {
+  const { t } = useI18n();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(172);
+  const [activeStepIndex, setActiveStepIndex] = useState(0);
+
+  const togglePlay = () => {
+    if (!videoRef.current) return;
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+      setIsPlaying(true);
+    } else {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    }
+  };
+
+  const toggleMute = () => {
+    if (!videoRef.current) return;
+    videoRef.current.muted = !videoRef.current.muted;
+    setIsMuted(videoRef.current.muted);
+  };
+
+  const handleTimeUpdate = () => {
+    if (!videoRef.current) return;
+    const curr = videoRef.current.currentTime;
+    setCurrentTime(curr);
+    if (videoRef.current.duration && !isNaN(videoRef.current.duration)) {
+      setDuration(videoRef.current.duration);
+    }
+
+    const steps = t.production.steps;
+    if (curr < steps[1].time) {
+      setActiveStepIndex(0);
+    } else if (curr < steps[2].time) {
+      setActiveStepIndex(1);
+    } else if (curr < steps[3].time) {
+      setActiveStepIndex(2);
+    } else {
+      setActiveStepIndex(3);
+    }
+  };
+
+  const handleSeek = (time: number, index: number) => {
+    if (!videoRef.current) return;
+    videoRef.current.currentTime = time;
+    if (videoRef.current.paused) {
+      videoRef.current.play().catch(() => {});
+      setIsPlaying(true);
+    }
+    setActiveStepIndex(index);
+  };
+
+  const handleProgressBarClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!videoRef.current) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    const targetTime = pos * duration;
+    videoRef.current.currentTime = targetTime;
+  };
+
+  const toggleFullscreen = () => {
+    if (!videoRef.current) return;
+    if (document.fullscreenElement) {
+      document.exitFullscreen().catch(() => {});
+    } else {
+      videoRef.current.requestFullscreen().catch(() => {});
+    }
+  };
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  return (
+    <section id="produccion" className="relative py-20 sm:py-32 overflow-hidden bg-gradient-to-b from-[#090e17] via-[#0d1624] to-[#090e17]">
+      {/* Decorative ambient glow */}
+      <div className="absolute top-1/4 -left-48 w-96 h-96 bg-[var(--gold)]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-48 w-96 h-96 bg-[#00e5ff]/10 rounded-full blur-[140px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        {/* Header */}
+        <motion.div
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="text-center max-w-3xl mx-auto mb-14 sm:mb-20"
+        >
+          <span className="inline-flex items-center gap-2 text-[var(--gold-bright)] text-xs font-bold uppercase tracking-[2.5px] mb-4 py-1 px-3.5 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/20 shadow-sm">
+            <Factory size={14} />
+            {t.production.eyebrow}
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-5 leading-tight font-display">
+            {t.production.title}
+          </h2>
+          <p className="text-white/70 text-sm sm:text-base leading-relaxed">
+            {t.production.subtitle}
+          </p>
+        </motion.div>
+
+        {/* Video & Steps Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          {/* Main Video Showcase (7 cols) */}
+          <motion.div
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="lg:col-span-7"
+          >
+            <div className="relative rounded-2xl overflow-hidden glass border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.6)] group">
+              {/* Top Tag Badge */}
+              <div className="absolute top-4 left-4 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#090e17]/85 backdrop-blur-md border border-white/15 text-xs text-white/90 shadow-lg pointer-events-none">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="font-semibold tracking-wide">{t.production.videoTag}</span>
+              </div>
+
+              {/* Video Element */}
+              <div className="relative aspect-video bg-black cursor-pointer" onClick={togglePlay}>
+                <video
+                  ref={videoRef}
+                  playsInline
+                  poster={`${BASE}videos/poster-plant.jpg`}
+                  onTimeUpdate={handleTimeUpdate}
+                  onEnded={() => setIsPlaying(false)}
+                  className="w-full h-full object-cover"
+                >
+                  <source src={`${BASE}videos/china-plant-production.mp4`} type="video/mp4" />
+                </video>
+
+                {/* Big Center Play Overlay Button */}
+                {!isPlaying && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/45 backdrop-blur-[2px] transition-opacity">
+                    <div className="w-20 h-20 rounded-full bg-[var(--gold-bright)] text-[#090e17] flex items-center justify-center shadow-[0_0_40px_rgba(212,175,55,0.6)] transform transition-transform hover:scale-110">
+                      <Play size={34} className="ml-1 fill-current" />
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Controls Bar */}
+              <div className="p-4 sm:p-5 bg-[#0a101b]/95 border-t border-white/10">
+                {/* Scrub Bar */}
+                <div
+                  className="relative h-2 w-full bg-white/10 rounded-full overflow-hidden cursor-pointer mb-3 group/progress"
+                  onClick={handleProgressBarClick}
+                >
+                  <div
+                    className="absolute top-0 left-0 h-full bg-gradient-to-r from-[var(--gold)] to-[var(--gold-bright)] transition-all duration-100"
+                    style={{ width: `${Math.min(100, (currentTime / (duration || 1)) * 100)}%` }}
+                  />
+                </div>
+
+                <div className="flex items-center justify-between text-xs text-white/80">
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={togglePlay}
+                      className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
+                      title={isPlaying ? 'Pausa' : 'Reproducir'}
+                    >
+                      {isPlaying ? <Pause size={16} /> : <Play size={16} className="fill-current" />}
+                    </button>
+                    <button
+                      onClick={toggleMute}
+                      className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
+                      title={isMuted ? 'Activar sonido' : 'Silenciar'}
+                    >
+                      {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+                    </button>
+                    <span className="font-mono text-white/60">
+                      {formatTime(currentTime)} / {formatTime(duration)}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <span className="hidden sm:inline text-white/50 text-[11px]">
+                      {t.production.videoSub}
+                    </span>
+                    <button
+                      onClick={toggleFullscreen}
+                      className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors ml-2 cursor-pointer"
+                      title="Pantalla completa"
+                    >
+                      <Maximize2 size={16} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Interactive Steps Column (5 cols) */}
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="lg:col-span-5 flex flex-col gap-3.5"
+          >
+            <div className="flex items-center justify-between mb-1 px-1">
+              <span className="text-xs uppercase tracking-widest text-[var(--gold-bright)] font-semibold flex items-center gap-1.5">
+                <CheckCircle2 size={14} />
+                {t.production.jumpToStep}
+              </span>
+              <span className="text-[11px] text-white/40">Haz clic para saltar en video</span>
+            </div>
+
+            {t.production.steps.map((step, idx) => {
+              const isActive = activeStepIndex === idx;
+              return (
+                <div
+                  key={step.num}
+                  onClick={() => handleSeek(step.time, idx)}
+                  className={`p-4 rounded-xl border transition-all duration-300 cursor-pointer ${
+                    isActive
+                      ? 'bg-gradient-to-r from-[var(--gold)]/15 to-transparent border-[var(--gold)]/60 shadow-[0_4px_20px_rgba(212,175,55,0.15)] translate-x-1.5'
+                      : 'bg-white/[0.03] border-white/10 hover:bg-white/[0.07] hover:border-white/20'
+                  }`}
+                >
+                  <div className="flex items-start gap-3.5">
+                    <span className={`font-mono text-sm font-black px-2.5 py-1 rounded-md transition-colors ${
+                      isActive
+                        ? 'bg-[var(--gold-bright)] text-[#090e17]'
+                        : 'bg-white/10 text-white/60'
+                    }`}>
+                      {step.num}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-2 mb-1">
+                        <h4 className={`text-sm font-bold tracking-tight transition-colors ${
+                          isActive ? 'text-[var(--gold-bright)]' : 'text-white'
+                        }`}>
+                          {step.title}
+                        </h4>
+                        <span className="text-[11px] font-mono text-white/40 shrink-0">
+                          {formatTime(step.time)}
+                        </span>
+                      </div>
+                      <p className="text-xs text-white/65 leading-relaxed">
+                        {step.desc}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </motion.div>
+        </div>
+
+        {/* Industrial KPIs Row */}
+        <motion.div
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="mt-12 sm:mt-16 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
+        >
+          <div className="glass p-5 rounded-2xl border border-white/10 text-center">
+            <span className="text-2xl sm:text-3xl font-black text-[var(--gold-bright)] font-mono block mb-1">
+              {t.production.kpis.capacityVal}
+            </span>
+            <span className="text-xs text-white/70 uppercase tracking-wider font-semibold">
+              {t.production.kpis.capacity}
+            </span>
+          </div>
+
+          <div className="glass p-5 rounded-2xl border border-white/10 text-center">
+            <span className="text-2xl sm:text-3xl font-black text-[#00e5ff] font-mono block mb-1">
+              {t.production.kpis.tempVal}
+            </span>
+            <span className="text-xs text-white/70 uppercase tracking-wider font-semibold">
+              {t.production.kpis.temp}
+            </span>
+          </div>
+
+          <div className="glass p-5 rounded-2xl border border-white/10 text-center">
+            <span className="text-lg sm:text-2xl font-black text-white font-mono block mb-1 truncate">
+              {t.production.kpis.standardsVal}
+            </span>
+            <span className="text-xs text-white/70 uppercase tracking-wider font-semibold">
+              {t.production.kpis.standards}
+            </span>
+          </div>
+
+          <div className="glass p-5 rounded-2xl border border-white/10 text-center">
+            <span className="text-2xl sm:text-3xl font-black text-emerald-400 font-mono block mb-1">
+              {t.production.kpis.traceVal}
+            </span>
+            <span className="text-xs text-white/70 uppercase tracking-wider font-semibold">
+              {t.production.kpis.trace}
+            </span>
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }
@@ -960,6 +1269,7 @@ export default function App() {
         <Hero />
         <CertificationsBar />
         <Operations />
+        <Production />
         <Catalog />
         <Advantages />
         <Contact />
