@@ -749,7 +749,7 @@ function Production() {
           className="mt-12 sm:mt-16 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
         >
           <div className="glass p-5 rounded-2xl border border-white/10 text-center">
-            <span className="text-2xl sm:text-3xl font-black text-[var(--gold-bright)] font-mono block mb-1">
+            <span className="text-2xl sm:text-3xl font-bold text-[var(--gold-bright)] font-sans tracking-wide block mb-1">
               {t.production.kpis.capacityVal}
             </span>
             <span className="text-xs text-white/70 uppercase tracking-wider font-semibold">
@@ -758,7 +758,7 @@ function Production() {
           </div>
 
           <div className="glass p-5 rounded-2xl border border-white/10 text-center">
-            <span className="text-2xl sm:text-3xl font-black text-[#00e5ff] font-mono block mb-1">
+            <span className="text-2xl sm:text-3xl font-bold text-[var(--gold-bright)] font-sans tracking-wide block mb-1">
               {t.production.kpis.tempVal}
             </span>
             <span className="text-xs text-white/70 uppercase tracking-wider font-semibold">
@@ -767,7 +767,7 @@ function Production() {
           </div>
 
           <div className="glass p-5 rounded-2xl border border-white/10 text-center">
-            <span className="text-lg sm:text-2xl font-black text-white font-mono block mb-1 truncate">
+            <span className="text-lg sm:text-xl font-bold text-[var(--gold-bright)] font-sans tracking-wide block mb-1 leading-snug">
               {t.production.kpis.standardsVal}
             </span>
             <span className="text-xs text-white/70 uppercase tracking-wider font-semibold">
@@ -776,7 +776,7 @@ function Production() {
           </div>
 
           <div className="glass p-5 rounded-2xl border border-white/10 text-center">
-            <span className="text-2xl sm:text-3xl font-black text-emerald-400 font-mono block mb-1">
+            <span className="text-2xl sm:text-3xl font-bold text-[var(--gold-bright)] font-sans tracking-wide block mb-1">
               {t.production.kpis.traceVal}
             </span>
             <span className="text-xs text-white/70 uppercase tracking-wider font-semibold">
