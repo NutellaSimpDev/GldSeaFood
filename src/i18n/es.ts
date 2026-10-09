@@ -73,7 +73,7 @@ export const es = {
     title: 'Planta de Procesamiento & Control de Calidad en Origen',
     subtitle:
       'Nuestras plantas asociadas en China y Sudamérica operan bajo estándares internacionales de inocuidad alimentaria. Integramos líneas continuas de fileteo y sistemas automatizados de termoformado al vacío (IVP) para asegurar máxima frescura.',
-    videoTag: 'Filmación Oficial en Planta · Yantian / China',
+    videoTag: 'Filmación Oficial en Planta · China',
     videoSub: 'Inspección técnica directa en líneas de producción y termoformado.',
     jumpToStep: 'Saltar a etapa en video:',
     steps: [
@@ -92,8 +92,8 @@ export const es = {
       {
         num: '03',
         time: 115,
-        title: 'Control de Inocuidad & Lavado Sanitario',
-        desc: 'Lavado con agua ozonizada, drenaje en bandejas sanitarias y verificación constante de temperatura.',
+        title: 'Inmersión en Solución de STPP',
+        desc: 'Los filetes se sumergen en solución de tripolifosfato de sodio (STPP) para retener humedad y proteger la textura durante la congelación, con control de concentración y tiempo de inmersión.',
       },
       {
         num: '04',
@@ -221,6 +221,7 @@ export const es = {
   // ─── Fichas de producto, indexadas por slug ─────────────────────
   products: {
     'giant-squid-fillet': {
+      name: 'Filete de Calamar Gigante',
       tag: 'Dosidicus gigas · Origen Perú',
       desc: 'Láminas de manto limpias, de blancura uniforme y textura firme. Base ideal para reempaque, corte secundario y elaboración de anillos o tiras.',
       specs: [
@@ -231,7 +232,8 @@ export const es = {
       ],
     },
     'giant-squid-neck': {
-      tag: 'Cuello · Corte Limpio',
+      name: 'Cuello de Calamar Gigante',
+      tag: 'Corte Limpio · Sin Piel ni Cartílago',
       desc: 'Cuello de calamar gigante limpio, sin piel ni cartílago. Rendimiento alto y textura consistente para corte en aros o preparaciones enteras.',
       specs: [
         ['Presentación', 'Saco de rafia 20 kg'],
@@ -241,7 +243,8 @@ export const es = {
       ],
     },
     'giant-squid-wing': {
-      tag: 'Aleta · Alto Rendimiento',
+      name: 'Alas de Calamar Gigante',
+      tag: 'Corte Económico · Alto Rendimiento',
       desc: 'Aleta de calamar gigante, corte económico de excelente rendimiento. Muy utilizada en la industria de snacks marinos y preparaciones apanadas.',
       specs: [
         ['Presentación', 'Saco de rafia 20 kg'],
@@ -251,7 +254,8 @@ export const es = {
       ],
     },
     'giant-squid-rings': {
-      tag: 'Anillos · Listos para Empanizar',
+      name: 'Aros de Calamar Gigante',
+      tag: 'Listos para Empanizar · Calibre Uniforme',
       desc: 'Anillos de calibre uniforme cortados del manto, listos para empanizar o cocinar. Presentación de alta rotación en food-service y retail.',
       specs: [
         ['Presentación', 'Caja máster 10 kg'],
@@ -261,6 +265,7 @@ export const es = {
       ],
     },
     'giant-squid-bp': {
+      name: 'Calamar Gigante BP',
       tag: 'BP · Piezas Seleccionadas',
       desc: 'Piezas de calamar gigante clasificadas y limpias, de blancura pareja. Formato versátil para reempaque y elaboración de productos con valor agregado.',
       specs: [
@@ -271,6 +276,7 @@ export const es = {
       ],
     },
     'giant-squid-sexual-organ': {
+      name: 'Órgano Sexual de Calamar Gigante',
       tag: 'Especialidad · Mercado Asiático',
       desc: 'Producto de especialidad con demanda sostenida en mercados asiáticos. Procesado y clasificado en origen bajo estándares sanitarios de exportación.',
       specs: [
@@ -281,7 +287,8 @@ export const es = {
       ],
     },
     'giant-squid-tentacles': {
-      tag: 'Tentáculos · Limpios',
+      name: 'Tentáculos de Calamar Gigante',
+      tag: 'Limpios y Clasificados por Tamaño',
       desc: 'Tentáculos limpios y clasificados por tamaño. Textura firme y sabor marino pronunciado, muy solicitados en parrilla, salteados y conservas.',
       specs: [
         ['Presentación', 'Saco de rafia 20 kg'],
@@ -292,6 +299,7 @@ export const es = {
     },
 
     'tilapia-fillet-ivp': {
+      name: 'Filete de Tilapia IVP',
       tag: 'Sin Piel · Carne Blanca · Empaque al Vacío',
       desc: 'Filetes seleccionados de carne blanca y firme, sin espinas ni piel, empacados individualmente al vacío (IVP). Clasificados estrictamente por gramaje.',
       specs: [
@@ -302,6 +310,7 @@ export const es = {
       ],
     },
     'tilapia-whole-round': {
+      name: 'Tilapia Entera (WR)',
       tag: 'Entera Sin Procesar · Whole Round',
       desc: 'Tilapia entera sin eviscerar, congelada inmediatamente tras la cosecha. Formato de menor costo por kilo para plantas con proceso propio.',
       specs: [
@@ -312,6 +321,7 @@ export const es = {
       ],
     },
     'tilapia-gs': {
+      name: 'Tilapia Eviscerada y Descamada (G/S)',
       tag: 'Entera · Sin Vísceras ni Escamas',
       desc: 'Tilapia entera limpia, sin vísceras y sin escamas. Procesada inmediatamente tras la cosecha para preservar sabor y estructura de la carne.',
       specs: [
@@ -322,6 +332,7 @@ export const es = {
       ],
     },
     'tilapia-breaded-raw': {
+      name: 'Filete de Tilapia Empanizado Crudo',
       tag: 'Empanizado Crudo · Valor Agregado',
       desc: 'Filete de tilapia empanizado en crudo, listo para freír u hornear en destino. Cobertura uniforme y adherencia estable tras la descongelación.',
       specs: [
@@ -332,6 +343,7 @@ export const es = {
       ],
     },
     'tilapia-breaded-prefried': {
+      name: 'Filete de Tilapia Empanizado Pre-frito',
       tag: 'Pre-frito · Listo para Servir',
       desc: 'Filete de tilapia empanizado y pre-frito en origen. Solo requiere calentamiento final, lo que reduce tiempos y merma en cocina.',
       specs: [
@@ -343,6 +355,7 @@ export const es = {
     },
 
     'shrimp-vannamei-hoso': {
+      name: 'Camarón Vannamei HOSO',
       tag: 'Entero con Cabeza y Caparazón',
       desc: 'Camarón Vannamei de cultivo entero, con cabeza y caparazón (Head-On Shell-On). Color y frescura preservados por congelación inmediata en origen.',
       specs: [
@@ -353,6 +366,7 @@ export const es = {
       ],
     },
     'shrimp-vannamei-pd': {
+      name: 'Camarón Vannamei PD',
       tag: 'Crudo · Pelado y Desvenado',
       desc: 'Camarón Vannamei pelado y desvenado en crudo. Rendimiento neto sin merma de pelado, ideal para líneas de producción y cocina de volumen.',
       specs: [
@@ -363,6 +377,7 @@ export const es = {
       ],
     },
     'shrimp-cooked-pd': {
+      name: 'Camarón Cocido, Pelado y Desvenado',
       tag: 'Listo para Consumo · Pelado & Desvenado',
       desc: 'Camarón de cultivo pelado y desvenado, cocido al vapor en origen. Mantiene color naranja brillante, textura crujiente y cero mermas al descongelar.',
       specs: [
@@ -373,6 +388,7 @@ export const es = {
       ],
     },
     'shrimp-paste': {
+      name: 'Pasta de Camarón',
       tag: 'Pasta · Base Industrial',
       desc: 'Pasta de camarón para uso industrial, base de salsas, rellenos, embutidos marinos y productos formados. Textura homogénea y sabor concentrado.',
       specs: [
@@ -384,6 +400,7 @@ export const es = {
     },
 
     'rose-panga-fillet': {
+      name: 'Filete de Panga Rosado',
       tag: 'Pangasius · Filete Rosado',
       desc: 'Filete de panga de tonalidad rosada natural, bien recortado, sin grasa, sin espinas y sin línea roja. Rendimiento 100% neto para comedores industriales y procesadores.',
       specs: [
@@ -394,6 +411,7 @@ export const es = {
       ],
     },
     'panga-steaks': {
+      name: 'Postas de Panga',
       tag: 'Steaks · Corte Transversal',
       desc: 'Corte transversal de panga con hueso central, de grosor uniforme. Presentación de alta rotación en mercados donde se valora el corte tipo posta.',
       specs: [
@@ -404,6 +422,7 @@ export const es = {
       ],
     },
     'panga-breaded-fillet': {
+      name: 'Filete de Panga Empanizado',
       tag: 'Empanizado · Valor Agregado',
       desc: 'Filete de panga empanizado, de cobertura pareja y crocante estable tras la cocción. Formato pensado para cadenas de comida rápida y catering.',
       specs: [
@@ -415,6 +434,7 @@ export const es = {
     },
 
     'tuna-steaks': {
+      name: 'Lomos de Atún',
       tag: 'Lomo · Corte Premium',
       desc: 'Lomos de atún de corte limpio y color intenso, seleccionados por calidad de carne. Congelación rápida que preserva textura y presentación en plato.',
       specs: [
@@ -425,6 +445,7 @@ export const es = {
       ],
     },
     'tuna-cubes': {
+      name: 'Cubos de Atún',
       tag: 'Cubos · Porcionado',
       desc: 'Cubos de atún de tamaño homogéneo, listos para porcionar. Formato eficiente para poke, ceviches, salteados y líneas de preparación rápida.',
       specs: [

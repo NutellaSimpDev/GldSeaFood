@@ -490,7 +490,7 @@ function Production() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(172);
+  const [duration, setDuration] = useState(155);
   const [activeStepIndex, setActiveStepIndex] = useState(0);
 
   const togglePlay = () => {
@@ -612,6 +612,7 @@ function Production() {
                 <video
                   ref={videoRef}
                   playsInline
+                  preload="none"
                   poster={`${BASE}videos/poster-plant.jpg`}
                   onTimeUpdate={handleTimeUpdate}
                   onEnded={() => setIsPlaying(false)}
@@ -830,7 +831,7 @@ function ProductDetail({ product, onClose }: { product: Product; onClose: () => 
           <div className="absolute inset-0 bg-radial from-[var(--gold)]/15 via-transparent to-transparent pointer-events-none" />
           <img
             src={`${BASE}${product.image}`}
-            alt={product.name}
+            alt={copy.name}
             style={{ maxHeight: '180px', maxWidth: '90%', objectFit: 'contain' }}
             className="drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] relative z-1"
           />
@@ -840,7 +841,7 @@ function ProductDetail({ product, onClose }: { product: Product; onClose: () => 
           <div className="inline-block px-3 py-1 rounded-full bg-[var(--gold)]/15 border border-[var(--gold)]/25 mb-3">
             <span className="text-[var(--gold-bright)] text-[0.7rem] font-semibold tracking-[1.5px] uppercase">{copy.tag}</span>
           </div>
-          <h3 className="text-xl sm:text-3xl font-bold mb-3 sm:mb-4">{product.name}</h3>
+          <h3 className="text-xl sm:text-3xl font-bold mb-3 sm:mb-4">{copy.name}</h3>
           <p className="text-white/80 leading-relaxed mb-5 font-light text-xs sm:text-sm">{copy.desc}</p>
 
           <div className="border border-white/15 rounded-xl p-4 sm:p-5 bg-white/5 space-y-2.5">
@@ -944,7 +945,7 @@ function Catalog() {
                   <div className="absolute inset-0 bg-radial from-[var(--gold)]/15 via-transparent to-transparent pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
                   <img
                     src={`${BASE}${p.image}`}
-                    alt={p.name}
+                    alt={copy.name}
                     loading="lazy"
                     style={{ maxHeight: '160px', maxWidth: '85%', objectFit: 'contain' }}
                     className="drop-shadow-[0_15px_30px_rgba(0,0,0,0.75)] group-hover:scale-105 transition-transform duration-300 relative z-1"
@@ -958,7 +959,7 @@ function Catalog() {
                   </span>
 
                   <h3 className="text-lg sm:text-xl font-bold mb-2 text-white group-hover:text-[var(--gold-bright)] transition-colors">
-                    {p.name}
+                    {copy.name}
                   </h3>
 
                   <p className="text-white/70 text-xs sm:text-sm leading-relaxed mb-4 font-light flex-grow line-clamp-2">
@@ -1130,7 +1131,7 @@ function Contact() {
                 {categories.map(cat => (
                   <optgroup key={cat} label={t.catalog.categories[cat]}>
                     {products.filter(p => p.category === cat).map(p => (
-                      <option key={p.slug} value={p.name}>{p.name}</option>
+                      <option key={p.slug} value={p.name}>{t.products[p.slug as ProductKey].name}</option>
                     ))}
                   </optgroup>
                 ))}

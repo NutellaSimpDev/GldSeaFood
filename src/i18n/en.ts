@@ -74,7 +74,7 @@ export const en: Dict = {
     title: 'Processing Plant & Quality Control at Origin',
     subtitle:
       'Our partner processing facilities in China and South America adhere to the strictest international food safety standards. We integrate precision filleting lines with automated continuous vacuum thermoforming (IVP) to guarantee prime freshness.',
-    videoTag: 'Official Facility Footage · Yantian / China',
+    videoTag: 'Official Facility Footage · China',
     videoSub: 'Direct on-site inspection across processing and packaging lines.',
     jumpToStep: 'Jump to stage in video:',
     steps: [
@@ -93,8 +93,8 @@ export const en: Dict = {
       {
         num: '03',
         time: 115,
-        title: 'Sanitation Control & Washing',
-        desc: 'Ozonated water rinsing, sanitary tray drainage, and continuous real-time temperature monitoring.',
+        title: 'STPP Solution Immersion',
+        desc: 'Fillets are soaked in a sodium tripolyphosphate (STPP) solution to retain moisture and protect texture through freezing, with controlled concentration and dwell time.',
       },
       {
         num: '04',
@@ -221,6 +221,7 @@ export const en: Dict = {
 
   products: {
     'giant-squid-fillet': {
+      name: 'Giant Squid Fillet',
       tag: 'Dosidicus gigas · Peruvian Origin',
       desc: 'Clean mantle sheets with uniform whiteness and firm texture. An ideal base for repacking, secondary cutting and production of rings or strips.',
       specs: [
@@ -231,6 +232,7 @@ export const en: Dict = {
       ],
     },
     'giant-squid-neck': {
+      name: 'Giant Squid Neck',
       tag: 'Neck · Clean Cut',
       desc: 'Clean giant squid neck, skinless and cartilage-free. High yield and consistent texture for ring cutting or whole preparations.',
       specs: [
@@ -241,6 +243,7 @@ export const en: Dict = {
       ],
     },
     'giant-squid-wing': {
+      name: 'Giant Squid Wing',
       tag: 'Wing · High Yield',
       desc: 'Giant squid wing, an economical cut with excellent yield. Widely used in the seafood snack industry and breaded preparations.',
       specs: [
@@ -251,6 +254,7 @@ export const en: Dict = {
       ],
     },
     'giant-squid-rings': {
+      name: 'Giant Squid Rings',
       tag: 'Rings · Ready to Bread',
       desc: 'Uniformly graded rings cut from the mantle, ready to bread or cook. A high-turnover presentation in food service and retail.',
       specs: [
@@ -261,6 +265,7 @@ export const en: Dict = {
       ],
     },
     'giant-squid-bp': {
+      name: 'Giant Squid BP',
       tag: 'BP · Selected Pieces',
       desc: 'Graded, clean giant squid pieces with even whiteness. A versatile format for repacking and value-added product manufacturing.',
       specs: [
@@ -271,6 +276,7 @@ export const en: Dict = {
       ],
     },
     'giant-squid-sexual-organ': {
+      name: 'Giant Squid Sexual Organ',
       tag: 'Specialty · Asian Market',
       desc: 'A specialty product with sustained demand in Asian markets. Processed and graded at origin under export sanitary standards.',
       specs: [
@@ -281,6 +287,7 @@ export const en: Dict = {
       ],
     },
     'giant-squid-tentacles': {
+      name: 'Giant Squid Tentacles',
       tag: 'Tentacles · Cleaned',
       desc: 'Clean tentacles graded by size. Firm texture and pronounced marine flavor, in high demand for grilling, sautéing and canning.',
       specs: [
@@ -292,6 +299,7 @@ export const en: Dict = {
     },
 
     'tilapia-fillet-ivp': {
+      name: 'Tilapia Fillet IVP',
       tag: 'Skinless · White Flesh · Vacuum Packed',
       desc: 'Selected fillets of firm white flesh, boneless and skinless, individually vacuum packed (IVP). Strictly graded by weight.',
       specs: [
@@ -302,6 +310,7 @@ export const en: Dict = {
       ],
     },
     'tilapia-whole-round': {
+      name: 'Tilapia WR',
       tag: 'Unprocessed Whole Round',
       desc: 'Whole ungutted tilapia, frozen immediately after harvest. A lower cost-per-kilo format for plants with their own processing line.',
       specs: [
@@ -312,6 +321,7 @@ export const en: Dict = {
       ],
     },
     'tilapia-gs': {
+      name: 'Tilapia G/S',
       tag: 'Whole · Gutted & Scaled',
       desc: 'Clean whole tilapia, gutted and scaled. Processed immediately after harvest to preserve flavor and flesh structure.',
       specs: [
@@ -322,6 +332,7 @@ export const en: Dict = {
       ],
     },
     'tilapia-breaded-raw': {
+      name: 'Raw Breaded Tilapia Fillet',
       tag: 'Raw Breaded · Value Added',
       desc: 'Raw breaded tilapia fillet, ready to fry or bake at destination. Uniform coating with stable adhesion after thawing.',
       specs: [
@@ -332,6 +343,7 @@ export const en: Dict = {
       ],
     },
     'tilapia-breaded-prefried': {
+      name: 'Pre-fried Breaded Tilapia Fillet',
       tag: 'Pre-fried · Ready to Serve',
       desc: 'Breaded tilapia fillet pre-fried at origin. Requires only final reheating, cutting kitchen time and shrinkage.',
       specs: [
@@ -343,6 +355,7 @@ export const en: Dict = {
     },
 
     'shrimp-vannamei-hoso': {
+      name: 'Vannamei Shrimp HOSO',
       tag: 'Head-On, Shell-On',
       desc: 'Whole farmed Vannamei shrimp, head-on and shell-on. Color and freshness preserved by immediate freezing at origin.',
       specs: [
@@ -353,6 +366,7 @@ export const en: Dict = {
       ],
     },
     'shrimp-vannamei-pd': {
+      name: 'Vannamei Shrimp PD',
       tag: 'Raw · Peeled and Deveined',
       desc: 'Raw peeled and deveined Vannamei shrimp. Net yield with no peeling loss, ideal for production lines and high-volume kitchens.',
       specs: [
@@ -363,6 +377,7 @@ export const en: Dict = {
       ],
     },
     'shrimp-cooked-pd': {
+      name: 'Cooked, Peeled & Deveined Shrimp',
       tag: 'Ready to Eat · Peeled & Deveined',
       desc: 'Farmed shrimp peeled, deveined and steam-cooked at origin. Keeps a bright orange color, crisp texture and zero drip loss when thawed.',
       specs: [
@@ -373,6 +388,7 @@ export const en: Dict = {
       ],
     },
     'shrimp-paste': {
+      name: 'Shrimp Paste',
       tag: 'Paste · Industrial Base',
       desc: 'Shrimp paste for industrial use: a base for sauces, fillings, seafood sausages and formed products. Homogeneous texture and concentrated flavor.',
       specs: [
@@ -384,6 +400,7 @@ export const en: Dict = {
     },
 
     'rose-panga-fillet': {
+      name: 'Rose Panga Fillet',
       tag: 'Pangasius · Rose Fillet',
       desc: 'Panga fillet with a natural rose tone, well trimmed, fat-free, boneless and free of red line. 100% net yield for industrial canteens and processors.',
       specs: [
@@ -394,6 +411,7 @@ export const en: Dict = {
       ],
     },
     'panga-steaks': {
+      name: 'Panga Steaks',
       tag: 'Steaks · Cross Cut',
       desc: 'Cross-cut panga with center bone, of uniform thickness. A high-turnover presentation in markets that favor the steak cut.',
       specs: [
@@ -404,6 +422,7 @@ export const en: Dict = {
       ],
     },
     'panga-breaded-fillet': {
+      name: 'Breaded Panga Fillet',
       tag: 'Breaded · Value Added',
       desc: 'Breaded panga fillet with even coating and stable crispness after cooking. A format designed for fast-food chains and catering.',
       specs: [
@@ -415,6 +434,7 @@ export const en: Dict = {
     },
 
     'tuna-steaks': {
+      name: 'Tuna Steaks',
       tag: 'Loin · Premium Cut',
       desc: 'Clean-cut tuna loins with deep color, selected for flesh quality. Quick freezing preserves texture and plate presentation.',
       specs: [
@@ -425,6 +445,7 @@ export const en: Dict = {
       ],
     },
     'tuna-cubes': {
+      name: 'Tuna Cubes',
       tag: 'Cubes · Portioned',
       desc: 'Evenly sized tuna cubes, ready to portion. An efficient format for poke, ceviche, stir-fries and quick-preparation lines.',
       specs: [
