@@ -1237,6 +1237,14 @@ function Footer() {
             {[t.footer.terms, t.footer.privacy, t.footer.safety].map(label => (
               <a key={label} href="#" className="text-white/50 hover:text-white/80 text-[0.7rem] sm:text-xs transition-colors">{label}</a>
             ))}
+            {/* Herramienta interna: enlace discreto, sin traducir y fuera del
+                menu principal, porque no va dirigida a clientes. */}
+            <a
+              href={`${BASE}signature/`}
+              className="text-white/30 hover:text-[var(--gold-bright)]/70 text-[0.7rem] sm:text-xs transition-colors"
+            >
+              Email Signature
+            </a>
           </div>
         </div>
       </div>
