@@ -411,8 +411,8 @@ export const es = {
       ],
     },
     'panga-steaks': {
-      name: 'Postas de Panga',
-      tag: 'Steaks · Corte Transversal',
+      name: 'Filete de Panga',
+      tag: 'Corte Transversal · Con Hueso Central',
       desc: 'Corte transversal de panga con hueso central, de grosor uniforme. Presentación de alta rotación en mercados donde se valora el corte tipo posta.',
       specs: [
         ['Presentación', 'Caja Máster de 15 kg'],
@@ -434,8 +434,8 @@ export const es = {
     },
 
     'tuna-steaks': {
-      name: 'Lomos de Atún',
-      tag: 'Lomo · Corte Premium',
+      name: 'Filete de Atún',
+      tag: 'Corte Premium · Color Intenso',
       desc: 'Lomos de atún de corte limpio y color intenso, seleccionados por calidad de carne. Congelación rápida que preserva textura y presentación en plato.',
       specs: [
         ['Presentación', 'Caja Máster 10 kg'],
