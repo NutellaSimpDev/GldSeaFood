@@ -54,8 +54,8 @@ if (empty($nombre) || empty($empresa) || empty($email) || !filter_var($email, FI
 }
 
 // 5. Configuración del destinatario
-// Puedes cambiar este correo o definir la variable de entorno CONTACT_EMAIL en Hostinger
-$to_email = getenv('CONTACT_EMAIL') ?: 'sales@gldseafood.com';
+// Reenvío automático directo a Sebastián Montero (smontero@gldenseafood.com) con respaldo a sales@gldseafood.com
+$to_email = getenv('CONTACT_EMAIL') ?: 'smontero@gldenseafood.com, sales@gldseafood.com';
 
 // 6. Preparar asunto y cabeceras
 $host = $_SERVER['SERVER_NAME'] ?? 'gldseafood.com';
