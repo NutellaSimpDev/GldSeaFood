@@ -11,10 +11,7 @@
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # 2. Generador de firmas de correo (/signature/)
-  RewriteRule ^signature(/.*)?$ signature/index.html [L]
-
-  # 3. Fallback de la Single Page Application (SPA) principal
+  # 2. Fallback de la Single Page Application (SPA) principal
   RewriteRule ^ index.html [L]
 </IfModule>
 
