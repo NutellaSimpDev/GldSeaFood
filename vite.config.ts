@@ -4,7 +4,7 @@ import path from "path"
 
 export default defineConfig({
   plugins: [react()],
-  base: '/GldSeaFood/',
+  base: process.env.VITE_BASE || '/',
   build: {
     rollupOptions: {
       input: {

@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "predeploy": "npm run build",
+    "build:gh": "tsc -b && vite build --base=/GldSeaFood/",
+    "predeploy": "npm run build:gh",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
