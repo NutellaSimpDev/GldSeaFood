@@ -404,7 +404,7 @@ export const zh: Dict = {
     },
 
     'rose-panga-fillet': {
-      name: '粉红巴沙鱼片 (Rose Panga)',
+      name: '粉红巴沙鱼片 (Rose Basa Fillet)',
       tag: '优质巴沙鱼 · 自然粉润 · 精修去脂',
       desc: '肉色呈现自然浅粉润泽，人工精细修整，彻底去除腹部油脂、肌刺与红肉线。出成率100%，适合企事业单位食堂及大型团餐。',
       specs: [

@@ -64,8 +64,8 @@ export const en: Dict = {
       cr: 'Strategic center in Central America with direct import operations and regional redistribution.',
       co: 'Presence in Bogotá and Buenaventura. Direct import with full customs management.',
       pe: 'Origin of Giant Squid Dosidicus gigas. Certified processing plants along the coast.',
-      cn: 'Tilapia and panga sourcing through the port of Yantian, Shenzhen. Quality control at origin.',
-      vn: 'Premium panga fillet production. High-technology processing with BAP certification.',
+      cn: 'Tilapia and basa sourcing through the port of Yantian, Shenzhen. Quality control at origin.',
+      vn: 'Premium basa fillet production. High-technology processing with BAP certification.',
     },
   },
 
@@ -124,7 +124,7 @@ export const en: Dict = {
       squid: 'Giant Squid',
       tilapia: 'Tilapia',
       shrimp: 'Shrimp',
-      panga: 'Panga',
+      panga: 'Basa',
       tuna: 'Tuna',
     },
     badge: '100% IQF',
@@ -403,9 +403,9 @@ export const en: Dict = {
     },
 
     'rose-panga-fillet': {
-      name: 'Rose Panga Fillet',
-      tag: 'Pangasius · Rose Fillet',
-      desc: 'Panga fillet with a natural rose tone, well trimmed, fat-free, boneless and free of red line. 100% net yield for industrial canteens and processors.',
+      name: 'Rose Basa Fillet',
+      tag: 'Basa · Rose Fillet',
+      desc: 'Basa fillet with a natural rose tone, well trimmed, fat-free, boneless and free of red line. 100% net yield for industrial canteens and processors.',
       specs: [
         ['Presentation', 'Master carton 15 kg'],
         ['Treatment', 'Phosphate-free or specified level'],
@@ -414,9 +414,9 @@ export const en: Dict = {
       ],
     },
     'panga-steaks': {
-      name: 'Panga Steaks',
+      name: 'Basa Steaks',
       tag: 'Steaks · Cross Cut',
-      desc: 'Cross-cut panga with center bone, of uniform thickness. A high-turnover presentation in markets that favor the steak cut.',
+      desc: 'Cross-cut basa with center bone, of uniform thickness. A high-turnover presentation in markets that favor the steak cut.',
       specs: [
         ['Presentation', 'Master carton 15 kg'],
         ['Processing', 'Cross cut, IQF'],
@@ -425,9 +425,9 @@ export const en: Dict = {
       ],
     },
     'panga-breaded-fillet': {
-      name: 'Breaded Panga Fillet',
+      name: 'Breaded Basa Fillet',
       tag: 'Breaded · Value Added',
-      desc: 'Breaded panga fillet with even coating and stable crispness after cooking. A format designed for fast-food chains and catering.',
+      desc: 'Breaded basa fillet with even coating and stable crispness after cooking. A format designed for fast-food chains and catering.',
       specs: [
         ['Presentation', 'Master carton 10 kg'],
         ['Processing', 'Breaded, IQF frozen'],

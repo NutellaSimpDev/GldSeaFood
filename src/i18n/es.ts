@@ -63,8 +63,8 @@ export const es = {
       cr: 'Centro estratégico en América Central con operaciones de importación directa y redistribución regional.',
       co: 'Presencia en Bogotá y Buenaventura. Importación directa con gestión aduanal integral.',
       pe: 'Origen del Calamar Gigante Dosidicus gigas. Plantas de procesamiento certificadas en la costa.',
-      cn: 'Abastecimiento de tilapia y panga desde el puerto de Yantian, Shenzhen. Control de calidad en origen.',
-      vn: 'Producción de filete de panga premium. Procesamiento de alta tecnología con certificación BAP.',
+      cn: 'Abastecimiento de tilapia y basa desde el puerto de Yantian, Shenzhen. Control de calidad en origen.',
+      vn: 'Producción de filete de basa premium. Procesamiento de alta tecnología con certificación BAP.',
     },
   },
 
@@ -123,7 +123,7 @@ export const es = {
       squid: 'Calamar Gigante',
       tilapia: 'Tilapia',
       shrimp: 'Camarón',
-      panga: 'Panga',
+      panga: 'Basa',
       tuna: 'Atún',
     },
     badge: '100% IQF',
@@ -403,9 +403,9 @@ export const es = {
     },
 
     'rose-panga-fillet': {
-      name: 'Filete de Panga Rosado',
-      tag: 'Pangasius · Filete Rosado',
-      desc: 'Filete de panga de tonalidad rosada natural, bien recortado, sin grasa, sin espinas y sin línea roja. Rendimiento 100% neto para comedores industriales y procesadores.',
+      name: 'Filete de Basa Rosado',
+      tag: 'Basa · Filete Rosado',
+      desc: 'Filete de basa de tonalidad rosada natural, bien recortado, sin grasa, sin espinas y sin línea roja. Rendimiento 100% neto para comedores industriales y procesadores.',
       specs: [
         ['Presentación', 'Caja Máster de 15 kg'],
         ['Tratamiento', 'Libre de fosfatos o nivel especificado'],
@@ -414,9 +414,9 @@ export const es = {
       ],
     },
     'panga-steaks': {
-      name: 'Filete de Panga',
+      name: 'Posta/Trozo de Basa',
       tag: 'Corte Transversal · Con Hueso Central',
-      desc: 'Corte transversal de panga con hueso central, de grosor uniforme. Presentación de alta rotación en mercados donde se valora el corte tipo posta.',
+      desc: 'Corte transversal de basa (posta o trozo) con hueso central, de grosor uniforme. Presentación de alta rotación en mercados donde se valora el corte tipo posta.',
       specs: [
         ['Presentación', 'Caja Máster de 15 kg'],
         ['Procesamiento', 'Corte transversal, IQF'],
@@ -425,9 +425,9 @@ export const es = {
       ],
     },
     'panga-breaded-fillet': {
-      name: 'Filete de Panga Empanizado',
+      name: 'Filete de Basa Empanizado',
       tag: 'Empanizado · Valor Agregado',
-      desc: 'Filete de panga empanizado, de cobertura pareja y crocante estable tras la cocción. Formato pensado para cadenas de comida rápida y catering.',
+      desc: 'Filete de basa empanizado, de cobertura pareja y crocante estable tras la cocción. Formato pensado para cadenas de comida rápida y catering.',
       specs: [
         ['Presentación', 'Caja Máster 10 kg'],
         ['Procesamiento', 'Empanizado, congelado IQF'],

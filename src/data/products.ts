@@ -151,21 +151,21 @@ export const products: Product[] = [
   // ─── PANGA / PANGASIUS ───────────────────────────────────────────
   {
     slug: 'rose-panga-fillet',
-    name: 'Rose Panga Fillet',
+    name: 'Rose Basa Fillet',
     category: 'panga',
     image: `${IMG}rose-panga-fillet.png`,
     iqf: true,
   },
   {
     slug: 'panga-steaks',
-    name: 'Panga Steaks',
+    name: 'Basa Steaks',
     category: 'panga',
     image: `${IMG}panga-steaks.png`,
     iqf: true,
   },
   {
     slug: 'panga-breaded-fillet',
-    name: 'Breaded Panga Fillet',
+    name: 'Breaded Basa Fillet',
     category: 'panga',
     image: `${IMG}panga-breaded-fillet.png`,
     iqf: true,
