@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { es, type Dict } from './es';
 import { en } from './en';
+import { zh } from './zh';
 
 export type Lang = 'es' | 'en' | 'zh';
 
@@ -8,7 +9,7 @@ export type Lang = 'es' | 'en' | 'zh';
  * Para agregar mandarin: crear zh.ts tipado como Dict (TypeScript exigira
  * todas las claves) e importarlo aqui. Nada mas cambia.
  */
-const DICTS: Partial<Record<Lang, Dict>> = { es, en };
+const DICTS: Record<Lang, Dict> = { es, en, zh };
 
 export const LANGUAGES: { code: Lang; label: string; short: string }[] = [
   { code: 'es', label: 'Español', short: 'ES' },
