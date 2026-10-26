@@ -37,10 +37,10 @@ export const en: Dict = {
     label: 'Standards & Certifications:',
     items: {
       haccp: 'Hazard Analysis and Critical Control Points',
-      fda: 'U.S. Facility Registration',
+      halal: 'Halal Compliance Certification',
       bap: 'Best Aquaculture Practices',
       iso: 'Food Safety Management',
-      senasa: 'Sanitary Import Permits',
+      senasa: 'SENASA Sanitary Permits',
     },
   },
 
@@ -109,7 +109,7 @@ export const en: Dict = {
       temp: 'Cold Chain Monitoring',
       tempVal: '-18°C to -25°C',
       standards: 'Facility Certification',
-      standardsVal: 'HACCP · FDA · BRCGS',
+      standardsVal: 'HACCP · BRCGS · HALAL',
       trace: 'Batch Traceability',
       traceVal: '100% Origin to Port',
     },

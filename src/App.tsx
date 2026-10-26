@@ -61,10 +61,10 @@ const marketNames: Record<string, string> = {
   pe: 'Perú', cn: 'China', vn: 'Vietnam',
 };
 
-const certKeys = ['haccp', 'fda', 'bap', 'iso', 'senasa'] as const;
+const certKeys = ['haccp', 'bap', 'iso', 'halal', 'senasa'] as const;
 const certNames: Record<string, string> = {
-  haccp: 'HACCP Certified', fda: 'FDA Registered', bap: 'BAP 4-Star',
-  iso: 'ISO 22000', senasa: 'DIPOA / SENASA',
+  haccp: 'HACCP Certified', bap: 'BAP 4-Star', iso: 'ISO 22000',
+  halal: 'HALAL Certified', senasa: 'SENASA',
 };
 
 const advantageIcons = { cold: Snowflake, trace: FileCheck, weight: Package };

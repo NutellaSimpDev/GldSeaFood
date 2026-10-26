@@ -36,10 +36,10 @@ export const es = {
     label: 'Estándares & Certificaciones:',
     items: {
       haccp: 'Análisis de Peligros y Puntos Críticos',
-      fda: 'Registro Sanitario de Instalaciones EE.UU.',
+      halal: 'Certificación de Conformidad Halal',
       bap: 'Mejores Prácticas de Acuicultura',
       iso: 'Gestión de Inocuidad Alimentaria',
-      senasa: 'Permisos Sanitarios de Importación',
+      senasa: 'Permisos Sanitarios SENASA Perú',
     },
   },
 
@@ -108,7 +108,7 @@ export const es = {
       temp: 'Monitoreo de Cadena de Frío',
       tempVal: '-18°C a -25°C',
       standards: 'Certificación de Planta',
-      standardsVal: 'HACCP · FDA · BRCGS',
+      standardsVal: 'HACCP · BRCGS · HALAL',
       trace: 'Trazabilidad por Lote',
       traceVal: '100% Origen a Destino',
     },
