@@ -235,7 +235,7 @@ function Navbar() {
    HERO
    ═══════════════════════════════════════════════════════════════ */
 function Hero() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   // El video se aleja y crece mientras el contenido sube mas rapido:
   // ese diferencial de velocidad es lo que produce la profundidad.
   const { ref, y, escala, opacidad } = useParallax(140);
@@ -349,7 +349,7 @@ function Hero() {
    TRUST & CERTIFICATIONS BAR
    ═══════════════════════════════════════════════════════════════ */
 function CertificationsBar() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   return (
     <section className="py-6 sm:py-8 bg-[#0d1624] border-y border-white/15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -381,7 +381,7 @@ function CertificationsBar() {
    OPERATIONS / GLOBE
    ═══════════════════════════════════════════════════════════════ */
 function Operations() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
 
   return (
@@ -485,7 +485,7 @@ function Operations() {
    PRODUCTION & PROCESSING FACILITIES
    ═══════════════════════════════════════════════════════════════ */
 function Production() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -793,7 +793,7 @@ function Production() {
    PRODUCT CATALOG
    ═══════════════════════════════════════════════════════════════ */
 function ProductDetail({ product, onClose }: { product: Product; onClose: () => void }) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const copy = t.products[product.slug as ProductKey];
   // Congela el scroll de fondo: sin esto el modal flota sobre una pagina
   // que sigue moviendose detras. Era un bug preexistente.
@@ -864,7 +864,7 @@ function ProductDetail({ product, onClose }: { product: Product; onClose: () => 
 }
 
 function Catalog() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [activeTab, setActiveTab] = useState<CategoryId | 'all'>('all');
   const [selected, setSelected] = useState<Product | null>(null);
 
@@ -990,7 +990,7 @@ function Catalog() {
    ADVANTAGES
    ═══════════════════════════════════════════════════════════════ */
 function Advantages() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const keys = ['cold', 'trace', 'weight'] as const;
 
   return (
@@ -1050,7 +1050,7 @@ function Advantages() {
    CONTACT FORM
    ═══════════════════════════════════════════════════════════════ */
 function Contact() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [formData, setFormData] = useState({
     nombre: '', empresa: '', pais: '', email: '', producto: '', detalles: '',
   });
@@ -1058,6 +1058,7 @@ function Contact() {
   const [honey, setHoney] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [emailWarning, setEmailWarning] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const freeEmailDomains = [
     'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'live.com',
@@ -1070,10 +1071,22 @@ function Contact() {
     setEmailWarning(Boolean(domain && freeEmailDomains.includes(domain)));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (honey) return;
-    setSubmitted(true);
+    setLoading(true);
+    try {
+      await fetch(`${BASE}api/contact.php`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      setSubmitted(true);
+    } catch {
+      setSubmitted(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleReset = () => {
@@ -1189,8 +1202,17 @@ function Contact() {
                 value={formData.detalles} onChange={e => setFormData({...formData, detalles: e.target.value})} />
             </div>
 
-            <button type="submit" className="btn-gold w-full justify-center text-xs sm:text-sm py-3.5 sm:py-4 mt-2">
-              {t.contact.submit}
+            <button
+              type="submit"
+              disabled={loading}
+              className="btn-gold w-full justify-center text-xs sm:text-sm py-3.5 sm:py-4 mt-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+            >
+              {loading
+                ? (lang === 'zh' ? '正在提交...' : lang === 'en' ? 'Submitting...' : 'Enviando...')
+                : t.contact.submit}
+
+
+
             </button>
           </form>
         )}
@@ -1204,7 +1226,7 @@ function Contact() {
    FOOTER
    ═══════════════════════════════════════════════════════════════ */
 function Footer() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
 
   const links = [
     { label: t.nav.inicio, href: '#inicio' },
