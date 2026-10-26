@@ -253,6 +253,7 @@ img, video {
   font-family: var(--font-sans);
   font-size: 0.95rem;
   color: #ffffff;
+  color-scheme: dark;
   border-radius: 10px;
   transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
   outline: none;
@@ -266,6 +267,18 @@ img, video {
 
 .form-input::placeholder {
   color: rgba(255,255,255,0.45);
+}
+
+select.form-input {
+  color-scheme: dark;
+}
+
+select.form-input optgroup {
+  background-color: #0b1320;
+  color: var(--gold-bright, #e6c575);
+  font-weight: 700;
+  font-style: normal;
+  padding: 6px 10px;
 }
 
 select.form-input option {
