@@ -229,7 +229,7 @@ export const en: Dict = {
       desc: 'Clean mantle sheets with uniform whiteness and firm texture. An ideal base for repacking, secondary cutting and production of rings or strips.',
       specs: [
         ['Presentation', 'Block / raffia sack 20 kg'],
-        ['Processing', 'Block frozen or IQF'],
+        ['Processing', 'Plate or blast tunnel frozen'],
         ['Origin', 'Peru — sanitary-approved plants'],
         ['Use', 'Repacking and industrial processing'],
       ],
@@ -262,7 +262,7 @@ export const en: Dict = {
       desc: 'Uniformly graded rings cut from the mantle, ready to bread or cook. A high-turnover presentation in food service and retail.',
       specs: [
         ['Presentation', 'Master carton 10 kg'],
-        ['Processing', 'IQF (Individually Quick Frozen)'],
+        ['Processing', 'Block frozen or IQF'],
         ['Size grades', 'Per customer specification'],
         ['Channel', 'Food service, retail and HORECA'],
       ],
@@ -295,7 +295,7 @@ export const en: Dict = {
       desc: 'Clean tentacles graded by size. Firm texture and pronounced marine flavor, in high demand for grilling, sautéing and canning.',
       specs: [
         ['Presentation', 'Raffia sack 20 kg'],
-        ['Processing', 'Block frozen or IQF'],
+        ['Processing', 'Plate or blast tunnel frozen'],
         ['Origin', 'Peru'],
         ['Channel', 'Food service and canneries'],
       ],

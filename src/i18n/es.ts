@@ -229,7 +229,7 @@ export const es = {
       desc: 'Láminas de manto limpias, de blancura uniforme y textura firme. Base ideal para reempaque, corte secundario y elaboración de anillos o tiras.',
       specs: [
         ['Presentación', 'Bloque / saco de rafia 20 kg'],
-        ['Procesamiento', 'Congelado en bloque o IQF'],
+        ['Procesamiento', 'Congelado en placa o túnel'],
         ['Origen', 'Perú — plantas con habilitación sanitaria'],
         ['Uso', 'Reempaque y procesamiento industrial'],
       ],
@@ -262,7 +262,7 @@ export const es = {
       desc: 'Anillos de calibre uniforme cortados del manto, listos para empanizar o cocinar. Presentación de alta rotación en food-service y retail.',
       specs: [
         ['Presentación', 'Caja máster 10 kg'],
-        ['Procesamiento', 'IQF (Congelación Rápida Individual)'],
+        ['Procesamiento', 'Congelado en bloque o IQF'],
         ['Calibres', 'Según especificación del cliente'],
         ['Canal', 'Food-service, retail y HORECA'],
       ],
@@ -295,7 +295,7 @@ export const es = {
       desc: 'Tentáculos limpios y clasificados por tamaño. Textura firme y sabor marino pronunciado, muy solicitados en parrilla, salteados y conservas.',
       specs: [
         ['Presentación', 'Saco de rafia 20 kg'],
-        ['Procesamiento', 'Congelado en bloque o IQF'],
+        ['Procesamiento', 'Congelado en placa o túnel'],
         ['Origen', 'Perú'],
         ['Canal', 'Food-service y conserveras'],
       ],
