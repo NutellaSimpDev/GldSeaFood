@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Globe from 'globe.gl';
+import { motion, AnimatePresence } from 'motion/react';
 
 export interface CountryData {
   iso: string;
@@ -15,21 +16,15 @@ export interface CountryData {
  * Geometria y etiquetas; las descripciones llegan traducidas por prop.
  *
  * Las coordenadas apuntan al PUERTO operativo, no al centroide del pais:
- * antes el marcador de Mexico caia en el desierto de Zacatecas y el de
- * Peru en plena selva, lejos de los puertos que dice la ficha.
+ * Manzanillo (MEX), Caldera (CRI), Buenaventura (COL), Callao (PER),
+ * Yantian (CHN), Ho Chi Minh (VNM).
  */
 export const mapData: CountryData[] = [
-  // Manzanillo, Colima — principal puerto del Pacifico mexicano
   { iso: 'MEX', lat: 19.05, lng: -104.31, size: 0.05, color: '#d4a853', label: 'México', flagCode: 'mx' },
-  // Puerto Caldera, Puntarenas
   { iso: 'CRI', lat: 9.91, lng: -84.72, size: 0.05, color: '#d4a853', label: 'Costa Rica', flagCode: 'cr' },
-  // Buenaventura, Valle del Cauca — principal puerto del Pacifico colombiano
   { iso: 'COL', lat: 3.88, lng: -77.03, size: 0.05, color: '#d4a853', label: 'Colombia', flagCode: 'co' },
-  // Callao, Lima
   { iso: 'PER', lat: -12.05, lng: -77.14, size: 0.05, color: '#d4a853', label: 'Perú', flagCode: 'pe' },
-  // Yantian, Shenzhen (Guangdong)
   { iso: 'CHN', lat: 22.58, lng: 114.27, size: 0.05, color: '#d4a853', label: 'China', flagCode: 'cn' },
-  // Cat Lai, Ho Chi Minh
   { iso: 'VNM', lat: 10.76, lng: 106.70, size: 0.05, color: '#d4a853', label: 'Vietnam', flagCode: 'vn' },
 ];
 
@@ -45,19 +40,53 @@ export default function GlobeMap({ selectedCode, onSelectCountry, descriptions }
   const [tooltip, setTooltip] = useState<CountryData | null>(null);
   const worldRef = useRef<any>(null);
 
-  // Ref al callback: el efecto de montaje corre una sola vez, asi que leer
-  // onSelectCountry directamente dejaria una closure obsoleta.
-  const onSelectRef = useRef(onSelectCountry);
-  useEffect(() => { onSelectRef.current = onSelectCountry; }, [onSelectCountry]);
+  // Guarda para evitar doble disparo de animaciones: evita que la sincronizacion
+  // de React aborte y salte la interpolacion suave de la camara en globe.gl.
+  const currentTargetRef = useRef<string | null>(null);
 
-  // Sync external selectedCode changes
+  const onSelectRef = useRef(onSelectCountry);
   useEffect(() => {
-    if (!selectedCode) return;
-    const match = mapData.find(m => m.flagCode === selectedCode || m.iso === selectedCode);
-    if (match && worldRef.current) {
+    onSelectRef.current = onSelectCountry;
+  }, [onSelectCountry]);
+
+  // Centra y anima suavemente hacia el pais seleccionado
+  const focusCountry = (match: CountryData, duration = 1200) => {
+    if (!worldRef.current) return;
+
+    // Si ya estamos centrados o transicionando hacia este pais, no reiniciar el tween
+    if (currentTargetRef.current === match.flagCode) {
       setTooltip(match);
-      worldRef.current.controls().autoRotate = false;
-      worldRef.current.pointOfView({ lat: match.lat, lng: match.lng, altitude: 1.5 }, 600);
+      return;
+    }
+
+    currentTargetRef.current = match.flagCode;
+    setTooltip(match);
+
+    const controls = worldRef.current.controls();
+    if (controls) {
+      controls.autoRotate = false;
+    }
+
+    // Animacion fluida y continua sin salto brusco
+    worldRef.current.pointOfView({ lat: match.lat, lng: match.lng, altitude: 1.55 }, duration);
+  };
+
+  // Sincronizacion externa de selectedCode (ej: botones de banderas en App.tsx)
+  useEffect(() => {
+    if (!selectedCode) {
+      if (currentTargetRef.current !== null && worldRef.current) {
+        currentTargetRef.current = null;
+        setTooltip(null);
+        const controls = worldRef.current.controls();
+        if (controls) controls.autoRotate = true;
+        worldRef.current.pointOfView({ lat: 10, lng: -70, altitude: 2.2 }, 1000);
+      }
+      return;
+    }
+
+    const match = mapData.find(m => m.flagCode === selectedCode || m.iso === selectedCode);
+    if (match) {
+      focusCountry(match, 1200);
     }
   }, [selectedCode]);
 
@@ -65,11 +94,9 @@ export default function GlobeMap({ selectedCode, onSelectCountry, descriptions }
     if (!containerRef.current) return;
 
     const container = containerRef.current;
-    // StrictMode monta el efecto dos veces en dev: sin esta guarda quedarian
-    // dos globos y dos contextos WebGL vivos sobre el mismo contenedor.
     let disposed = false;
 
-    // High performance Globe initialization
+    // Inicializacion del globo 3D
     const world = (Globe as any)({ waitForGlobeReady: true })(container)
       .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
       .backgroundColor('rgba(0,0,0,0)')
@@ -77,7 +104,7 @@ export default function GlobeMap({ selectedCode, onSelectCountry, descriptions }
 
     worldRef.current = world;
 
-    // Set dimensions
+    // Ajuste responsivo de dimensiones
     const resize = () => {
       if (!containerRef.current) return;
       const w = containerRef.current.clientWidth;
@@ -87,16 +114,16 @@ export default function GlobeMap({ selectedCode, onSelectCountry, descriptions }
     resize();
     window.addEventListener('resize', resize, { passive: true });
 
-    // Controls optimization
+    // Controles de orbita
     const controls = world.controls();
     controls.autoRotate = true;
     controls.autoRotateSpeed = 0.6;
     controls.enableZoom = false;
 
-    // Camera
+    // Vista inicial sobre el continente americano
     world.pointOfView({ lat: 10, lng: -70, altitude: 2.2 });
 
-    // Load GeoJSON and FILTER ONLY OUR 6 ACTIVE COUNTRIES for 120 FPS WebGL rendering!
+    // Carga de poligonos filtrados para maximo rendimiento WebGL
     fetch('https://raw.githubusercontent.com/vasturiano/globe.gl/master/example/datasets/ne_110m_admin_0_countries.geojson')
       .then(res => {
         if (!res.ok) throw new Error(`GeoJSON HTTP ${res.status}`);
@@ -122,20 +149,16 @@ export default function GlobeMap({ selectedCode, onSelectCountry, descriptions }
             const iso = d?.properties?.ISO_A3;
             const match = mapData.find(m => m.iso === iso);
             if (match) {
-              setTooltip(match);
+              focusCountry(match, 1200);
               onSelectRef.current?.(match.flagCode);
-              controls.autoRotate = false;
-              world.pointOfView({ lat: match.lat, lng: match.lng, altitude: 1.5 }, 600);
             }
           });
       })
       .catch(err => {
-        // Antes se tragaba el error en silencio: si el CDN fallaba, el globo
-        // se quedaba sin poligonos y no habia forma de saber por que.
         console.error('[GlobeMap] no se pudieron cargar los poligonos de paises:', err);
       });
 
-    // Points
+    // Marcadores de puertos en los paises clave
     world
       .pointsData(mapData)
       .pointAltitude('size')
@@ -143,18 +166,14 @@ export default function GlobeMap({ selectedCode, onSelectCountry, descriptions }
       .pointRadius(0.6)
       .onPointClick((d: any) => {
         const data = d as CountryData;
-        setTooltip(data);
+        focusCountry(data, 1200);
         onSelectRef.current?.(data.flagCode);
-        controls.autoRotate = false;
-        world.pointOfView({ lat: data.lat, lng: data.lng, altitude: 1.5 }, 600);
       });
 
     return () => {
       disposed = true;
       window.removeEventListener('resize', resize);
 
-      // Libera el contexto WebGL, el renderer y el loop de animacion.
-      // Sin esto cada remontaje dejaba un globo huerfano consumiendo GPU.
       try {
         world._destructor?.();
       } catch (err) {
@@ -166,42 +185,57 @@ export default function GlobeMap({ selectedCode, onSelectCountry, descriptions }
   }, []);
 
   const closeTooltip = () => {
+    currentTargetRef.current = null;
     setTooltip(null);
-    if (onSelectCountry) onSelectCountry(null);
+    onSelectRef.current?.(null);
     if (worldRef.current) {
-      worldRef.current.controls().autoRotate = true;
-      worldRef.current.pointOfView({ lat: 10, lng: -70, altitude: 2.2 }, 600);
+      const controls = worldRef.current.controls();
+      if (controls) controls.autoRotate = true;
+      worldRef.current.pointOfView({ lat: 10, lng: -70, altitude: 2.2 }, 1000);
     }
   };
 
   return (
     <div className="relative w-full flex justify-center">
       <div ref={containerRef} className="cursor-grab active:cursor-grabbing w-full max-w-4xl" />
-      
-      {/* Tooltip Card */}
-      {tooltip && (
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 w-[90%] max-w-md">
-          <div className="glass rounded-2xl p-5 sm:p-6 shadow-2xl border border-[var(--gold)]/40 relative bg-[#0e1726]/95 backdrop-blur-xl">
-            <button
-              onClick={closeTooltip}
-              className="absolute top-3 right-3 text-white/60 hover:text-white transition-colors text-xl font-bold cursor-pointer leading-none p-1"
-            >
-              ×
-            </button>
 
-            <div className="flex items-center gap-3 mb-2.5">
-              <img
-                src={`https://flagcdn.com/w40/${tooltip.flagCode}.png`}
-                alt={tooltip.label}
-                className="w-7 h-5 rounded object-cover shadow-sm border border-white/20"
-              />
-              <strong className="text-[var(--gold-bright)] text-lg font-bold">{tooltip.label}</strong>
+      {/* Tooltip Card con transicion suave */}
+      <AnimatePresence>
+        {tooltip && (
+          <motion.div
+            key={tooltip.flagCode}
+            initial={{ opacity: 0, y: 16, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.96 }}
+            transition={{ duration: 0.28, ease: 'easeOut' }}
+            className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 w-[90%] max-w-md pointer-events-auto"
+          >
+            <div className="glass rounded-2xl p-5 sm:p-6 shadow-2xl border border-[var(--gold)]/40 relative bg-[#0e1726]/95 backdrop-blur-xl">
+              <button
+                type="button"
+                onClick={closeTooltip}
+                className="absolute top-3 right-3 text-white/60 hover:text-white transition-colors text-xl font-bold cursor-pointer leading-none p-1"
+                aria-label="Cerrar detalle"
+              >
+                ×
+              </button>
+
+              <div className="flex items-center gap-3 mb-2.5">
+                <img
+                  src={`https://flagcdn.com/w40/${tooltip.flagCode}.png`}
+                  alt={tooltip.label}
+                  className="w-7 h-5 rounded object-cover shadow-sm border border-white/20"
+                />
+                <strong className="text-[var(--gold-bright)] text-lg font-bold">{tooltip.label}</strong>
+              </div>
+
+              <p className="text-white/90 text-xs sm:text-sm leading-relaxed font-light">
+                {descriptions[tooltip.flagCode]}
+              </p>
             </div>
-
-            <p className="text-white/90 text-xs sm:text-sm leading-relaxed font-light">{descriptions[tooltip.flagCode]}</p>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
