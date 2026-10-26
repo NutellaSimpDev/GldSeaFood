@@ -1055,9 +1055,31 @@ function Contact() {
     nombre: '', empresa: '', pais: '', email: '', producto: '', detalles: '',
   });
 
+  const [honey, setHoney] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+  const [emailWarning, setEmailWarning] = useState(false);
+
+  const freeEmailDomains = [
+    'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'live.com',
+    'icloud.com', 'aol.com', 'zoho.com', 'protonmail.com', 'yandex.com',
+  ];
+
+  const handleEmailChange = (val: string) => {
+    setFormData(d => ({ ...d, email: val }));
+    const domain = val.trim().toLowerCase().split('@')[1];
+    setEmailWarning(Boolean(domain && freeEmailDomains.includes(domain)));
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(t.contact.success);
+    if (honey) return;
+    setSubmitted(true);
+  };
+
+  const handleReset = () => {
+    setSubmitted(false);
+    setFormData({ nombre: '', empresa: '', pais: '', email: '', producto: '', detalles: '' });
+    setEmailWarning(false);
   };
 
   return (
@@ -1096,7 +1118,26 @@ function Contact() {
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
+          {submitted ? (
+            <div className="text-center py-10 sm:py-14 space-y-4 sm:space-y-6">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-full bg-[var(--gold)]/20 border border-[var(--gold)] flex items-center justify-center text-[var(--gold-bright)]">
+                <CheckCircle2 size={36} />
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold text-white tracking-wide">{t.contact.successTitle}</h3>
+              <p className="text-white/80 max-w-md mx-auto text-xs sm:text-sm leading-relaxed font-light">{t.contact.success}</p>
+              <div className="pt-2">
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  className="btn-gold text-xs sm:text-sm py-2.5 px-6 inline-flex"
+                >
+                  {t.contact.reset}
+                </button>
+              </div>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
+              <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" value={honey} onChange={e => setHoney(e.target.value)} />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
               <div>
                 <label htmlFor="f-nombre" className="block text-xs font-semibold text-white/80 uppercase tracking-wider mb-2">{t.contact.name}</label>
@@ -1119,7 +1160,10 @@ function Contact() {
               <div>
                 <label htmlFor="f-email" className="block text-xs font-semibold text-white/80 uppercase tracking-wider mb-2">{t.contact.email}</label>
                 <input id="f-email" type="email" required placeholder={t.contact.emailPh} className="form-input text-xs sm:text-sm"
-                  value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
+                  value={formData.email} onChange={e => handleEmailChange(e.target.value)} />
+                {emailWarning && (
+                  <p className="text-[11px] text-[var(--gold-bright)] mt-1.5 font-light">{t.contact.corpEmailWarning}</p>
+                )}
               </div>
             </div>
 
@@ -1149,6 +1193,7 @@ function Contact() {
               {t.contact.submit}
             </button>
           </form>
+        )}
         </motion.div>
       </div>
     </section>

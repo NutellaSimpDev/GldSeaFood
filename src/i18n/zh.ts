@@ -200,6 +200,9 @@ export const zh: Dict = {
     submit: '提交 B2B 询价意向单',
     success:
       '询价单已成功提交！我们的专业大宗进出口业务经理将在 24 个工作小时内与您取得联系。',
+    successTitle: '询价意向已成功接收',
+    reset: '提交其他询价需求',
+    corpEmailWarning: '建议使用企业工作邮箱，以便更快获得大宗批发专属报价。',
   },
 
   footer: {

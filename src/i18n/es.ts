@@ -199,6 +199,9 @@ export const es = {
     submit: 'Enviar Solicitud de Cotización B2B',
     success:
       'Solicitud enviada con éxito. Un ejecutivo comercial se pondrá en contacto en menos de 24 horas hábiles.',
+    successTitle: 'Solicitud Recibida',
+    reset: 'Enviar otra consulta',
+    corpEmailWarning: 'Recomendamos usar un correo corporativo para agilizar la cotización mayorista.',
   },
 
   footer: {

@@ -200,6 +200,9 @@ export const en: Dict = {
     submit: 'Send B2B Quote Request',
     success:
       'Request sent successfully. A sales representative will contact you within 24 business hours.',
+    successTitle: 'Inquiry Received',
+    reset: 'Send another inquiry',
+    corpEmailWarning: 'We recommend using a corporate email address to expedite wholesale quoting.',
   },
 
   footer: {
